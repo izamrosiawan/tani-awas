@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tani-Awas — Sistem Prediksi Dini Risiko Kekeringan Pertanian</title>
+    <!-- Leaflet CSS & Fonts -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar Navigation & Control Panel -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-logo">🌾</div>
+                <div>
+                    <h2>Tani-Awas</h2>
+                    <p class="brand-sub">AgriDrought EWS Platform</p>
+                </div>
+            </div>
+
+            <div class="control-section">
+                <label class="section-label">Wilayah Pemantauan</label>
+                <select id="kecamatanSelect" class="form-control">
+                    <!-- Dynamic Options -->
+                </select>
+            </div>
+
+            <div class="control-section">
+                <label class="section-label">Komoditas & Lahan</label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="commodity" value="Padi Sawah" checked> Padi Sawah
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="commodity" value="Jagung"> Jagung
+                    </label>
+                </div>
+                <div class="slider-container">
+                    <div class="slider-header">
+                        <span>Luas Lahan Terancam</span>
+                        <span id="landAreaVal" class="val-badge">250 Ha</span>
+                    </div>
+                    <input type="range" id="landAreaSlider" min="20" max="1000" step="10" value="250">
+                </div>
+            </div>
+
+            <div class="control-section">
+                <label class="section-label">Sensor Satelit & Iklim BMKG</label>
+                
+                <div class="slider-container">
+                    <div class="slider-header">
+                        <span>Sentinel-2 NDVI</span>
+                        <span id="ndviVal" class="val-badge">0.32</span>
+                    </div>
+                    <input type="range" id="ndviSlider" min="0.10" max="0.90" step="0.01" value="0.32">
+                </div>
+
+                <div class="slider-container">
+                    <div class="slider-header">
+                        <span>Curah Hujan BMKG (mm/mgg)</span>
+                        <span id="rainVal" class="val-badge">18.0 mm</span>
+                    </div>
+                    <input type="range" id="rainSlider" min="0" max="80" step="1" value="18">
+                </div>
+
+                <div class="slider-container">
+                    <div class="slider-header">
+                        <span>Suhu Permukaan LST (°C)</span>
+                        <span id="lstVal" class="val-badge">33.5 °C</span>
+                    </div>
+                    <input type="range" id="lstSlider" min="25.0" max="40.0" step="0.5" value="33.5">
+                </div>
+            </div>
+
+            <div class="control-section">
+                <button id="btnSimulate" class="btn-primary">⚡ Jalankan Prediksi Risiko</button>
+            </div>
+
+            <div class="sidebar-footer">
+                <p>Data Sumber: Sentinel-2 Google Earth Engine & BMKG Indonesia.</p>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Metric Bar -->
+            <header class="top-header">
+                <div>
+                    <h1 id="selectedKecTitle">Kecamatan Karanganyar (Demak)</h1>
+                    <p class="header-desc">Pemantauan Risiko Kekeringan Lahan Pertanian — Horizon Prediksi 2-4 Minggu</p>
+                </div>
+                <div class="status-box">
+                    <span class="status-label-top">Status Peringatan:</span>
+                    <div id="statusBadge" class="badge-danger">BAHAYA (TINGGI)</div>
+                </div>
+            </header>
+
+            <!-- Metrics Grid -->
+            <section class="metrics-grid">
+                <div class="card metric-card">
+                    <div class="metric-title">Skor Risiko Kekeringan</div>
+                    <div id="riskScoreDisplay" class="metric-value danger">0.785</div>
+                    <div class="metric-footer">Skala Indeks: 0.00 – 1.00</div>
+                </div>
+                <div class="card metric-card">
+                    <div class="metric-title">Potensi Kehilangan Panen</div>
+                    <div id="yieldLossDisplay" class="metric-value danger">45.5%</div>
+                    <div id="yieldLostTonDisplay" class="metric-footer">-682.5 Ton Terancam</div>
+                </div>
+                <div class="card metric-card">
+                    <div class="metric-title">Estimasi Kerugian Finansial</div>
+                    <div id="finLossDisplay" class="metric-value">Rp4.44 Miliar</div>
+                    <div id="landAreaSummaryDisplay" class="metric-footer">Basis: 250 Ha (Rp6.500/kg)</div>
+                </div>
+                <div class="card metric-card">
+                    <div class="metric-title">Kondisi Air & Vegetasi</div>
+                    <div id="vegConditionDisplay" class="metric-value" style="font-size: 1.25rem; padding-top: 6px;">Stres Air Kritis</div>
+                    <div id="rainConditionDisplay" class="metric-footer">Defisit Hujan Akut (< 20mm)</div>
+                </div>
+            </section>
+
+            <!-- Main Interactive Workspaces: Map & Chart -->
+            <div class="dashboard-grid">
+                <!-- Interactive Leaflet Map -->
+                <div class="card map-card">
+                    <div class="card-header">
+                        <h3>Peta Geospasial Wilayah Sentra Pangan</h3>
+                        <span class="card-tag">Sentinel-2 & BMKG Feed</span>
+                    </div>
+                    <div id="map" class="map-viewport"></div>
+                </div>
+
+                <!-- Trajectory Chart -->
+                <div class="card chart-card">
+                    <div class="card-header">
+                        <h3>Trajektori Multitemporal (12 Minggu Terakhir)</h3>
+                        <span class="card-tag">NDVI vs Curah Hujan</span>
+                    </div>
+                    <div class="chart-viewport">
+                        <canvas id="trajectoryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Tabs: Protocol & Breakdown Table -->
+            <div class="card bottom-card">
+                <div class="card-header">
+                    <h3>Protokol Rekomendasi Taktis & Rencana Mitigasi Lapangan</h3>
+                </div>
+                <div class="protocol-grid">
+                    <div class="protocol-box">
+                        <div class="protocol-role">👨‍🌾 Petani Skala Kecil</div>
+                        <ul id="farmerProtocolList">
+                            <li><strong>Minggu 1:</strong> Beralih ke irigasi berselang <em>(intermittent)</em>; alirkan air secara teratur di malam hari.</li>
+                            <li><strong>Minggu 2:</strong> Tutup bedengan sawah dengan mulsa jerami untuk menahan evaporasi air tanah.</li>
+                            <li><strong>Minggu 3:</strong> Semprotkan pupuk daun kalium tinggi guna memicu penutupan stomata saat terik matahari.</li>
+                            <li><strong>Minggu 4:</strong> Evaluasi panen dini jika gabah telah memasuki fase menguning (>80%) untuk mencegah puso total.</li>
+                        </ul>
+                    </div>
+                    <div class="protocol-box">
+                        <div class="protocol-role">🏛️ Dinas Pertanian & Penyuluh</div>
+                        <ul id="govProtocolList">
+                            <li><strong>Minggu 1:</strong> Mobilisasi pompa air bergerak <em>(mobile pump)</em> ke titik embung dan sumur pantek.</li>
+                            <li><strong>Minggu 2:</strong> Pengaturan gilir bukaan debit pintu air sekunder berbasis petak sawah paling rawan.</li>
+                            <li><strong>Minggu 3:</strong> Peningkatan intensitas patroli serangan wereng batang coklat akibat kenaikan LST tanah.</li>
+                            <li><strong>Minggu 4:</strong> Verifikasi cepat kerusakan lahan bersama petugas PPL untuk aktivasi klaim <strong>AUTP</strong>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
