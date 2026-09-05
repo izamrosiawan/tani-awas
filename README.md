@@ -1,5 +1,6 @@
-﻿# Tani-Awas: Sistem Prediksi Dini Risiko Kekeringan Pertanian Berbasis Machine Learning dan Citra Satelit
+# Tani-Awas: Sistem Prediksi Dini Risiko Kekeringan Pertanian Berbasis Machine Learning dan Citra Satelit
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-GitHub_Pages-brightgreen.svg?style=flat&logo=github)](https://izamrosiawan.github.io/tani-awas/)
 [![Python](https://img.shields.io/badge/Python-3.9%2B-blue.svg)](https://www.python.org/)
 [![Data Source](https://img.shields.io/badge/Data_Source-Sentinel--2_NDVI_%26_BMKG-green.svg)](https://earthengine.google.com/)
 [![GeoPandas](https://img.shields.io/badge/GeoPandas-Spatial_Analytics-green.svg)](https://geopandas.org/)
