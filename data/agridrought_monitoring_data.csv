@@ -1,0 +1,145 @@
+kecamatan,week,komoditas,luas_lahan_ha,ndvi_sentinel2,curah_hujan_bmkg_mm,suhu_permukaan_lst_c,drought_risk_score,status_risiko,potensi_kehilangan_panen_pct,kehilangan_produksi_ton,potensi_kerugian_juta_rp
+Kecamatan Karanganyar (Demak),1,Padi Sawah,250,0.614,58.0,29.2,0.176,RENDAH (HIJAU),3.2,48.0,312.0
+Kecamatan Karanganyar (Demak),2,Padi Sawah,250,0.6,41.1,29.1,0.281,RENDAH (HIJAU),5.1,76.5,497.25
+Kecamatan Karanganyar (Demak),3,Padi Sawah,250,0.539,48.3,30.0,0.294,RENDAH (HIJAU),5.3,79.5,516.75
+Kecamatan Karanganyar (Demak),4,Padi Sawah,250,0.55,30.5,30.8,0.409,RENDAH (HIJAU),7.4,111.0,721.5
+Kecamatan Karanganyar (Demak),5,Padi Sawah,250,0.53,29.4,30.4,0.418,RENDAH (HIJAU),7.5,112.5,731.25
+Kecamatan Karanganyar (Demak),6,Padi Sawah,250,0.463,26.7,31.2,0.49,SEDANG (KUNING),28.4,426.0,2769.0
+Kecamatan Karanganyar (Demak),7,Padi Sawah,250,0.45,22.3,31.8,0.537,SEDANG (KUNING),31.1,466.5,3032.25
+Kecamatan Karanganyar (Demak),8,Padi Sawah,250,0.404,18.1,32.0,0.592,SEDANG (KUNING),34.3,514.5,3344.25
+Kecamatan Karanganyar (Demak),9,Padi Sawah,250,0.395,21.8,32.2,0.58,SEDANG (KUNING),33.6,504.0,3276.0
+Kecamatan Karanganyar (Demak),10,Padi Sawah,250,0.371,14.5,32.5,0.644,SEDANG (KUNING),37.4,561.0,3646.5
+Kecamatan Karanganyar (Demak),11,Padi Sawah,250,0.348,3.5,33.0,0.732,TINGGI (MERAH),42.5,637.5,4143.75
+Kecamatan Karanganyar (Demak),12,Padi Sawah,250,0.341,12.1,34.2,0.712,TINGGI (MERAH),41.3,619.5,4026.75
+Kecamatan Gajah (Demak),1,Jagung,250,0.61,44.4,29.1,0.256,RENDAH (HIJAU),4.6,86.25,448.5
+Kecamatan Gajah (Demak),2,Jagung,250,0.59,40.6,29.4,0.296,RENDAH (HIJAU),5.3,99.38,516.78
+Kecamatan Gajah (Demak),3,Jagung,250,0.538,48.9,29.6,0.283,RENDAH (HIJAU),5.1,95.62,497.22
+Kecamatan Gajah (Demak),4,Jagung,250,0.548,35.2,30.3,0.372,RENDAH (HIJAU),6.7,125.63,653.28
+Kecamatan Gajah (Demak),5,Jagung,250,0.513,29.0,31.2,0.448,RENDAH (HIJAU),8.1,151.88,789.78
+Kecamatan Gajah (Demak),6,Jagung,250,0.499,36.8,31.6,0.419,RENDAH (HIJAU),7.5,140.62,731.22
+Kecamatan Gajah (Demak),7,Jagung,250,0.46,32.3,31.2,0.46,SEDANG (KUNING),26.7,500.62,2603.22
+Kecamatan Gajah (Demak),8,Jagung,250,0.408,14.1,31.9,0.611,SEDANG (KUNING),35.4,663.75,3451.5
+Kecamatan Gajah (Demak),9,Jagung,250,0.391,13.5,32.9,0.646,SEDANG (KUNING),37.5,703.12,3656.22
+Kecamatan Gajah (Demak),10,Jagung,250,0.361,9.5,33.0,0.689,SEDANG (KUNING),40.0,750.0,3900.0
+Kecamatan Gajah (Demak),11,Jagung,250,0.32,13.6,33.0,0.69,SEDANG (KUNING),40.0,750.0,3900.0
+Kecamatan Gajah (Demak),12,Jagung,250,0.343,9.0,33.6,0.716,TINGGI (MERAH),41.5,778.12,4046.22
+Kecamatan Kebumen (Kebumen),1,Padi Sawah,180,0.592,55.8,29.2,0.202,RENDAH (HIJAU),3.6,38.88,252.72
+Kecamatan Kebumen (Kebumen),2,Padi Sawah,180,0.608,50.9,29.0,0.217,RENDAH (HIJAU),3.9,42.12,273.78
+Kecamatan Kebumen (Kebumen),3,Padi Sawah,180,0.558,36.3,30.2,0.357,RENDAH (HIJAU),6.4,69.12,449.28
+Kecamatan Kebumen (Kebumen),4,Padi Sawah,180,0.545,35.5,29.9,0.363,RENDAH (HIJAU),6.5,70.2,456.3
+Kecamatan Kebumen (Kebumen),5,Padi Sawah,180,0.499,31.2,31.0,0.439,RENDAH (HIJAU),7.9,85.32,554.58
+Kecamatan Kebumen (Kebumen),6,Padi Sawah,180,0.49,36.0,31.2,0.42,RENDAH (HIJAU),7.6,82.08,533.52
+Kecamatan Kebumen (Kebumen),7,Padi Sawah,180,0.431,29.0,31.9,0.511,SEDANG (KUNING),29.6,319.68,2077.92
+Kecamatan Kebumen (Kebumen),8,Padi Sawah,180,0.43,25.7,32.1,0.535,SEDANG (KUNING),31.0,334.8,2176.2
+Kecamatan Kebumen (Kebumen),9,Padi Sawah,180,0.399,16.0,32.1,0.61,SEDANG (KUNING),35.4,382.32,2485.08
+Kecamatan Kebumen (Kebumen),10,Padi Sawah,180,0.346,5.5,33.1,0.724,TINGGI (MERAH),42.0,453.6,2948.4
+Kecamatan Kebumen (Kebumen),11,Padi Sawah,180,0.331,8.9,33.9,0.73,TINGGI (MERAH),42.3,456.84,2969.46
+Kecamatan Kebumen (Kebumen),12,Padi Sawah,180,0.299,3.2,34.2,0.788,TINGGI (MERAH),45.7,493.56,3208.14
+Kecamatan Prembun (Kebumen),1,Jagung,180,0.606,44.0,28.7,0.252,RENDAH (HIJAU),4.5,60.75,315.9
+Kecamatan Prembun (Kebumen),2,Jagung,180,0.574,53.5,29.7,0.237,RENDAH (HIJAU),4.3,58.05,301.86
+Kecamatan Prembun (Kebumen),3,Jagung,180,0.574,48.3,30.2,0.278,RENDAH (HIJAU),5.0,67.5,351.0
+Kecamatan Prembun (Kebumen),4,Jagung,180,0.519,44.5,30.3,0.334,RENDAH (HIJAU),6.0,81.0,421.2
+Kecamatan Prembun (Kebumen),5,Jagung,180,0.528,40.3,30.6,0.36,RENDAH (HIJAU),6.5,87.75,456.3
+Kecamatan Prembun (Kebumen),6,Jagung,180,0.459,25.4,31.1,0.498,SEDANG (KUNING),28.9,390.15,2028.78
+Kecamatan Prembun (Kebumen),7,Jagung,180,0.473,31.4,31.2,0.457,SEDANG (KUNING),26.5,357.75,1860.3
+Kecamatan Prembun (Kebumen),8,Jagung,180,0.427,20.1,31.8,0.563,SEDANG (KUNING),32.7,441.45,2295.54
+Kecamatan Prembun (Kebumen),9,Jagung,180,0.375,14.6,33.0,0.651,SEDANG (KUNING),37.8,510.3,2653.56
+Kecamatan Prembun (Kebumen),10,Jagung,180,0.359,13.3,33.2,0.673,SEDANG (KUNING),39.0,526.5,2737.8
+Kecamatan Prembun (Kebumen),11,Jagung,180,0.334,16.3,33.9,0.685,SEDANG (KUNING),39.7,535.95,2786.94
+Kecamatan Prembun (Kebumen),12,Jagung,180,0.299,4.6,33.7,0.769,TINGGI (MERAH),44.6,602.1,3130.92
+Kecamatan Mojosari (Mojokerto),1,Padi Sawah,180,0.609,43.4,29.1,0.262,RENDAH (HIJAU),4.7,50.76,329.94
+Kecamatan Mojosari (Mojokerto),2,Padi Sawah,180,0.594,39.4,29.2,0.296,RENDAH (HIJAU),5.3,57.24,372.06
+Kecamatan Mojosari (Mojokerto),3,Padi Sawah,180,0.59,38.2,29.5,0.312,RENDAH (HIJAU),5.6,60.48,393.12
+Kecamatan Mojosari (Mojokerto),4,Padi Sawah,180,0.537,46.0,30.0,0.309,RENDAH (HIJAU),5.6,60.48,393.12
+Kecamatan Mojosari (Mojokerto),5,Padi Sawah,180,0.52,38.2,30.5,0.375,RENDAH (HIJAU),6.8,73.44,477.36
+Kecamatan Mojosari (Mojokerto),6,Padi Sawah,180,0.496,27.7,31.3,0.467,SEDANG (KUNING),27.1,292.68,1902.42
+Kecamatan Mojosari (Mojokerto),7,Padi Sawah,180,0.462,26.2,31.2,0.494,SEDANG (KUNING),28.7,309.96,2014.74
+Kecamatan Mojosari (Mojokerto),8,Padi Sawah,180,0.446,18.5,31.8,0.561,SEDANG (KUNING),32.5,351.0,2281.5
+Kecamatan Mojosari (Mojokerto),9,Padi Sawah,180,0.37,18.7,32.7,0.624,SEDANG (KUNING),36.2,390.96,2541.24
+Kecamatan Mojosari (Mojokerto),10,Padi Sawah,180,0.341,13.2,32.7,0.673,SEDANG (KUNING),39.0,421.2,2737.8
+Kecamatan Mojosari (Mojokerto),11,Padi Sawah,180,0.351,3.6,33.6,0.743,TINGGI (MERAH),43.1,465.48,3025.62
+Kecamatan Mojosari (Mojokerto),12,Padi Sawah,180,0.307,11.6,33.5,0.72,TINGGI (MERAH),41.8,451.44,2934.36
+Kecamatan Dlanggu (Mojokerto),1,Jagung,180,0.612,44.6,29.4,0.26,RENDAH (HIJAU),4.7,63.45,329.94
+Kecamatan Dlanggu (Mojokerto),2,Jagung,180,0.617,42.7,29.6,0.272,RENDAH (HIJAU),4.9,66.15,343.98
+Kecamatan Dlanggu (Mojokerto),3,Jagung,180,0.585,43.3,29.9,0.294,RENDAH (HIJAU),5.3,71.55,372.06
+Kecamatan Dlanggu (Mojokerto),4,Jagung,180,0.523,31.7,30.7,0.415,RENDAH (HIJAU),7.5,101.25,526.5
+Kecamatan Dlanggu (Mojokerto),5,Jagung,180,0.534,36.1,30.6,0.381,RENDAH (HIJAU),6.9,93.15,484.38
+Kecamatan Dlanggu (Mojokerto),6,Jagung,180,0.473,33.4,31.6,0.454,SEDANG (KUNING),26.3,355.05,1846.26
+Kecamatan Dlanggu (Mojokerto),7,Jagung,180,0.477,30.1,31.8,0.475,SEDANG (KUNING),27.5,371.25,1930.5
+Kecamatan Dlanggu (Mojokerto),8,Jagung,180,0.401,16.0,32.5,0.617,SEDANG (KUNING),35.8,483.3,2513.16
+Kecamatan Dlanggu (Mojokerto),9,Jagung,180,0.404,9.3,32.2,0.648,SEDANG (KUNING),37.6,507.6,2639.52
+Kecamatan Dlanggu (Mojokerto),10,Jagung,180,0.38,5.1,32.7,0.697,SEDANG (KUNING),40.4,545.4,2836.08
+Kecamatan Dlanggu (Mojokerto),11,Jagung,180,0.345,11.9,33.6,0.698,SEDANG (KUNING),40.5,546.75,2843.1
+Kecamatan Dlanggu (Mojokerto),12,Jagung,180,0.297,8.0,33.6,0.749,TINGGI (MERAH),43.4,585.9,3046.68
+Kecamatan Indramayu (Indramayu),1,Padi Sawah,320,0.612,54.7,29.1,0.194,RENDAH (HIJAU),3.5,67.2,436.8
+Kecamatan Indramayu (Indramayu),2,Padi Sawah,320,0.615,49.1,29.5,0.234,RENDAH (HIJAU),4.2,80.64,524.16
+Kecamatan Indramayu (Indramayu),3,Padi Sawah,320,0.542,40.3,29.6,0.33,RENDAH (HIJAU),5.9,113.28,736.32
+Kecamatan Indramayu (Indramayu),4,Padi Sawah,320,0.523,45.8,30.2,0.322,RENDAH (HIJAU),5.8,111.36,723.84
+Kecamatan Indramayu (Indramayu),5,Padi Sawah,320,0.534,36.1,31.0,0.39,RENDAH (HIJAU),7.0,134.4,873.6
+Kecamatan Indramayu (Indramayu),6,Padi Sawah,320,0.482,31.0,31.2,0.454,SEDANG (KUNING),26.3,504.96,3282.24
+Kecamatan Indramayu (Indramayu),7,Padi Sawah,320,0.436,29.2,31.4,0.496,SEDANG (KUNING),28.8,552.96,3594.24
+Kecamatan Indramayu (Indramayu),8,Padi Sawah,320,0.397,23.7,31.8,0.56,SEDANG (KUNING),32.5,624.0,4056.0
+Kecamatan Indramayu (Indramayu),9,Padi Sawah,320,0.424,24.5,33.0,0.565,SEDANG (KUNING),32.8,629.76,4093.44
+Kecamatan Indramayu (Indramayu),10,Padi Sawah,320,0.362,5.2,33.4,0.722,TINGGI (MERAH),41.9,804.48,5229.12
+Kecamatan Indramayu (Indramayu),11,Padi Sawah,320,0.338,16.3,33.9,0.683,SEDANG (KUNING),39.6,760.32,4942.08
+Kecamatan Indramayu (Indramayu),12,Padi Sawah,320,0.335,2.0,33.8,0.766,TINGGI (MERAH),44.4,852.48,5541.12
+Kecamatan Jatibarang (Indramayu),1,Jagung,320,0.643,47.9,28.6,0.205,RENDAH (HIJAU),3.7,88.8,461.76
+Kecamatan Jatibarang (Indramayu),2,Jagung,320,0.597,53.6,29.6,0.22,RENDAH (HIJAU),4.0,96.0,499.2
+Kecamatan Jatibarang (Indramayu),3,Jagung,320,0.57,36.0,30.0,0.348,RENDAH (HIJAU),6.3,151.2,786.24
+Kecamatan Jatibarang (Indramayu),4,Jagung,320,0.567,32.4,30.3,0.377,RENDAH (HIJAU),6.8,163.2,848.64
+Kecamatan Jatibarang (Indramayu),5,Jagung,320,0.533,37.9,30.9,0.378,RENDAH (HIJAU),6.8,163.2,848.64
+Kecamatan Jatibarang (Indramayu),6,Jagung,320,0.494,27.6,31.0,0.463,SEDANG (KUNING),26.9,645.6,3357.12
+Kecamatan Jatibarang (Indramayu),7,Jagung,320,0.473,30.6,32.0,0.479,SEDANG (KUNING),27.8,667.2,3469.44
+Kecamatan Jatibarang (Indramayu),8,Jagung,320,0.451,21.6,32.1,0.547,SEDANG (KUNING),31.7,760.8,3956.16
+Kecamatan Jatibarang (Indramayu),9,Jagung,320,0.416,19.6,32.8,0.594,SEDANG (KUNING),34.5,828.0,4305.6
+Kecamatan Jatibarang (Indramayu),10,Jagung,320,0.388,19.2,32.8,0.613,SEDANG (KUNING),35.6,854.4,4442.88
+Kecamatan Jatibarang (Indramayu),11,Jagung,320,0.335,2.3,33.5,0.757,TINGGI (MERAH),43.9,1053.6,5478.72
+Kecamatan Jatibarang (Indramayu),12,Jagung,320,0.286,4.0,33.9,0.785,TINGGI (MERAH),45.5,1092.0,5678.4
+Kecamatan Subang (Subang),1,Padi Sawah,180,0.609,52.3,28.5,0.197,RENDAH (HIJAU),3.5,37.8,245.7
+Kecamatan Subang (Subang),2,Padi Sawah,180,0.566,51.8,29.3,0.243,RENDAH (HIJAU),4.4,47.52,308.88
+Kecamatan Subang (Subang),3,Padi Sawah,180,0.544,42.8,30.1,0.325,RENDAH (HIJAU),5.9,63.72,414.18
+Kecamatan Subang (Subang),4,Padi Sawah,180,0.521,40.2,29.9,0.35,RENDAH (HIJAU),6.3,68.04,442.26
+Kecamatan Subang (Subang),5,Padi Sawah,180,0.483,34.5,30.8,0.425,RENDAH (HIJAU),7.6,82.08,533.52
+Kecamatan Subang (Subang),6,Padi Sawah,180,0.49,33.4,31.7,0.446,RENDAH (HIJAU),8.0,86.4,561.6
+Kecamatan Subang (Subang),7,Padi Sawah,180,0.455,22.8,31.9,0.533,SEDANG (KUNING),30.9,333.72,2169.18
+Kecamatan Subang (Subang),8,Padi Sawah,180,0.412,20.4,31.7,0.568,SEDANG (KUNING),32.9,355.32,2309.58
+Kecamatan Subang (Subang),9,Padi Sawah,180,0.37,24.6,32.9,0.594,SEDANG (KUNING),34.5,372.6,2421.9
+Kecamatan Subang (Subang),10,Padi Sawah,180,0.382,11.5,32.7,0.659,SEDANG (KUNING),38.2,412.56,2681.64
+Kecamatan Subang (Subang),11,Padi Sawah,180,0.321,4.8,33.5,0.751,TINGGI (MERAH),43.6,470.88,3060.72
+Kecamatan Subang (Subang),12,Padi Sawah,180,0.327,7.2,33.7,0.738,TINGGI (MERAH),42.8,462.24,3004.56
+Kecamatan Pagaden (Subang),1,Jagung,180,0.649,54.6,29.0,0.171,RENDAH (HIJAU),3.1,41.85,217.62
+Kecamatan Pagaden (Subang),2,Jagung,180,0.601,45.3,29.1,0.256,RENDAH (HIJAU),4.6,62.1,322.92
+Kecamatan Pagaden (Subang),3,Jagung,180,0.557,46.5,29.4,0.281,RENDAH (HIJAU),5.1,68.85,358.02
+Kecamatan Pagaden (Subang),4,Jagung,180,0.515,30.9,29.8,0.405,RENDAH (HIJAU),7.3,98.55,512.46
+Kecamatan Pagaden (Subang),5,Jagung,180,0.531,37.3,30.7,0.378,RENDAH (HIJAU),6.8,91.8,477.36
+Kecamatan Pagaden (Subang),6,Jagung,180,0.458,29.7,31.2,0.476,SEDANG (KUNING),27.6,372.6,1937.52
+Kecamatan Pagaden (Subang),7,Jagung,180,0.434,24.5,31.5,0.527,SEDANG (KUNING),30.6,413.1,2148.12
+Kecamatan Pagaden (Subang),8,Jagung,180,0.433,23.6,31.6,0.535,SEDANG (KUNING),31.0,418.5,2176.2
+Kecamatan Pagaden (Subang),9,Jagung,180,0.39,19.2,32.6,0.607,SEDANG (KUNING),35.2,475.2,2471.04
+Kecamatan Pagaden (Subang),10,Jagung,180,0.391,15.5,32.7,0.63,SEDANG (KUNING),36.5,492.75,2562.3
+Kecamatan Pagaden (Subang),11,Jagung,180,0.316,11.1,33.0,0.707,TINGGI (MERAH),41.0,553.5,2878.2
+Kecamatan Pagaden (Subang),12,Jagung,180,0.319,11.6,34.0,0.723,TINGGI (MERAH),41.9,565.65,2941.38
+Kecamatan Lamongan (Lamongan),1,Padi Sawah,180,0.615,53.1,28.9,0.198,RENDAH (HIJAU),3.6,38.88,252.72
+Kecamatan Lamongan (Lamongan),2,Padi Sawah,180,0.597,53.7,29.3,0.213,RENDAH (HIJAU),3.8,41.04,266.76
+Kecamatan Lamongan (Lamongan),3,Padi Sawah,180,0.594,48.9,29.5,0.247,RENDAH (HIJAU),4.4,47.52,308.88
+Kecamatan Lamongan (Lamongan),4,Padi Sawah,180,0.512,31.8,29.8,0.402,RENDAH (HIJAU),7.2,77.76,505.44
+Kecamatan Lamongan (Lamongan),5,Padi Sawah,180,0.486,36.9,30.3,0.398,RENDAH (HIJAU),7.2,77.76,505.44
+Kecamatan Lamongan (Lamongan),6,Padi Sawah,180,0.471,35.3,30.7,0.425,RENDAH (HIJAU),7.6,82.08,533.52
+Kecamatan Lamongan (Lamongan),7,Padi Sawah,180,0.473,22.1,31.3,0.514,SEDANG (KUNING),29.8,321.84,2091.96
+Kecamatan Lamongan (Lamongan),8,Padi Sawah,180,0.438,23.5,32.5,0.552,SEDANG (KUNING),32.0,345.6,2246.4
+Kecamatan Lamongan (Lamongan),9,Padi Sawah,180,0.412,22.1,32.3,0.571,SEDANG (KUNING),33.1,357.48,2323.62
+Kecamatan Lamongan (Lamongan),10,Padi Sawah,180,0.351,17.0,33.3,0.658,SEDANG (KUNING),38.2,412.56,2681.64
+Kecamatan Lamongan (Lamongan),11,Padi Sawah,180,0.371,7.4,33.3,0.702,TINGGI (MERAH),40.7,439.56,2857.14
+Kecamatan Lamongan (Lamongan),12,Padi Sawah,180,0.331,2.1,34.3,0.778,TINGGI (MERAH),45.1,487.08,3166.02
+Kecamatan Babat (Lamongan),1,Jagung,180,0.644,49.7,29.2,0.207,RENDAH (HIJAU),3.7,49.95,259.74
+Kecamatan Babat (Lamongan),2,Jagung,180,0.609,40.2,29.8,0.296,RENDAH (HIJAU),5.3,71.55,372.06
+Kecamatan Babat (Lamongan),3,Jagung,180,0.566,47.6,29.7,0.276,RENDAH (HIJAU),5.0,67.5,351.0
+Kecamatan Babat (Lamongan),4,Jagung,180,0.562,36.4,29.8,0.346,RENDAH (HIJAU),6.2,83.7,435.24
+Kecamatan Babat (Lamongan),5,Jagung,180,0.534,27.5,30.6,0.431,RENDAH (HIJAU),7.8,105.3,547.56
+Kecamatan Babat (Lamongan),6,Jagung,180,0.509,37.0,31.3,0.405,RENDAH (HIJAU),7.3,98.55,512.46
+Kecamatan Babat (Lamongan),7,Jagung,180,0.462,24.8,31.4,0.506,SEDANG (KUNING),29.3,395.55,2056.86
+Kecamatan Babat (Lamongan),8,Jagung,180,0.416,24.2,32.4,0.558,SEDANG (KUNING),32.4,437.4,2274.48
+Kecamatan Babat (Lamongan),9,Jagung,180,0.415,21.8,32.1,0.567,SEDANG (KUNING),32.9,444.15,2309.58
+Kecamatan Babat (Lamongan),10,Jagung,180,0.37,5.9,33.0,0.705,TINGGI (MERAH),40.9,552.15,2871.18
+Kecamatan Babat (Lamongan),11,Jagung,180,0.338,15.0,33.3,0.677,SEDANG (KUNING),39.3,530.55,2758.86
+Kecamatan Babat (Lamongan),12,Jagung,180,0.291,2.0,34.2,0.8,TINGGI (MERAH),46.4,626.4,3257.28

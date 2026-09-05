@@ -1,0 +1,19 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+.env
+
+# Jupyter & Data
+.ipynb_checkpoints
+*.geoparquet
+*.feather
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
