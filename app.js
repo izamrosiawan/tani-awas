@@ -1,4 +1,4 @@
-﻿let appData = {};
+let appData = {};
 let currentKec = "Kecamatan Karanganyar (Demak)";
 let map = null;
 let markers = {};
@@ -35,9 +35,9 @@ function populateKecamatanSelect() {
 function initMap() {
     map = L.map('map').setView([-6.8944, 110.6385], 7);
 
-    // Modern Dark CartoDB Tiles (Anti-Rainbow)
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; CartoDB &copy; OpenStreetMap',
+    // OpenStreetMap Clean Standard Tile Layer (Free & Zero API Key Watermark)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors',
         maxZoom: 18
     }).addTo(map);
 
