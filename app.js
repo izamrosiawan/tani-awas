@@ -8,7 +8,7 @@ let currentCommodity = "Padi Sawah";
 
 document.addEventListener("DOMContentLoaded", async () => {
     try {
-        const resp = await fetch("data.json?v=20260909_03");
+        const resp = await fetch("data.json?v=20260909_04");
         appData = await resp.json();
         
         populateKecamatanSelect();
@@ -50,7 +50,7 @@ function initMap() {
         const color = data.risk_score >= 0.70 ? '#ef4444' : (data.risk_score >= 0.45 ? '#f59e0b' : '#10b981');
         
         const circle = L.circleMarker([lat, lng], {
-            radius: 7 + (data.risk_score * 8),
+            radius: 8 + (data.risk_score * 8),
             fillColor: color,
             color: '#ffffff',
             weight: 2,
@@ -73,6 +73,11 @@ function initMap() {
 
         markers[kec] = circle;
     });
+
+    // Invalidate map size to ensure full rendering
+    setTimeout(() => {
+        if (map) map.invalidateSize();
+    }, 300);
 }
 
 function initLossDonutChart() {
@@ -107,7 +112,6 @@ function initLossDonutChart() {
 function initTrajectoryChart() {
     const ctx = document.getElementById('trajectoryChart').getContext('2d');
     
-    // Spline Curve Chart matching the Reference Image
     trajectoryChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -125,7 +129,7 @@ function initTrajectoryChart() {
                     pointRadius: 4,
                     pointHoverRadius: 6,
                     fill: true,
-                    tension: 0.45, // Smooth spline like reference
+                    tension: 0.45,
                     yAxisID: 'y'
                 },
                 {
@@ -140,7 +144,7 @@ function initTrajectoryChart() {
                     pointRadius: 4,
                     pointHoverRadius: 6,
                     fill: true,
-                    tension: 0.45, // Smooth spline like reference
+                    tension: 0.45,
                     yAxisID: 'y1'
                 }
             ]
@@ -226,7 +230,7 @@ function updateDashboard(kec) {
     document.getElementById("currentNdviKpi").textContent = item.ndvi.toFixed(2);
     document.getElementById("currentRainKpi").textContent = `${item.rain_mm.toFixed(1)} mm`;
 
-    // Sync Commodity
+    // Sync Commodity Buttons
     currentCommodity = item.commodity || "Padi Sawah";
     document.querySelectorAll(".com-pill").forEach(btn => {
         if (btn.dataset.val === currentCommodity) {
@@ -236,8 +240,18 @@ function updateDashboard(kec) {
         }
     });
 
+    // Smooth Pan to Map marker
     if (map && item.coords) {
-        map.flyTo(item.coords, 9, { duration: 1.0 });
+        map.flyTo(item.coords, 9, { duration: 0.8 });
+        // Highlight active circle
+        Object.entries(markers).forEach(([k, marker]) => {
+            if (k === kec) {
+                marker.setStyle({ weight: 4, color: '#1e293b' });
+                marker.openTooltip();
+            } else {
+                marker.setStyle({ weight: 2, color: '#ffffff' });
+            }
+        });
     }
 
     calculateAndRenderMetrics();
@@ -250,8 +264,13 @@ function calculateAndRenderMetrics() {
     const lst = parseFloat(document.getElementById("lstSlider").value);
     const landArea = parseFloat(document.getElementById("landAreaSlider").value);
 
-    // Exact Mathematical Formula
-    const riskScore = Math.max(0.05, Math.min(0.98, (0.50 * (1.0 - (ndvi / 0.85)) + 0.35 * (1.0 - (rain / 60.0)) + 0.15 * ((lst - 28.0) / 7.0))));
+    // Exact Bio-physical Risk Score Formula
+    // 50% NDVI deficit + 35% Precipitation deficit + 15% Thermal LST anomaly
+    const ndviRatio = Math.max(0, 1.0 - (ndvi / 0.85));
+    const rainRatio = Math.max(0, 1.0 - (rain / 60.0));
+    const lstRatio = Math.max(0, (lst - 28.0) / 7.0);
+
+    const riskScore = Math.max(0.05, Math.min(0.98, (0.50 * ndviRatio + 0.35 * rainRatio + 0.15 * lstRatio)));
     
     let statusText = "Bahaya";
     let badgeClass = "status-chip danger";
@@ -282,18 +301,18 @@ function calculateAndRenderMetrics() {
     const finLossRp = lostProdTon * 1000 * pricePerKg;
     const finLossMiliar = (finLossRp / 1e9).toFixed(2);
 
-    // Update Top Badge
+    // Dynamic Top Badge
     const statusBadge = document.getElementById("statusBadge");
     statusBadge.className = badgeClass;
     document.getElementById("statusText").textContent = statusText;
 
-    // Update Hero Score
+    // Dynamic Hero Score
     const riskDisplay = document.getElementById("riskScoreDisplay");
     riskDisplay.textContent = riskScore.toFixed(3);
     riskDisplay.className = `hero-score-number ${riskColorClass}`;
     document.getElementById("riskCategoryText").textContent = riskCategory;
 
-    // Update Donut Chart
+    // Dynamic Donut Chart Update
     if (lossDonutChart) {
         lossDonutChart.data.datasets[0].data = [lossPct, safePct];
         lossDonutChart.update();
@@ -304,11 +323,11 @@ function calculateAndRenderMetrics() {
     document.getElementById("yieldLostTonDisplay").textContent = `${lostProdTon.toFixed(1)} Ton`;
     document.getElementById("yieldSafeTonDisplay").textContent = `${safeProdTon.toFixed(1)} Ton`;
 
-    // Update Financial & Basis
+    // Dynamic Financial Loss
     document.getElementById("finLossDisplay").textContent = finLossMiliar;
     document.getElementById("landAreaSummaryDisplay").textContent = `Basis ${landArea} Ha (${currentCommodity})`;
 
-    // Factor Status
+    // Factor Status Readout
     document.getElementById("vegConditionDisplay").textContent = ndvi < 0.35 ? "Stres Air Kritis" : (ndvi < 0.55 ? "Stres Ringan" : "Prima");
     document.getElementById("rainConditionDisplay").textContent = rain < 20 ? "Defisit Akut (<20mm)" : "Curah Memadai";
 }
@@ -322,10 +341,12 @@ function updateChart(history) {
 }
 
 function bindEvents() {
+    // 1. Dropdown Kecamatan
     document.getElementById("kecamatanSelect").addEventListener("change", (e) => {
         updateDashboard(e.target.value);
     });
 
+    // 2. Tombol Komoditas (Padi vs Jagung)
     document.querySelectorAll(".com-pill").forEach(btn => {
         btn.addEventListener("click", () => {
             document.querySelectorAll(".com-pill").forEach(b => b.classList.remove("active"));
@@ -335,6 +356,47 @@ function bindEvents() {
         });
     });
 
+    // 3. Sub-Tabs Header (Monitoring Wilayah vs Analisis Sensitivitas)
+    document.querySelectorAll(".sub-tab").forEach(tab => {
+        tab.addEventListener("click", () => {
+            document.querySelectorAll(".sub-tab").forEach(t => t.classList.remove("active"));
+            tab.classList.add("active");
+            
+            const tabTarget = tab.dataset.tab;
+            const scrollContainer = document.querySelector(".dashboard-scrollable");
+            if (tabTarget === "analytics") {
+                const simSection = document.getElementById("simulation");
+                if (simSection) {
+                    simSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            } else {
+                scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+    });
+
+    // 4. Sidebar Nav Smooth Jump & Active State
+    document.querySelectorAll(".nav-item").forEach(item => {
+        item.addEventListener("click", (e) => {
+            e.preventDefault();
+            document.querySelectorAll(".nav-item").forEach(i => i.classList.remove("active"));
+            item.classList.add("active");
+
+            const targetHref = item.getAttribute("href");
+            const scrollContainer = document.querySelector(".dashboard-scrollable");
+            
+            if (targetHref === "#overview") {
+                scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                const targetElem = document.querySelector(targetHref);
+                if (targetElem) {
+                    targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    });
+
+    // 5. Sliders Interaktif
     const sliders = [
         { id: "landAreaSlider", valId: "landAreaVal", suffix: " Ha", decimals: 0 },
         { id: "ndviSlider", valId: "ndviVal", suffix: "", decimals: 2, rowId: "ndviRowVal" },
