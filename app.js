@@ -1,4 +1,4 @@
-﻿let appData = {};
+let appData = {};
 let currentKec = "Kecamatan Karanganyar (Demak)";
 let map = null;
 let markers = {};
@@ -7,7 +7,7 @@ let currentCommodity = "Padi Sawah";
 
 document.addEventListener("DOMContentLoaded", async () => {
     try {
-        const resp = await fetch("data.json?v=20260905_03");
+        const resp = await fetch("data.json?v=20260909_01");
         appData = await resp.json();
         
         populateKecamatanSelect();
@@ -38,31 +38,31 @@ function initMap() {
         attributionControl: true
     }).setView([-6.8944, 110.6385], 8);
 
-    // OpenStreetMap clean basemap
+    // Clean OpenStreetMap Tile Layer
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 18
     }).addTo(map);
 
-    // Plot Kecamatan Markers
+    // Plot Kecamatan Markers with Organic Clean Colors
     Object.entries(appData).forEach(([kec, data]) => {
         const [lat, lng] = data.coords;
-        const color = data.risk_score >= 0.70 ? '#f43f5e' : (data.risk_score >= 0.45 ? '#f59e0b' : '#10b981');
+        const color = data.risk_score >= 0.70 ? '#b91c1c' : (data.risk_score >= 0.45 ? '#b45309' : '#15803d');
         
         const circle = L.circleMarker([lat, lng], {
             radius: 8 + (data.risk_score * 8),
             fillColor: color,
             color: '#ffffff',
-            weight: 1.5,
-            opacity: 0.9,
-            fillOpacity: 0.75
+            weight: 2,
+            opacity: 1.0,
+            fillOpacity: 0.8
         }).addTo(map);
 
         circle.bindTooltip(`
-            <div style="font-family: 'Inter', sans-serif; font-size: 12px; line-height: 1.4;">
-                <strong style="color: #f8fafc;">${kec}</strong><br>
-                <span style="color: #94a3b8;">Komoditas:</span> ${data.commodity}<br>
-                <span style="color: #94a3b8;">Skor Risiko:</span> <strong style="color: ${color};">${data.risk_score.toFixed(3)}</strong> (${data.status})
+            <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; line-height: 1.4; padding: 2px;">
+                <strong style="color: #0f172a;">${kec}</strong><br>
+                <span style="color: #64748b;">Komoditas:</span> ${data.commodity}<br>
+                <span style="color: #64748b;">Skor Risiko:</span> <strong style="color: ${color}; font-family: 'JetBrains Mono', monospace;">${data.risk_score.toFixed(3)}</strong> (${data.status})
             </div>
         `, { className: 'custom-leaflet-tooltip' });
 
@@ -78,7 +78,7 @@ function initMap() {
 function initChart() {
     const ctx = document.getElementById('trajectoryChart').getContext('2d');
     
-    // Custom Chart with Clean Precision Look
+    // Clean Editorial Chart.js Theme
     trajectoryChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -87,11 +87,11 @@ function initChart() {
                 {
                     label: 'NDVI Sentinel-2 (Indeks Vegetasi)',
                     data: [],
-                    borderColor: '#10b981',
-                    backgroundColor: 'rgba(16, 185, 129, 0.08)',
-                    borderWidth: 2.2,
-                    pointBackgroundColor: '#10b981',
-                    pointBorderColor: '#090d14',
+                    borderColor: '#1b4332',
+                    backgroundColor: 'rgba(27, 67, 50, 0.08)',
+                    borderWidth: 2.4,
+                    pointBackgroundColor: '#1b4332',
+                    pointBorderColor: '#ffffff',
                     pointBorderWidth: 2,
                     pointRadius: 4,
                     pointHoverRadius: 6,
@@ -103,11 +103,11 @@ function initChart() {
                     label: 'Curah Hujan Mingguan (mm)',
                     data: [],
                     type: 'bar',
-                    backgroundColor: 'rgba(56, 189, 248, 0.45)',
-                    hoverBackgroundColor: 'rgba(56, 189, 248, 0.75)',
-                    borderColor: '#38bdf8',
+                    backgroundColor: 'rgba(2, 132, 199, 0.55)',
+                    hoverBackgroundColor: 'rgba(2, 132, 199, 0.85)',
+                    borderColor: '#0284c7',
                     borderWidth: 1,
-                    borderRadius: 4,
+                    borderRadius: 3,
                     yAxisID: 'y1'
                 }
             ]
@@ -124,37 +124,37 @@ function initChart() {
                     position: 'top',
                     align: 'end',
                     labels: {
-                        color: '#94a3b8',
-                        boxWidth: 12,
-                        boxHeight: 12,
+                        color: '#334155',
+                        boxWidth: 10,
+                        boxHeight: 10,
                         usePointStyle: true,
                         pointStyle: 'circle',
                         font: {
-                            family: "'Inter', sans-serif",
+                            family: "'Plus Jakarta Sans', sans-serif",
                             size: 11,
-                            weight: '500'
+                            weight: '600'
                         }
                     }
                 },
                 tooltip: {
-                    backgroundColor: 'rgba(15, 21, 35, 0.95)',
-                    titleColor: '#f8fafc',
-                    bodyColor: '#cbd5e1',
-                    borderColor: '#27374f',
+                    backgroundColor: '#ffffff',
+                    titleColor: '#0f172a',
+                    bodyColor: '#334155',
+                    borderColor: '#e2e8f0',
                     borderWidth: 1,
                     padding: 10,
                     boxPadding: 4,
                     usePointStyle: true,
-                    titleFont: { family: "'Inter', sans-serif", size: 12, weight: '600' },
+                    titleFont: { family: "'Plus Jakarta Sans', sans-serif", size: 12, weight: '700' },
                     bodyFont: { family: "'JetBrains Mono', monospace", size: 11 }
                 }
             },
             scales: {
                 x: {
-                    grid: { color: 'rgba(28, 38, 56, 0.7)' },
+                    grid: { color: '#f1f5f9' },
                     ticks: {
                         color: '#64748b',
-                        font: { family: "'Inter', sans-serif", size: 11 }
+                        font: { family: "'Plus Jakarta Sans', sans-serif", size: 11 }
                     }
                 },
                 y: {
@@ -163,10 +163,10 @@ function initChart() {
                     position: 'left',
                     min: 0,
                     max: 1.0,
-                    grid: { color: 'rgba(28, 38, 56, 0.7)' },
+                    grid: { color: '#e2e8f0' },
                     ticks: {
-                        color: '#10b981',
-                        font: { family: "'JetBrains Mono', monospace", size: 10 },
+                        color: '#1b4332',
+                        font: { family: "'JetBrains Mono', monospace", size: 10, weight: '600' },
                         callback: val => val.toFixed(2)
                     }
                 },
@@ -178,8 +178,8 @@ function initChart() {
                     max: 80,
                     grid: { drawOnChartArea: false },
                     ticks: {
-                        color: '#38bdf8',
-                        font: { family: "'JetBrains Mono', monospace", size: 10 },
+                        color: '#0284c7',
+                        font: { family: "'JetBrains Mono', monospace", size: 10, weight: '600' },
                         callback: val => `${val}mm`
                     }
                 }
@@ -218,7 +218,7 @@ function updateDashboard(kec) {
 
     // Pan map to location smoothly
     if (map && item.coords) {
-        map.flyTo(item.coords, 9, { duration: 1.2 });
+        map.flyTo(item.coords, 9, { duration: 1.0 });
     }
 
     calculateAndRenderMetrics();
@@ -231,24 +231,24 @@ function calculateAndRenderMetrics() {
     const lst = parseFloat(document.getElementById("lstSlider").value);
     const landArea = parseFloat(document.getElementById("landAreaSlider").value);
 
-    // Exact Mathematical Formula
+    // Exact Mathematical Formula: 0.50*(1 - ndvi/0.85) + 0.35*(1 - rain/60) + 0.15*((lst - 28)/7)
     const riskScore = Math.max(0.05, Math.min(0.98, (0.50 * (1.0 - (ndvi / 0.85)) + 0.35 * (1.0 - (rain / 60.0)) + 0.15 * ((lst - 28.0) / 7.0))));
     
-    let statusText = "BAHAYA (TINGGI)";
-    let badgeClass = "status-badge-lg danger";
+    let statusText = "Bahaya (Tinggi)";
+    let badgeClass = "status-badge danger";
     let riskColorClass = "danger";
     let riskCategory = "Ambang Kritis (D3 Ekstrem)";
     let lossPct = riskScore * 58.0;
 
     if (riskScore < 0.45) {
-        statusText = "AMAN (RENDAH)";
-        badgeClass = "status-badge-lg safe";
+        statusText = "Aman (Rendah)";
+        badgeClass = "status-badge safe";
         riskColorClass = "safe";
         riskCategory = "Batas Normal (D0 Tanpa Anomali)";
         lossPct = riskScore * 14.0;
     } else if (riskScore < 0.70) {
-        statusText = "WASPADA (SEDANG)";
-        badgeClass = "status-badge-lg warning";
+        statusText = "Waspada (Sedang)";
+        badgeClass = "status-badge warning";
         riskColorClass = "warning";
         riskCategory = "Potensi Kekeringan (D1/D2 Waspada)";
         lossPct = riskScore * 35.0;
@@ -261,7 +261,7 @@ function calculateAndRenderMetrics() {
     const finLossRp = lostProdTon * 1000 * pricePerKg;
     const finLossMiliar = (finLossRp / 1e9).toFixed(2);
 
-    // Update Status Pill
+    // Update Status Badge
     const statusBadge = document.getElementById("statusBadge");
     statusBadge.className = badgeClass;
     document.getElementById("statusText").textContent = statusText;
@@ -275,10 +275,10 @@ function calculateAndRenderMetrics() {
     const yieldLossDisplay = document.getElementById("yieldLossDisplay");
     yieldLossDisplay.textContent = lossPct.toFixed(1);
     yieldLossDisplay.className = `kpi-value ${riskColorClass}`;
-    document.getElementById("yieldLostTonDisplay").textContent = `-${lostProdTon.toFixed(1)} Ton Estimasi Terancam`;
+    document.getElementById("yieldLostTonDisplay").textContent = `-${lostProdTon.toFixed(1)} Ton Terancam`;
 
     document.getElementById("finLossDisplay").textContent = finLossMiliar;
-    document.getElementById("landAreaSummaryDisplay").textContent = `Basis: ${landArea} Ha (${currentCommodity} Rp${pricePerKg.toLocaleString('id-ID')}/kg)`;
+    document.getElementById("landAreaSummaryDisplay").textContent = `Basis ${landArea} Ha (${currentCommodity} Rp${pricePerKg.toLocaleString('id-ID')}/kg)`;
 
     // Bio-physical readout
     document.getElementById("vegConditionDisplay").textContent = ndvi < 0.35 ? "Stres Air Kritis" : (ndvi < 0.55 ? "Stres Ringan" : "Vegetasi Prima");
