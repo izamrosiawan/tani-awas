@@ -738,9 +738,318 @@ input[type="range"]::-webkit-slider-thumb {
     padding: 16px 0 32px;
 }
 
+/* ==========================================================================
+   NEW ACTIONABLE ENGINES: IRRIGATION & AUTP CLAIM SIMULATOR
+   ========================================================================== */
+
+/* Action CTA in Sidebar */
+.action-cta-card {
+    background: #111827;
+    color: #ffffff;
+    border-radius: var(--radius-md);
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.cta-title {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.cta-desc {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    line-height: 1.35;
+    margin-bottom: 6px;
+}
+
+.btn-primary-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.76rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.btn-primary-action:hover {
+    background: #1d4ed8;
+}
+
+/* Tools Row (Irrigation & Insurance) */
+.bento-row.tools-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.tool-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tool-icon {
+    font-size: 1.4rem;
+}
+
+.tool-sub {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+}
+
+/* Irrigation Grid */
+.calc-metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.calc-metric-box {
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.calc-lbl {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.calc-val-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+
+.calc-unit-rp {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.calc-num {
+    font-family: var(--font-mono);
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: var(--text-heading);
+}
+
+.calc-unit {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.calc-hint {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+}
+
+.irrigation-protocol-banner {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.banner-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #1d4ed8;
+}
+
+.banner-text {
+    font-size: 0.78rem;
+    color: #1e3a8a;
+    line-height: 1.4;
+}
+
+/* Insurance AUTP Status Box */
+.autp-status-box {
+    display: flex;
+    justify-content: space-between;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.autp-left {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.autp-sub {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.autp-badge {
+    font-size: 0.78rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    width: fit-content;
+}
+
+.autp-badge.eligible {
+    background: #dcfce7;
+    color: #15803d;
+    border: 1px solid #86efac;
+}
+
+.autp-badge.not-eligible {
+    background: #f1f5f9;
+    color: #64748b;
+    border: 1px solid #cbd5e1;
+}
+
+.autp-desc {
+    font-size: 0.75rem;
+    color: var(--text-body);
+    line-height: 1.35;
+}
+
+.autp-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+.autp-payout {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.payout-rp {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.payout-num {
+    font-family: var(--font-mono);
+    font-size: 1.45rem;
+    font-weight: 800;
+    color: #15803d;
+}
+
+.payout-basis {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.autp-steps-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.step-card {
+    background: #ffffff;
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-sm);
+    padding: 10px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.step-num {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #111827;
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.step-text {
+    font-size: 0.72rem;
+    color: var(--text-body);
+    line-height: 1.35;
+}
+
+/* Map Layer Switcher */
+.map-layer-toggles {
+    display: flex;
+    gap: 4px;
+    background: var(--bg-subtle);
+    padding: 3px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-card);
+}
+
+.layer-btn {
+    border: none;
+    background: transparent;
+    padding: 3px 8px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.layer-btn.active {
+    background: #ffffff;
+    color: var(--text-heading);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Print/Report Styling */
+@media print {
+    .sidebar, .content-header, .tuning-card, .btn-primary-action, .sub-tabs, .map-layer-toggles {
+        display: none !important;
+    }
+    .layout-wrapper, .main-content, .dashboard-scrollable {
+        height: auto !important;
+        overflow: visible !important;
+        padding: 0 !important;
+    }
+    .bento-card {
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+        page-break-inside: avoid;
+    }
+}
+
 /* Responsive adjustments */
 @media (max-width: 1100px) {
     .bento-row.top-split,
+    .bento-row.tools-split,
     .bento-row.bottom-split {
         grid-template-columns: 1fr;
     }

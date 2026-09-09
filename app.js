@@ -2,13 +2,19 @@ let appData = {};
 let currentKec = "Kecamatan Karanganyar (Demak)";
 let map = null;
 let markers = {};
+let currentTileLayer = null;
 let trajectoryChart = null;
 let lossDonutChart = null;
 let currentCommodity = "Padi Sawah";
 
+const TILE_LAYERS = {
+    osm: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    satellite: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+};
+
 document.addEventListener("DOMContentLoaded", async () => {
     try {
-        const resp = await fetch("data.json?v=20260909_04");
+        const resp = await fetch("data.json?v=20260909_05");
         appData = await resp.json();
         
         populateKecamatanSelect();
@@ -40,7 +46,7 @@ function initMap() {
         attributionControl: true
     }).setView([-6.8944, 110.6385], 8);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    currentTileLayer = L.tileLayer(TILE_LAYERS.osm, {
         attribution: '&copy; OpenStreetMap contributors',
         maxZoom: 18
     }).addTo(map);
@@ -74,7 +80,6 @@ function initMap() {
         markers[kec] = circle;
     });
 
-    // Invalidate map size to ensure full rendering
     setTimeout(() => {
         if (map) map.invalidateSize();
     }, 300);
@@ -226,11 +231,11 @@ function updateDashboard(kec) {
     document.getElementById("lstVal").textContent = `${item.lst_c.toFixed(1)} °C`;
     document.getElementById("lstRowVal").textContent = `${item.lst_c.toFixed(1)} °C`;
 
-    // Sync Mini KPI Above Chart
+    // Sync Mini KPI
     document.getElementById("currentNdviKpi").textContent = item.ndvi.toFixed(2);
     document.getElementById("currentRainKpi").textContent = `${item.rain_mm.toFixed(1)} mm`;
 
-    // Sync Commodity Buttons
+    // Sync Commodity
     currentCommodity = item.commodity || "Padi Sawah";
     document.querySelectorAll(".com-pill").forEach(btn => {
         if (btn.dataset.val === currentCommodity) {
@@ -240,10 +245,8 @@ function updateDashboard(kec) {
         }
     });
 
-    // Smooth Pan to Map marker
     if (map && item.coords) {
         map.flyTo(item.coords, 9, { duration: 0.8 });
-        // Highlight active circle
         Object.entries(markers).forEach(([k, marker]) => {
             if (k === kec) {
                 marker.setStyle({ weight: 4, color: '#1e293b' });
@@ -265,7 +268,6 @@ function calculateAndRenderMetrics() {
     const landArea = parseFloat(document.getElementById("landAreaSlider").value);
 
     // Exact Bio-physical Risk Score Formula
-    // 50% NDVI deficit + 35% Precipitation deficit + 15% Thermal LST anomaly
     const ndviRatio = Math.max(0, 1.0 - (ndvi / 0.85));
     const rainRatio = Math.max(0, 1.0 - (rain / 60.0));
     const lstRatio = Math.max(0, (lst - 28.0) / 7.0);
@@ -301,18 +303,17 @@ function calculateAndRenderMetrics() {
     const finLossRp = lostProdTon * 1000 * pricePerKg;
     const finLossMiliar = (finLossRp / 1e9).toFixed(2);
 
-    // Dynamic Top Badge
+    // Top Badge & Score
     const statusBadge = document.getElementById("statusBadge");
     statusBadge.className = badgeClass;
     document.getElementById("statusText").textContent = statusText;
 
-    // Dynamic Hero Score
     const riskDisplay = document.getElementById("riskScoreDisplay");
     riskDisplay.textContent = riskScore.toFixed(3);
     riskDisplay.className = `hero-score-number ${riskColorClass}`;
     document.getElementById("riskCategoryText").textContent = riskCategory;
 
-    // Dynamic Donut Chart Update
+    // Donut Update
     if (lossDonutChart) {
         lossDonutChart.data.datasets[0].data = [lossPct, safePct];
         lossDonutChart.update();
@@ -323,13 +324,63 @@ function calculateAndRenderMetrics() {
     document.getElementById("yieldLostTonDisplay").textContent = `${lostProdTon.toFixed(1)} Ton`;
     document.getElementById("yieldSafeTonDisplay").textContent = `${safeProdTon.toFixed(1)} Ton`;
 
-    // Dynamic Financial Loss
     document.getElementById("finLossDisplay").textContent = finLossMiliar;
     document.getElementById("landAreaSummaryDisplay").textContent = `Basis ${landArea} Ha (${currentCommodity})`;
 
-    // Factor Status Readout
-    document.getElementById("vegConditionDisplay").textContent = ndvi < 0.35 ? "Stres Air Kritis" : (ndvi < 0.55 ? "Stres Ringan" : "Prima");
+    document.getElementById("vegConditionDisplay").textContent = ndvi < 0.35 ? "Stres Kritis" : (ndvi < 0.55 ? "Stres Ringan" : "Prima");
     document.getElementById("rainConditionDisplay").textContent = rain < 20 ? "Defisit Akut (<20mm)" : "Curah Memadai";
+
+    // ==========================================
+    // FITUR REAL 1: KALKULATOR IRIGASI & POMPA
+    // ==========================================
+    // Standar konsumsi air padi/jagung: 60 mm / minggu
+    const targetWaterMm = currentCommodity === "Padi Sawah" ? 60.0 : 45.0;
+    const waterDeficitMm = Math.max(0.0, targetWaterMm - rain);
+    // 1 mm air pada 1 Ha = 10 m³ air
+    const totalWaterVolM3 = waterDeficitMm * 10.0 * landArea;
+    // Kapasitas pompa debit 4 inci: ~25 liter/detik = 90 m³/jam
+    // Operasi 8 jam per hari selama 7 hari (56 jam operasional): 56 * 90 = 5.040 m³ per unit pompa
+    const pumpUnits = Math.max(1, Math.ceil(totalWaterVolM3 / 5040.0));
+    // Konsumsi solar rata-rata pompa: 1.5 liter/jam * 56 jam = 84 liter per pompa
+    // Harga solar subsidi: Rp6.800/liter
+    const fuelCostJuta = ((pumpUnits * 84 * 6800) / 1e6).toFixed(1);
+
+    document.getElementById("waterDeficitVal").textContent = waterDeficitMm.toFixed(1);
+    document.getElementById("totalWaterVolumeVal").textContent = Math.round(totalWaterVolM3).toLocaleString('id-ID');
+    document.getElementById("pumpUnitsVal").textContent = pumpUnits;
+    document.getElementById("fuelCostVal").textContent = fuelCostJuta;
+
+    const adviceElem = document.getElementById("irrigationAdviceText");
+    if (riskScore >= 0.70) {
+        adviceElem.textContent = `Mendesak: Pasang ${pumpUnits} unit pompa darurat di titik sumur/embung primer. Terapkan irigasi malam hari berselang (AWD) dan tunda pemupukan kering.`;
+    } else if (riskScore >= 0.45) {
+        adviceElem.textContent = `Waspada: Rotasi pembukaan pintu air tersier setiap 3 hari. Gunakan mulsa jerami sisa panen untuk menekan laju penguapan tanah.`;
+    } else {
+        adviceElem.textContent = `Kondisi Stabil: Pasokan air presipitasi mencukupi kebutuhan fase vegetatif. Pertahankan tinggi genangan macak-macak 2-3 cm.`;
+    }
+
+    // ==========================================
+    // FITUR REAL 2: SIMULATOR ASURANSI AUTP
+    // ==========================================
+    // Regulasi Kementan & Jasindo: AUTP mencairkan santunan Rp6.000.000 / Ha bila kerusakan/gagal panen >= 75%
+    const isEligibleAUTP = lossPct >= 75.0;
+    const autpBadge = document.getElementById("autpEligibilityBadge");
+    const autpDesc = document.getElementById("autpEligibilityDesc");
+    const autpPayout = document.getElementById("autpPayoutVal");
+
+    if (isEligibleAUTP) {
+        autpBadge.className = "autp-badge eligible";
+        autpBadge.textContent = "MEMENUHI SYARAT KLAIM";
+        autpDesc.textContent = `Tingkat kerusakan lahan (${lossPct.toFixed(1)}%) telah melampaui ambang batas syarat AUTP (≥75%). Petani berhak mengajukan ganti rugi.`;
+        const totalPayout = landArea * 6000000;
+        autpPayout.textContent = totalPayout.toLocaleString('id-ID');
+    } else {
+        autpBadge.className = "autp-badge not-eligible";
+        autpBadge.textContent = "BELUM MEMENUHI AMBANG KLAIM";
+        autpDesc.textContent = `Tingkat kehilangan hasil (${lossPct.toFixed(1)}%) masih di bawah ambang batas legal AUTP (75%). Fokuskan upaya pada mitigasi irigasi darurat.`;
+        const potentialPayoutIfFailed = landArea * 6000000;
+        autpPayout.textContent = `(Potensi: Rp${(potentialPayoutIfFailed / 1e9).toFixed(2)} Miliar)`;
+    }
 }
 
 function updateChart(history) {
@@ -341,12 +392,10 @@ function updateChart(history) {
 }
 
 function bindEvents() {
-    // 1. Dropdown Kecamatan
     document.getElementById("kecamatanSelect").addEventListener("change", (e) => {
         updateDashboard(e.target.value);
     });
 
-    // 2. Tombol Komoditas (Padi vs Jagung)
     document.querySelectorAll(".com-pill").forEach(btn => {
         btn.addEventListener("click", () => {
             document.querySelectorAll(".com-pill").forEach(b => b.classList.remove("active"));
@@ -356,7 +405,6 @@ function bindEvents() {
         });
     });
 
-    // 3. Sub-Tabs Header (Monitoring Wilayah vs Analisis Sensitivitas)
     document.querySelectorAll(".sub-tab").forEach(tab => {
         tab.addEventListener("click", () => {
             document.querySelectorAll(".sub-tab").forEach(t => t.classList.remove("active"));
@@ -364,10 +412,10 @@ function bindEvents() {
             
             const tabTarget = tab.dataset.tab;
             const scrollContainer = document.querySelector(".dashboard-scrollable");
-            if (tabTarget === "analytics") {
-                const simSection = document.getElementById("simulation");
-                if (simSection) {
-                    simSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            if (tabTarget === "decision") {
+                const irigasiSection = document.getElementById("irigasi");
+                if (irigasiSection) {
+                    irigasiSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             } else {
                 scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
@@ -375,7 +423,6 @@ function bindEvents() {
         });
     });
 
-    // 4. Sidebar Nav Smooth Jump & Active State
     document.querySelectorAll(".nav-item").forEach(item => {
         item.addEventListener("click", (e) => {
             e.preventDefault();
@@ -396,7 +443,28 @@ function bindEvents() {
         });
     });
 
-    // 5. Sliders Interaktif
+    // Map Layer Switcher (Street Map vs Satellite)
+    document.querySelectorAll(".layer-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".layer-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            const layerKey = btn.dataset.layer;
+            
+            if (map && currentTileLayer) {
+                map.removeLayer(currentTileLayer);
+                currentTileLayer = L.tileLayer(TILE_LAYERS[layerKey], {
+                    attribution: layerKey === 'satellite' ? '&copy; Esri & Earthstar Geographics' : '&copy; OpenStreetMap contributors',
+                    maxZoom: 18
+                }).addTo(map);
+            }
+        });
+    });
+
+    // Export PDF Report (Window Print Dialog with Clean CSS)
+    document.getElementById("btnExportReport").addEventListener("click", () => {
+        window.print();
+    });
+
     const sliders = [
         { id: "landAreaSlider", valId: "landAreaVal", suffix: " Ha", decimals: 0 },
         { id: "ndviSlider", valId: "ndviVal", suffix: "", decimals: 2, rowId: "ndviRowVal" },
