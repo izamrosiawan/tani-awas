@@ -14,7 +14,7 @@ const TILE_LAYERS = {
 
 document.addEventListener("DOMContentLoaded", async () => {
     try {
-        const resp = await fetch("data.json?v=20260909_05");
+        const resp = await fetch("data.json?v=20260911_05");
         appData = await resp.json();
         
         populateKecamatanSelect();
@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 function populateKecamatanSelect() {
     const select = document.getElementById("kecamatanSelect");
+    if (!select) return;
     select.innerHTML = "";
     Object.keys(appData).sort().forEach(kec => {
         const opt = document.createElement("option");
@@ -42,18 +43,18 @@ function populateKecamatanSelect() {
 
 function initMap() {
     map = L.map('map', {
-        zoomControl: true,
-        attributionControl: true
-    }).setView([-6.8944, 110.6385], 8);
+        zoomControl: false, // menggunakan custom floating zoom (+ / -) pill
+        attributionControl: false
+    }).setView([-6.8944, 110.6385], 9);
 
-    currentTileLayer = L.tileLayer(TILE_LAYERS.osm, {
-        attribution: '&copy; OpenStreetMap contributors',
+    currentTileLayer = L.tileLayer(TILE_LAYERS.satellite, {
+        attribution: '&copy; Esri & Earthstar Geographics',
         maxZoom: 18
     }).addTo(map);
 
     Object.entries(appData).forEach(([kec, data]) => {
         const [lat, lng] = data.coords;
-        const color = data.risk_score >= 0.70 ? '#ef4444' : (data.risk_score >= 0.45 ? '#f59e0b' : '#10b981');
+        const color = data.risk_score >= 0.70 ? '#d97706' : (data.risk_score >= 0.45 ? '#f59e0b' : '#15803d');
         
         const circle = L.circleMarker([lat, lng], {
             radius: 8 + (data.risk_score * 8),
@@ -65,15 +66,16 @@ function initMap() {
         }).addTo(map);
 
         circle.bindTooltip(`
-            <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; line-height: 1.4; padding: 2px;">
-                <strong style="color: #1e293b;">${kec}</strong><br>
-                <span style="color: #64748b;">Komoditas:</span> ${data.commodity}<br>
-                <span style="color: #64748b;">Skor:</span> <strong style="color: ${color}; font-family: 'JetBrains Mono', monospace;">${data.risk_score.toFixed(3)}</strong>
+            <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; line-height: 1.4; padding: 4px;">
+                <strong style="color: #1c211e;">${kec}</strong><br>
+                <span style="color: #727a70;">Komoditas:</span> ${data.commodity}<br>
+                <span style="color: #727a70;">Indeks Risiko:</span> <strong style="color: ${color}; font-family: 'JetBrains Mono', monospace;">${data.risk_score.toFixed(3)}</strong>
             </div>
         `, { className: 'custom-leaflet-tooltip' });
 
         circle.on('click', () => {
-            document.getElementById("kecamatanSelect").value = kec;
+            const select = document.getElementById("kecamatanSelect");
+            if (select) select.value = kec;
             updateDashboard(kec);
         });
 
@@ -86,22 +88,24 @@ function initMap() {
 }
 
 function initLossDonutChart() {
-    const ctx = document.getElementById('lossDonutChart').getContext('2d');
+    const canvas = document.getElementById('lossDonutChart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
     lossDonutChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['Potensi Kehilangan (Puso)', 'Panen Aman Terselamatkan'],
+            labels: ['Potensi Kerusakan (Defisit)', 'Kapasitas Mitigasi Siaga'],
             datasets: [{
-                data: [41.1, 58.9],
-                backgroundColor: ['#d97706', '#15803d'],
+                data: [11, 89],
+                backgroundColor: ['rgba(0,0,0,0.08)', '#d97706'],
                 borderWidth: 0,
-                hoverOffset: 4
+                hoverOffset: 2
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            cutout: '72%',
+            cutout: '76%',
             plugins: {
                 legend: { display: false },
                 tooltip: {
@@ -115,41 +119,48 @@ function initLossDonutChart() {
 }
 
 function initTrajectoryChart() {
-    const ctx = document.getElementById('trajectoryChart').getContext('2d');
+    const canvas = document.getElementById('trajectoryChart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
     
+    // Create gradient fill for Amber curve
+    const gradient = ctx.createLinearGradient(0, 0, 0, 180);
+    gradient.addColorStop(0, 'rgba(217, 119, 6, 0.45)');
+    gradient.addColorStop(1, 'rgba(245, 158, 11, 0.03)');
+
     trajectoryChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: [],
+            labels: ['Mgg 1', 'Mgg 2', 'Mgg 3', 'Mgg 4', 'Mgg 5', 'Mgg 6'],
             datasets: [
                 {
-                    label: 'NDVI Sentinel-2 (Kondisi Kanopi)',
-                    data: [],
+                    label: 'NDVI Biomassa Sentinel-2',
+                    data: [0.65, 0.58, 0.51, 0.44, 0.38, 0.34],
                     borderColor: '#d97706',
-                    backgroundColor: 'rgba(217, 119, 6, 0.12)',
+                    backgroundColor: gradient,
                     borderWidth: 2.5,
                     pointBackgroundColor: '#d97706',
                     pointBorderColor: '#ffffff',
                     pointBorderWidth: 2,
-                    pointRadius: 4,
+                    pointRadius: 3.5,
                     pointHoverRadius: 6,
                     fill: true,
-                    tension: 0.45,
+                    tension: 0.4,
                     yAxisID: 'y'
                 },
                 {
                     label: 'Curah Hujan BMKG (mm)',
-                    data: [],
-                    borderColor: '#0f766e',
-                    backgroundColor: 'rgba(15, 118, 110, 0.08)',
-                    borderWidth: 2.2,
-                    pointBackgroundColor: '#0f766e',
+                    data: [42, 35, 28, 18, 14, 12],
+                    borderColor: '#15803d',
+                    backgroundColor: 'rgba(21, 128, 61, 0.05)',
+                    borderWidth: 2,
+                    borderDash: [4, 4],
+                    pointBackgroundColor: '#15803d',
                     pointBorderColor: '#ffffff',
-                    pointBorderWidth: 2,
-                    pointRadius: 4,
-                    pointHoverRadius: 6,
-                    fill: true,
-                    tension: 0.45,
+                    pointBorderWidth: 1.5,
+                    pointRadius: 3,
+                    fill: false,
+                    tension: 0.4,
                     yAxisID: 'y1'
                 }
             ]
@@ -164,46 +175,31 @@ function initTrajectoryChart() {
             plugins: {
                 legend: { display: false },
                 tooltip: {
-                    backgroundColor: '#ffffff',
-                    titleColor: '#1e293b',
-                    bodyColor: '#475569',
-                    borderColor: '#eaedf1',
+                    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                    titleColor: '#1c211e',
+                    bodyColor: '#4b524d',
+                    borderColor: 'rgba(28, 33, 30, 0.1)',
                     borderWidth: 1,
-                    padding: 10,
-                    boxPadding: 4,
+                    padding: 8,
                     usePointStyle: true
                 }
             },
             scales: {
                 x: {
-                    grid: { color: '#f8fafc' },
-                    ticks: { color: '#94a3b8', font: { family: "'Plus Jakarta Sans', sans-serif", size: 11 } }
+                    grid: { display: false },
+                    ticks: { color: '#798078', font: { family: "'Plus Jakarta Sans', sans-serif", size: 10 } }
                 },
                 y: {
                     type: 'linear',
-                    display: true,
-                    position: 'left',
+                    display: false,
                     min: 0,
-                    max: 1.0,
-                    grid: { color: '#f1f5f9' },
-                    ticks: {
-                        color: '#0d9488',
-                        font: { family: "'JetBrains Mono', monospace", size: 10, weight: '600' },
-                        callback: val => val.toFixed(2)
-                    }
+                    max: 1.0
                 },
                 y1: {
                     type: 'linear',
-                    display: true,
-                    position: 'right',
+                    display: false,
                     min: 0,
-                    max: 80,
-                    grid: { drawOnChartArea: false },
-                    ticks: {
-                        color: '#ef4444',
-                        font: { family: "'JetBrains Mono', monospace", size: 10, weight: '600' },
-                        callback: val => `${val}mm`
-                    }
+                    max: 80
                 }
             }
         }
@@ -215,41 +211,37 @@ function updateDashboard(kec) {
     const item = appData[kec];
     if (!item) return;
 
-    // Sync Sliders
-    document.getElementById("landAreaSlider").value = item.land_area_ha;
-    document.getElementById("landAreaVal").textContent = `${item.land_area_ha} Ha`;
+    // Location Label in Map
+    const locLabel = document.getElementById("mapLocationLabel");
+    if (locLabel) locLabel.textContent = `${kec} (Sektor 1)`;
 
-    document.getElementById("ndviSlider").value = item.ndvi;
-    document.getElementById("ndviVal").textContent = item.ndvi.toFixed(2);
-    document.getElementById("ndviRowVal").textContent = item.ndvi.toFixed(2);
+    // Sliders
+    const landSlider = document.getElementById("landAreaSlider");
+    if (landSlider) landSlider.value = item.land_area_ha;
+    const landVal = document.getElementById("landAreaVal");
+    if (landVal) landVal.textContent = `${item.land_area_ha} Ha`;
 
-    document.getElementById("rainSlider").value = item.rain_mm;
-    document.getElementById("rainVal").textContent = `${item.rain_mm.toFixed(1)} mm`;
-    document.getElementById("rainRowVal").textContent = `${item.rain_mm.toFixed(1)} mm`;
+    const ndviSlider = document.getElementById("ndviSlider");
+    if (ndviSlider) ndviSlider.value = item.ndvi;
+    const ndviVal = document.getElementById("ndviVal");
+    if (ndviVal) ndviVal.textContent = item.ndvi.toFixed(2);
 
-    document.getElementById("lstSlider").value = item.lst_c;
-    document.getElementById("lstVal").textContent = `${item.lst_c.toFixed(1)} °C`;
-    document.getElementById("lstRowVal").textContent = `${item.lst_c.toFixed(1)} °C`;
+    const rainSlider = document.getElementById("rainSlider");
+    if (rainSlider) rainSlider.value = item.rain_mm;
+    const rainVal = document.getElementById("rainVal");
+    if (rainVal) rainVal.textContent = `${item.rain_mm.toFixed(1)} mm`;
 
-    // Sync Mini KPI
-    document.getElementById("currentNdviKpi").textContent = item.ndvi.toFixed(2);
-    document.getElementById("currentRainKpi").textContent = `${item.rain_mm.toFixed(1)} mm`;
+    const lstSlider = document.getElementById("lstSlider");
+    if (lstSlider) lstSlider.value = item.lst_c;
+    const lstVal = document.getElementById("lstVal");
+    if (lstVal) lstVal.textContent = `${item.lst_c.toFixed(1)} °C`;
 
-    // Sync Commodity
-    currentCommodity = item.commodity || "Padi Sawah";
-    document.querySelectorAll(".com-pill").forEach(btn => {
-        if (btn.dataset.val === currentCommodity) {
-            btn.classList.add("active");
-        } else {
-            btn.classList.remove("active");
-        }
-    });
-
+    // Map fly
     if (map && item.coords) {
-        map.flyTo(item.coords, 9, { duration: 0.8 });
+        map.flyTo(item.coords, 10, { duration: 0.8 });
         Object.entries(markers).forEach(([k, marker]) => {
             if (k === kec) {
-                marker.setStyle({ weight: 4, color: '#1e293b' });
+                marker.setStyle({ weight: 4, color: '#1c211e' });
                 marker.openTooltip();
             } else {
                 marker.setStyle({ weight: 2, color: '#ffffff' });
@@ -258,14 +250,21 @@ function updateDashboard(kec) {
     }
 
     calculateAndRenderMetrics();
-    updateChart(item.history);
+    if (item.history) updateChart(item.history);
 }
 
 function calculateAndRenderMetrics() {
-    const ndvi = parseFloat(document.getElementById("ndviSlider").value);
-    const rain = parseFloat(document.getElementById("rainSlider").value);
-    const lst = parseFloat(document.getElementById("lstSlider").value);
-    const landArea = parseFloat(document.getElementById("landAreaSlider").value);
+    const ndviElem = document.getElementById("ndviSlider");
+    const rainElem = document.getElementById("rainSlider");
+    const lstElem = document.getElementById("lstSlider");
+    const landElem = document.getElementById("landAreaSlider");
+
+    if (!ndviElem || !rainElem || !lstElem || !landElem) return;
+
+    const ndvi = parseFloat(ndviElem.value);
+    const rain = parseFloat(rainElem.value);
+    const lst = parseFloat(lstElem.value);
+    const landArea = parseFloat(landElem.value);
 
     // Exact Bio-physical Risk Score Formula
     const ndviRatio = Math.max(0, 1.0 - (ndvi / 0.85));
@@ -274,179 +273,165 @@ function calculateAndRenderMetrics() {
 
     const riskScore = Math.max(0.05, Math.min(0.98, (0.50 * ndviRatio + 0.35 * rainRatio + 0.15 * lstRatio)));
     
-    let statusText = "Bahaya";
-    let badgeClass = "status-chip danger";
-    let riskColorClass = "danger";
-    let riskCategory = "Ambang Kritis (D3 Ekstrem)";
     let lossPct = riskScore * 58.0;
-
     if (riskScore < 0.45) {
-        statusText = "Aman";
-        badgeClass = "status-chip safe";
-        riskColorClass = "safe";
-        riskCategory = "Batas Normal (D0 Tanpa Anomali)";
         lossPct = riskScore * 14.0;
     } else if (riskScore < 0.70) {
-        statusText = "Waspada";
-        badgeClass = "status-chip warning";
-        riskColorClass = "warning";
-        riskCategory = "Potensi Kekeringan (D1/D2 Waspada)";
         lossPct = riskScore * 35.0;
     }
 
-    const safePct = Math.max(0, 100.0 - lossPct);
+    const readinessPct = Math.max(10, Math.min(98, 100.0 - lossPct));
     const prodNormalTonHa = currentCommodity === "Padi Sawah" ? 6.0 : 7.5;
     const pricePerKg = currentCommodity === "Padi Sawah" ? 6500 : 5200;
     const totalProdNormalTon = landArea * prodNormalTonHa;
     const lostProdTon = totalProdNormalTon * (lossPct / 100.0);
-    const safeProdTon = totalProdNormalTon - lostProdTon;
     const finLossRp = lostProdTon * 1000 * pricePerKg;
     const finLossMiliar = (finLossRp / 1e9).toFixed(2);
 
-    // Top Badge & Score
-    const statusBadge = document.getElementById("statusBadge");
-    statusBadge.className = badgeClass;
-    document.getElementById("statusText").textContent = statusText;
+    // 1. Update 4 Snapshot Metrics in Right Panel
+    const snapRisk = document.getElementById("snapRiskScoreVal");
+    if (snapRisk) snapRisk.textContent = riskScore.toFixed(3);
 
-    const riskDisplay = document.getElementById("riskScoreDisplay");
-    riskDisplay.textContent = riskScore.toFixed(3);
-    riskDisplay.className = `hero-score-number ${riskColorClass}`;
-    document.getElementById("riskCategoryText").textContent = riskCategory;
+    const snapNdvi = document.getElementById("snapNdviVal");
+    if (snapNdvi) snapNdvi.textContent = ndvi.toFixed(2);
 
-    // Donut Update
+    const snapRain = document.getElementById("snapRainVal");
+    if (snapRain) snapRain.textContent = `${rain.toFixed(1)} mm`;
+
+    const snapTemp = document.getElementById("snapTempVal");
+    if (snapTemp) snapTemp.textContent = `${lst.toFixed(1)} °C`;
+
+    // 2. Update 4 Transaction Metrics
+    const txLand = document.getElementById("txLandHa");
+    if (txLand) txLand.textContent = `${Math.round(landArea)} Ha`;
+
+    const txLoss = document.getElementById("txLossTon");
+    if (txLoss) txLoss.textContent = `${lostProdTon.toFixed(1)} Ton`;
+
+    const txPct = document.getElementById("txLossPct");
+    if (txPct) txPct.textContent = `${lossPct.toFixed(1)}% Yield Loss`;
+
+    const txRp = document.getElementById("txLossRp");
+    if (txRp) txRp.textContent = `Rp ${finLossMiliar} M`;
+
+    // AUTP
+    const isEligibleAUTP = lossPct >= 75.0;
+    const autpTotal = isEligibleAUTP ? (landArea * 6000000) : (landArea * 6000000 * 0.5);
+    const txAutp = document.getElementById("txAutpPayout");
+    if (txAutp) txAutp.textContent = `Rp ${(autpTotal / 1e9).toFixed(2)} M`;
+
+    const txStatus = document.getElementById("txAutpStatus");
+    if (txStatus) txStatus.textContent = isEligibleAUTP ? "Eligible Klaim (Puso)" : "Status Siaga Pantau";
+
+    // 3. Update Donut Readiness
     if (lossDonutChart) {
-        lossDonutChart.data.datasets[0].data = [lossPct, safePct];
+        lossDonutChart.data.datasets[0].data = [100 - readinessPct, readinessPct];
         lossDonutChart.update();
     }
-    document.getElementById("donutLossPct").textContent = `${lossPct.toFixed(1)}%`;
-    document.getElementById("lossPctBadge").textContent = `${lossPct.toFixed(1)}%`;
-    document.getElementById("safePctBadge").textContent = `${safePct.toFixed(1)}%`;
-    document.getElementById("yieldLostTonDisplay").textContent = `${lostProdTon.toFixed(1)} Ton`;
-    document.getElementById("yieldSafeTonDisplay").textContent = `${safeProdTon.toFixed(1)} Ton`;
+    const donutVal = document.getElementById("donutCenterVal");
+    if (donutVal) donutVal.textContent = `${Math.round(readinessPct)}%`;
 
-    document.getElementById("finLossDisplay").textContent = finLossMiliar;
-    document.getElementById("landAreaSummaryDisplay").textContent = `Basis ${landArea} Ha (${currentCommodity})`;
+    // 4. Update Left Column Micro-KPI Tiles (Dynamically scaled)
+    const kpiVeg = document.getElementById("kpiVegCover");
+    if (kpiVeg) kpiVeg.textContent = `${Math.round(ndvi * 100)}%`;
 
-    document.getElementById("vegConditionDisplay").textContent = ndvi < 0.35 ? "Stres Kritis" : (ndvi < 0.55 ? "Stres Ringan" : "Prima");
-    document.getElementById("rainConditionDisplay").textContent = rain < 20 ? "Defisit Akut (<20mm)" : "Curah Memadai";
+    const kpiCanopy = document.getElementById("kpiCanopyHealth");
+    if (kpiCanopy) kpiCanopy.textContent = `${Math.round(Math.max(20, 100 - (riskScore * 80)))}%`;
 
-    // ==========================================
-    // FITUR REAL 1: KALKULATOR IRIGASI & POMPA
-    // ==========================================
-    // Standar konsumsi air padi/jagung: 60 mm / minggu
+    const kpiSoil = document.getElementById("kpiSoilMoisture");
+    if (kpiSoil) kpiSoil.textContent = `${Math.round(Math.min(95, rain * 1.8 + 20))}%`;
+
+    const kpiLand = document.getElementById("kpiLandMonitored");
+    if (kpiLand) kpiLand.textContent = `${(landArea / 10).toFixed(1)}K`;
+
+    // 5. Update Operational Tools: Pompa AWD & AUTP
     const targetWaterMm = currentCommodity === "Padi Sawah" ? 60.0 : 45.0;
     const waterDeficitMm = Math.max(0.0, targetWaterMm - rain);
-    // 1 mm air pada 1 Ha = 10 m³ air
     const totalWaterVolM3 = waterDeficitMm * 10.0 * landArea;
-    // Kapasitas pompa debit 4 inci: ~25 liter/detik = 90 m³/jam
-    // Operasi 8 jam per hari selama 7 hari (56 jam operasional): 56 * 90 = 5.040 m³ per unit pompa
     const pumpUnits = Math.max(1, Math.ceil(totalWaterVolM3 / 5040.0));
-    // Konsumsi solar rata-rata pompa: 1.5 liter/jam * 56 jam = 84 liter per pompa
-    // Harga solar subsidi: Rp6.800/liter
     const fuelCostJuta = ((pumpUnits * 84 * 6800) / 1e6).toFixed(1);
 
-    document.getElementById("waterDeficitVal").textContent = waterDeficitMm.toFixed(1);
-    document.getElementById("totalWaterVolumeVal").textContent = Math.round(totalWaterVolM3).toLocaleString('id-ID');
-    document.getElementById("pumpUnitsVal").textContent = pumpUnits;
-    document.getElementById("fuelCostVal").textContent = fuelCostJuta;
+    const kpiPump = document.getElementById("kpiPumpVolume");
+    if (kpiPump) kpiPump.textContent = `${pumpUnits * 28}`;
+
+    const defElem = document.getElementById("waterDeficitVal");
+    if (defElem) defElem.textContent = waterDeficitMm.toFixed(1);
+
+    const volElem = document.getElementById("totalWaterVolumeVal");
+    if (volElem) volElem.textContent = Math.round(totalWaterVolM3).toLocaleString('id-ID');
+
+    const pumpElem = document.getElementById("pumpUnitsVal");
+    if (pumpElem) pumpElem.textContent = pumpUnits;
+
+    const fuelElem = document.getElementById("fuelCostVal");
+    if (fuelElem) fuelElem.textContent = `Rp ${fuelCostJuta} Jt`;
 
     const adviceElem = document.getElementById("irrigationAdviceText");
-    if (riskScore >= 0.70) {
-        adviceElem.textContent = `Mendesak: Pasang ${pumpUnits} unit pompa darurat di titik sumur/embung primer. Terapkan irigasi malam hari berselang (AWD) dan tunda pemupukan kering.`;
-    } else if (riskScore >= 0.45) {
-        adviceElem.textContent = `Waspada: Rotasi pembukaan pintu air tersier setiap 3 hari. Gunakan mulsa jerami sisa panen untuk menekan laju penguapan tanah.`;
-    } else {
-        adviceElem.textContent = `Kondisi Stabil: Pasokan air presipitasi mencukupi kebutuhan fase vegetatif. Pertahankan tinggi genangan macak-macak 2-3 cm.`;
+    if (adviceElem) {
+        if (riskScore >= 0.70) {
+            adviceElem.textContent = `Mendesak: Pasang ${pumpUnits} unit pompa darurat di titik sumur/embung primer. Terapkan irigasi malam hari berselang (AWD) dan tunda pemupukan kering.`;
+        } else if (riskScore >= 0.45) {
+            adviceElem.textContent = `Waspada: Rotasi pembukaan pintu air tersier setiap 3 hari. Gunakan mulsa jerami sisa panen untuk menekan laju penguapan tanah.`;
+        } else {
+            adviceElem.textContent = `Kondisi Stabil: Pasokan air presipitasi mencukupi kebutuhan fase vegetatif. Pertahankan tinggi genangan macak-macak 2-3 cm.`;
+        }
     }
 
-    // ==========================================
-    // FITUR REAL 2: SIMULATOR ASURANSI AUTP
-    // ==========================================
-    // Regulasi Kementan & Jasindo: AUTP mencairkan santunan Rp6.000.000 / Ha bila kerusakan/gagal panen >= 75%
-    const isEligibleAUTP = lossPct >= 75.0;
+    // AUTP Card
     const autpBadge = document.getElementById("autpEligibilityBadge");
     const autpDesc = document.getElementById("autpEligibilityDesc");
     const autpPayout = document.getElementById("autpPayoutVal");
 
-    if (isEligibleAUTP) {
-        autpBadge.className = "autp-badge eligible";
-        autpBadge.textContent = "MEMENUHI SYARAT KLAIM";
-        autpDesc.textContent = `Tingkat kerusakan lahan (${lossPct.toFixed(1)}%) telah melampaui ambang batas syarat AUTP (≥75%). Petani berhak mengajukan ganti rugi.`;
-        const totalPayout = landArea * 6000000;
-        autpPayout.textContent = totalPayout.toLocaleString('id-ID');
-    } else {
-        autpBadge.className = "autp-badge not-eligible";
-        autpBadge.textContent = "BELUM MEMENUHI AMBANG KLAIM";
-        autpDesc.textContent = `Tingkat kehilangan hasil (${lossPct.toFixed(1)}%) masih di bawah ambang batas legal AUTP (75%). Fokuskan upaya pada mitigasi irigasi darurat.`;
-        const potentialPayoutIfFailed = landArea * 6000000;
-        autpPayout.textContent = `(Potensi: Rp${(potentialPayoutIfFailed / 1e9).toFixed(2)} Miliar)`;
+    if (autpBadge && autpDesc && autpPayout) {
+        if (isEligibleAUTP) {
+            autpBadge.textContent = "MEMENUHI SYARAT KLAIM";
+            autpBadge.style.color = "#15803d";
+            autpDesc.textContent = `Tingkat kerusakan lahan (${lossPct.toFixed(1)}%) telah melampaui ambang batas syarat AUTP (≥75%). Petani berhak mengajukan santunan.`;
+            autpPayout.textContent = (landArea * 6000000).toLocaleString('id-ID');
+        } else {
+            autpBadge.textContent = "BELUM MEMENUHI AMBANG";
+            autpBadge.style.color = "#d97706";
+            autpDesc.textContent = `Tingkat kehilangan hasil (${lossPct.toFixed(1)}%) masih di bawah ambang batas legal AUTP (75%). Prioritaskan tindakan pompa darurat.`;
+            autpPayout.textContent = `(Potensi: Rp${((landArea * 6000000) / 1e9).toFixed(2)} M)`;
+        }
     }
 }
 
 function updateChart(history) {
     if (!trajectoryChart || !history) return;
     trajectoryChart.data.labels = history.weeks.map(w => `Mgg ${w}`);
-    trajectoryChart.datasets[0].data = history.ndvi;
-    trajectoryChart.datasets[1].data = history.rain;
+    trajectoryChart.data.datasets[0].data = history.ndvi;
+    trajectoryChart.data.datasets[1].data = history.rain;
     trajectoryChart.update();
 }
 
 function bindEvents() {
-    document.getElementById("kecamatanSelect").addEventListener("change", (e) => {
-        updateDashboard(e.target.value);
-    });
+    const sel = document.getElementById("kecamatanSelect");
+    if (sel) {
+        sel.addEventListener("change", (e) => {
+            updateDashboard(e.target.value);
+        });
+    }
 
-    document.querySelectorAll(".com-pill").forEach(btn => {
+    // Floating Map Zoom (+ / -)
+    const btnZoomIn = document.getElementById("btnZoomIn");
+    if (btnZoomIn) {
+        btnZoomIn.addEventListener("click", () => {
+            if (map) map.zoomIn();
+        });
+    }
+
+    const btnZoomOut = document.getElementById("btnZoomOut");
+    if (btnZoomOut) {
+        btnZoomOut.addEventListener("click", () => {
+            if (map) map.zoomOut();
+        });
+    }
+
+    // Spatial Map Layer Switcher
+    document.querySelectorAll(".spatial-layer-btn").forEach(btn => {
         btn.addEventListener("click", () => {
-            document.querySelectorAll(".com-pill").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            currentCommodity = btn.dataset.val;
-            calculateAndRenderMetrics();
-        });
-    });
-
-    document.querySelectorAll(".sub-tab").forEach(tab => {
-        tab.addEventListener("click", () => {
-            document.querySelectorAll(".sub-tab").forEach(t => t.classList.remove("active"));
-            tab.classList.add("active");
-            
-            const tabTarget = tab.dataset.tab;
-            const scrollContainer = document.querySelector(".dashboard-scrollable");
-            if (tabTarget === "decision") {
-                const irigasiSection = document.getElementById("irigasi");
-                if (irigasiSection) {
-                    irigasiSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            } else {
-                scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        });
-    });
-
-    document.querySelectorAll(".nav-item").forEach(item => {
-        item.addEventListener("click", (e) => {
-            e.preventDefault();
-            document.querySelectorAll(".nav-item").forEach(i => i.classList.remove("active"));
-            item.classList.add("active");
-
-            const targetHref = item.getAttribute("href");
-            const scrollContainer = document.querySelector(".dashboard-scrollable");
-            
-            if (targetHref === "#overview") {
-                scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                const targetElem = document.querySelector(targetHref);
-                if (targetElem) {
-                    targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }
-        });
-    });
-
-    // Map Layer Switcher (Street Map vs Satellite)
-    document.querySelectorAll(".layer-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-            document.querySelectorAll(".layer-btn").forEach(b => b.classList.remove("active"));
+            document.querySelectorAll(".spatial-layer-btn").forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
             const layerKey = btn.dataset.layer;
             
@@ -460,24 +445,50 @@ function bindEvents() {
         });
     });
 
-    // Export PDF Report (Window Print Dialog with Clean CSS)
-    document.getElementById("btnExportReport").addEventListener("click", () => {
-        window.print();
+    // Top Nav Pills
+    document.querySelectorAll(".nav-pill-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".nav-pill-btn").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            
+            const view = btn.dataset.view;
+            if (view === "overview") {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (view === "map") {
+                const mapElem = document.querySelector(".spatial-map-container");
+                if (mapElem) mapElem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else if (view === "analytics") {
+                const toolsElem = document.getElementById("operationalDrawer");
+                if (toolsElem) toolsElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
     });
 
+    // Export PDF Report
+    const btnExport = document.getElementById("btnExportReport");
+    if (btnExport) {
+        btnExport.addEventListener("click", () => {
+            window.print();
+        });
+    }
+
+    // Sliders
     const sliders = [
         { id: "landAreaSlider", valId: "landAreaVal", suffix: " Ha", decimals: 0 },
-        { id: "ndviSlider", valId: "ndviVal", suffix: "", decimals: 2, rowId: "ndviRowVal" },
-        { id: "rainSlider", valId: "rainVal", suffix: " mm", decimals: 1, rowId: "rainRowVal" },
-        { id: "lstSlider", valId: "lstVal", suffix: " °C", decimals: 1, rowId: "lstRowVal" }
+        { id: "ndviSlider", valId: "ndviVal", suffix: "", decimals: 2 },
+        { id: "rainSlider", valId: "rainVal", suffix: " mm", decimals: 1 },
+        { id: "lstSlider", valId: "lstVal", suffix: " °C", decimals: 1 }
     ];
 
     sliders.forEach(s => {
-        document.getElementById(s.id).addEventListener("input", (e) => {
-            const val = parseFloat(e.target.value);
-            document.getElementById(s.valId).textContent = `${val.toFixed(s.decimals)}${s.suffix}`;
-            if (s.rowId) document.getElementById(s.rowId).textContent = `${val.toFixed(s.decimals)}${s.suffix}`;
-            calculateAndRenderMetrics();
-        });
+        const sliderElem = document.getElementById(s.id);
+        if (sliderElem) {
+            sliderElem.addEventListener("input", (e) => {
+                const val = parseFloat(e.target.value);
+                const displayElem = document.getElementById(s.valId);
+                if (displayElem) displayElem.textContent = `${val.toFixed(s.decimals)}${s.suffix}`;
+                calculateAndRenderMetrics();
+            });
+        }
     });
 }
