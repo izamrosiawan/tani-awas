@@ -93,7 +93,7 @@ function initLossDonutChart() {
             labels: ['Potensi Kehilangan (Puso)', 'Panen Aman Terselamatkan'],
             datasets: [{
                 data: [41.1, 58.9],
-                backgroundColor: ['#ef4444', '#10b981'],
+                backgroundColor: ['#d97706', '#15803d'],
                 borderWidth: 0,
                 hoverOffset: 4
             }]
@@ -125,10 +125,10 @@ function initTrajectoryChart() {
                 {
                     label: 'NDVI Sentinel-2 (Kondisi Kanopi)',
                     data: [],
-                    borderColor: '#0d9488',
-                    backgroundColor: 'rgba(13, 148, 136, 0.05)',
+                    borderColor: '#d97706',
+                    backgroundColor: 'rgba(217, 119, 6, 0.12)',
                     borderWidth: 2.5,
-                    pointBackgroundColor: '#0d9488',
+                    pointBackgroundColor: '#d97706',
                     pointBorderColor: '#ffffff',
                     pointBorderWidth: 2,
                     pointRadius: 4,
@@ -140,10 +140,10 @@ function initTrajectoryChart() {
                 {
                     label: 'Curah Hujan BMKG (mm)',
                     data: [],
-                    borderColor: '#ef4444',
-                    backgroundColor: 'rgba(239, 68, 68, 0.05)',
-                    borderWidth: 2.5,
-                    pointBackgroundColor: '#ef4444',
+                    borderColor: '#0f766e',
+                    backgroundColor: 'rgba(15, 118, 110, 0.08)',
+                    borderWidth: 2.2,
+                    pointBackgroundColor: '#0f766e',
                     pointBorderColor: '#ffffff',
                     pointBorderWidth: 2,
                     pointRadius: 4,
