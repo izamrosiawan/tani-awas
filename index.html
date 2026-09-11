@@ -3,448 +3,518 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REALTO — Property & Agro Intelligence Platform</title>
+    <title>TANI-AWAS — Agro-Climatic Intelligence & Decision Platform</title>
     
-    <!-- Exact typography pairing matching reference -->
+    <!-- Premium Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css?v=20260911_07">
+    <!-- Leaflet CSS & Chart.js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css?v=20260911_09">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="canvas-container">
-        <!-- TOP FLOATING CAPSULE NAVIGATION (1:1 PARITY) -->
-        <header class="top-nav-capsule">
-            <div class="nav-left-cluster">
-                <!-- Sunburst Icon & Logo -->
-                <div class="brand-cluster">
-                    <img src="sunburst.png" class="brand-sunburst-img" alt="Logo" />
-                    <span class="brand-text">REALTO</span>
+    <div class="canvas-viewport">
+        <!-- TOP FLOATING NAVIGATION CAPSULE -->
+        <header class="top-floating-nav">
+            <div class="nav-left-group">
+                <div class="brand-badge">
+                    <div class="brand-sunburst-svg">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0V3a1 1 0 0 1 1-1zm0 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm8-4a1 1 0 0 1 1 1v.01a1 1 0 0 1-2 0V12a1 1 0 0 1 1-1zM4 12a1 1 0 0 1 1-1h.01a1 1 0 0 1 0 2H5a1 1 0 0 1-1-1zm14.07-5.07a1 1 0 0 1 1.41 0l.01.01a1 1 0 0 1-1.42 1.41l-.01-.01a1 1 0 0 1 0-1.41zM5.93 16.66a1 1 0 0 1 1.41 0l.01.01a1 1 0 0 1-1.42 1.41l-.01-.01a1 1 0 0 1 0-1.41zm12.73 2.83a1 1 0 0 1 0-1.41l.01-.01a1 1 0 0 1 1.41 1.42l-.01.01a1 1 0 0 1-1.41-.01zM7.34 7.34a1 1 0 0 1 0-1.41l.01-.01a1 1 0 0 1 1.41 1.42l-.01.01a1 1 0 0 1-1.41-.01zM12 19a1 1 0 0 1 1 1v2a1 1 0 0 1-2 0v-2a1 1 0 0 1 1-1z"/>
+                        </svg>
+                    </div>
+                    <span class="brand-title">TANI-AWAS</span>
                 </div>
 
-                <!-- Floating Pill Segmented Switcher -->
-                <div class="nav-pills-bar">
-                    <button type="button" class="nav-pill-item active" data-view="overview">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect></svg>
+                <nav class="nav-segment-pills">
+                    <button type="button" class="segment-btn active" data-tab="overview">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect></svg>
                         <span>Overview</span>
                     </button>
-                    <button type="button" class="nav-pill-item" data-view="map">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
-                        <span>Map View</span>
+                    <button type="button" class="segment-btn" data-tab="mitigasi">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                        <span>Kalkulator AWD</span>
                     </button>
-                    <button type="button" class="nav-pill-item" data-view="analytics">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-                        <span>Analytics</span>
+                    <button type="button" class="segment-btn" data-tab="autp">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <span>Klaim AUTP</span>
                     </button>
-                </div>
+                </nav>
             </div>
 
-            <!-- Nav Right: Active Viewers Capsule + Circle Action Buttons -->
-            <div class="nav-right-cluster">
-                <!-- Kecamatan Selector in Clean Pill -->
-                <div class="kec-select-wrapper">
-                    <select id="kecamatanSelect" class="kec-select-pill"></select>
+            <div class="nav-right-group">
+                <div class="select-pill-box">
+                    <select id="kecamatanSelect" class="kec-select-input"></select>
                 </div>
 
-                <!-- Active Viewers Pill with Avatars -->
-                <div class="active-viewers-capsule">
-                    <img src="avatars.png" class="avatars-overlap-img" alt="Viewers" />
-                    <span class="viewers-tag-text">Active Viewers</span>
+                <div class="viewers-pill">
+                    <div class="avatar-stack">
+                        <span class="avatar-circle" style="background: #fde68a;">DK</span>
+                        <span class="avatar-circle" style="background: #fed7aa;">BM</span>
+                        <span class="avatar-circle" style="background: #bbf7d0;">PO</span>
+                    </div>
+                    <span class="viewers-count-text">+2 Sentra Pantau</span>
                 </div>
 
-                <!-- Heart Icon Button -->
-                <button type="button" class="nav-circle-btn" title="Bookmark Lahan">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                <button type="button" class="nav-action-circle" id="btnExportReport" title="Cetak Ringkasan Eksekutif PDF">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                 </button>
 
-                <!-- Bell Notification Button -->
-                <button type="button" class="nav-circle-btn" title="Notifikasi Peringatan Dini">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                </button>
-
-                <!-- User Profile Photo Pill -->
-                <button type="button" class="nav-circle-btn user-avatar-btn" id="btnExportReport" title="Cetak Laporan / Profil">
-                    <span style="font-weight: 800; font-size: 11px; color: #1c211e;">IZ</span>
+                <button type="button" class="nav-action-circle user-pill" title="Profil Petugas Pengamat">
+                    <span>IZ</span>
                 </button>
             </div>
         </header>
 
-        <!-- MAIN 2-COLUMN VIEWPORT -->
-        <main class="main-viewport-grid">
+        <!-- MAIN 2-COLUMN ASYMMETRIC GRID -->
+        <main class="main-dashboard-grid">
             <!-- ==============================================================
-                 LEFT COLUMN: 6 BORDERLESS DATA MICRO-KPIS + FLOORPLAN DENAH
+                 LEFT COLUMN: 2x3 MICRO-KPI MATRIX + DYNAMIC INTERACTIVE SPATIAL MAP
                  ============================================================== -->
-            <div class="left-column-stage">
-                <!-- 2x3 Micro-KPI Matrix (Borderless with hairline divider lines) -->
-                <div class="seamless-kpi-matrix">
-                    <!-- Cell 1: 88% +3% Active Listings (Histogram Mountain) -->
-                    <div class="seamless-kpi-cell">
-                        <div class="cell-header-row">
-                            <span class="cell-val-num" id="kpiVegCover">88<span class="val-unit">%</span></span>
-                            <span class="cell-delta-tag">+3%</span>
+            <section class="left-hero-stack">
+                <!-- 2x3 Micro-KPI Matrix (Seamless with subtle dividers) -->
+                <div class="micro-kpi-matrix">
+                    <!-- 1. Vegetative Canopy (Histogram) -->
+                    <div class="kpi-cell">
+                        <div class="kpi-cell-top">
+                            <span class="kpi-val" id="kpiVegCover">34<small>%</small></span>
+                            <span class="kpi-badge warning">-4%</span>
                         </div>
-                        <div class="cell-chart-area">
-                            <svg width="100%" height="44" viewBox="0 0 100 44" preserveAspectRatio="none">
-                                <polygon points="0,44 6,36 14,30 22,22 30,26 38,18 46,24 54,16 62,20 70,12 78,16 86,28 94,36 100,44" fill="url(#amberGradientMountain)" />
-                                <polyline points="0,44 6,36 14,30 22,22 30,26 38,18 46,24 54,16 62,20 70,12 78,16 86,28 94,36 100,44" fill="none" stroke="#e68a00" stroke-width="1.8" />
-                                <defs>
-                                    <linearGradient id="amberGradientMountain" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.7" />
-                                        <stop offset="100%" stop-color="#d97706" stop-opacity="0.1" />
-                                    </linearGradient>
-                                </defs>
+                        <div class="kpi-svg-canvas">
+                            <svg width="100%" height="40" viewBox="0 0 100 40" preserveAspectRatio="none">
+                                <polygon points="0,40 8,34 16,30 24,24 32,28 40,20 48,26 56,18 64,22 72,14 80,18 88,30 96,38 100,40" fill="rgba(217, 119, 6, 0.45)" />
+                                <polyline points="0,40 8,34 16,30 24,24 32,28 40,20 48,26 56,18 64,22 72,14 80,18 88,30 96,38 100,40" fill="none" stroke="#d97706" stroke-width="2" />
                             </svg>
                         </div>
-                        <span class="cell-sub-label">Active Listings</span>
+                        <span class="kpi-desc">Kerapatan Kanopi (NDVI)</span>
                     </div>
 
-                    <!-- Cell 2: 94% +4% High buyer interest (Scatter Cluster Dots) -->
-                    <div class="seamless-kpi-cell">
-                        <div class="cell-header-row">
-                            <span class="cell-val-num" id="kpiCanopyHealth">94<span class="val-unit">%</span></span>
-                            <span class="cell-delta-tag">+4%</span>
+                    <!-- 2. Biomass Vigor (Scatter Dots) -->
+                    <div class="kpi-cell">
+                        <div class="kpi-cell-top">
+                            <span class="kpi-val" id="kpiCanopyHealth">47<small>%</small></span>
+                            <span class="kpi-badge danger">-8%</span>
                         </div>
-                        <div class="cell-chart-area">
-                            <svg width="100%" height="44" viewBox="0 0 100 44" preserveAspectRatio="none">
-                                <circle cx="6" cy="34" r="1.8" fill="#f59e0b" />
-                                <circle cx="14" cy="30" r="2.2" fill="#d97706" />
-                                <circle cx="22" cy="28" r="1.8" fill="#f59e0b" />
-                                <circle cx="28" cy="24" r="2.5" fill="#e68a00" />
-                                <circle cx="36" cy="22" r="2.0" fill="#f59e0b" />
-                                <circle cx="44" cy="20" r="2.4" fill="#d97706" />
-                                <circle cx="52" cy="18" r="2.0" fill="#f59e0b" />
-                                <circle cx="60" cy="16" r="2.6" fill="#e68a00" />
-                                <circle cx="68" cy="14" r="2.2" fill="#f59e0b" />
-                                <circle cx="76" cy="12" r="2.8" fill="#d97706" />
-                                <circle cx="84" cy="10" r="2.0" fill="#f59e0b" />
-                                <circle cx="94" cy="8" r="2.5" fill="#e68a00" />
-                                <circle cx="18" cy="36" r="1.5" fill="rgba(245, 158, 11, 0.5)" />
-                                <circle cx="38" cy="28" r="1.6" fill="rgba(217, 119, 6, 0.5)" />
-                                <circle cx="58" cy="22" r="1.8" fill="rgba(245, 158, 11, 0.5)" />
-                                <circle cx="82" cy="16" r="1.6" fill="rgba(217, 119, 6, 0.5)" />
+                        <div class="kpi-svg-canvas">
+                            <svg width="100%" height="40" viewBox="0 0 100 40" preserveAspectRatio="none">
+                                <circle cx="8" cy="32" r="2" fill="#d97706" />
+                                <circle cx="16" cy="28" r="2.5" fill="#f59e0b" />
+                                <circle cx="26" cy="26" r="2" fill="#d97706" />
+                                <circle cx="36" cy="22" r="2.8" fill="#f59e0b" />
+                                <circle cx="46" cy="20" r="2.2" fill="#d97706" />
+                                <circle cx="56" cy="18" r="2.6" fill="#f59e0b" />
+                                <circle cx="66" cy="16" r="2.2" fill="#d97706" />
+                                <circle cx="76" cy="14" r="3.0" fill="#f59e0b" />
+                                <circle cx="86" cy="12" r="2.2" fill="#d97706" />
+                                <circle cx="94" cy="8" r="2.5" fill="#f59e0b" />
+                                <circle cx="22" cy="34" r="1.5" fill="rgba(217, 119, 6, 0.5)" />
+                                <circle cx="48" cy="28" r="1.8" fill="rgba(217, 119, 6, 0.5)" />
+                                <circle cx="70" cy="22" r="1.8" fill="rgba(217, 119, 6, 0.5)" />
                             </svg>
                         </div>
-                        <span class="cell-sub-label">High buyer interest</span>
+                        <span class="kpi-desc">Vigor Kesehatan Tanaman</span>
                     </div>
 
-                    <!-- Cell 3: 76% +9% Buyer Engagement Rate (Oscilloscope Soundwave Bars) -->
-                    <div class="seamless-kpi-cell">
-                        <div class="cell-header-row">
-                            <span class="cell-val-num" id="kpiSoilMoisture">76<span class="val-unit">%</span></span>
-                            <span class="cell-delta-tag">+9%</span>
+                    <!-- 3. Soil Moisture (Soundwave Frequency) -->
+                    <div class="kpi-cell">
+                        <div class="kpi-cell-top">
+                            <span class="kpi-val" id="kpiSoilMoisture">47<small>%</small></span>
+                            <span class="kpi-badge warning">-5%</span>
                         </div>
-                        <div class="cell-chart-area">
-                            <svg width="100%" height="44" viewBox="0 0 100 44" preserveAspectRatio="none">
-                                <rect x="2" y="20" width="1.6" height="16" rx="0.8" fill="#f59e0b" />
-                                <rect x="8" y="16" width="1.6" height="20" rx="0.8" fill="#d97706" />
-                                <rect x="14" y="18" width="1.6" height="18" rx="0.8" fill="#f59e0b" />
-                                <rect x="20" y="10" width="1.6" height="26" rx="0.8" fill="#e68a00" />
-                                <rect x="26" y="14" width="1.6" height="22" rx="0.8" fill="#f59e0b" />
-                                <rect x="32" y="8" width="1.6" height="28" rx="0.8" fill="#d97706" />
-                                <rect x="38" y="16" width="1.6" height="20" rx="0.8" fill="#f59e0b" />
-                                <rect x="44" y="6" width="1.6" height="30" rx="0.8" fill="#e68a00" />
-                                <rect x="50" y="12" width="1.6" height="24" rx="0.8" fill="#f59e0b" />
-                                <rect x="56" y="16" width="1.6" height="20" rx="0.8" fill="#d97706" />
-                                <rect x="62" y="8" width="1.6" height="28" rx="0.8" fill="#f59e0b" />
-                                <rect x="68" y="14" width="1.6" height="22" rx="0.8" fill="#e68a00" />
-                                <rect x="74" y="18" width="1.6" height="18" rx="0.8" fill="#f59e0b" />
-                                <rect x="80" y="10" width="1.6" height="26" rx="0.8" fill="#d97706" />
-                                <rect x="86" y="14" width="1.6" height="22" rx="0.8" fill="#f59e0b" />
-                                <rect x="92" y="18" width="1.6" height="18" rx="0.8" fill="#e68a00" />
-                                <rect x="98" y="12" width="1.6" height="24" rx="0.8" fill="#f59e0b" />
+                        <div class="kpi-svg-canvas">
+                            <svg width="100%" height="40" viewBox="0 0 100 40" preserveAspectRatio="none">
+                                <rect x="4" y="22" width="2" height="18" rx="1" fill="#f59e0b" />
+                                <rect x="10" y="16" width="2" height="24" rx="1" fill="#d97706" />
+                                <rect x="16" y="20" width="2" height="20" rx="1" fill="#f59e0b" />
+                                <rect x="22" y="12" width="2" height="28" rx="1" fill="#d97706" />
+                                <rect x="28" y="16" width="2" height="24" rx="1" fill="#f59e0b" />
+                                <rect x="34" y="8" width="2" height="32" rx="1" fill="#d97706" />
+                                <rect x="40" y="18" width="2" height="22" rx="1" fill="#f59e0b" />
+                                <rect x="46" y="10" width="2" height="30" rx="1" fill="#d97706" />
+                                <rect x="52" y="16" width="2" height="24" rx="1" fill="#f59e0b" />
+                                <rect x="58" y="8" width="2" height="32" rx="1" fill="#d97706" />
+                                <rect x="64" y="14" width="2" height="26" rx="1" fill="#f59e0b" />
+                                <rect x="70" y="20" width="2" height="20" rx="1" fill="#d97706" />
+                                <rect x="76" y="12" width="2" height="28" rx="1" fill="#f59e0b" />
+                                <rect x="82" y="16" width="2" height="24" rx="1" fill="#d97706" />
+                                <rect x="88" y="22" width="2" height="18" rx="1" fill="#f59e0b" />
+                                <rect x="94" y="14" width="2" height="26" rx="1" fill="#d97706" />
                             </svg>
                         </div>
-                        <span class="cell-sub-label">Buyer Engagement Rate</span>
+                        <span class="kpi-desc">Saturasi Lengas Tanah</span>
                     </div>
 
-                    <!-- Cell 4: 32.8K +2% Daily Property Views (Spotlight Cone) -->
-                    <div class="seamless-kpi-cell">
-                        <div class="cell-header-row">
-                            <span class="cell-val-num" id="kpiLandMonitored">32.8K</span>
-                            <span class="cell-delta-tag">+2%</span>
+                    <!-- 4. Land Monitored (Spotlight Cone) -->
+                    <div class="kpi-cell">
+                        <div class="kpi-cell-top">
+                            <span class="kpi-val" id="kpiLandMonitored">25.0<small>K</small></span>
+                            <span class="kpi-badge neutral">Ha</span>
                         </div>
-                        <div class="cell-chart-area">
-                            <svg width="100%" height="44" viewBox="0 0 100 44" preserveAspectRatio="none">
-                                <polygon points="6,30 96,10 96,36" fill="url(#coneAmberGrad)" />
-                                <path d="M96,10 A 32,32 0 0,1 96,36" stroke="#d97706" stroke-width="1.8" fill="none" />
-                                <circle cx="6" cy="30" r="3.5" fill="#d97706" />
-                                <circle cx="6" cy="30" r="1.8" fill="#ffffff" />
-                                <defs>
-                                    <linearGradient id="coneAmberGrad" x1="0" y1="0" x2="1" y2="0">
-                                        <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.65" />
-                                        <stop offset="100%" stop-color="#d97706" stop-opacity="0.15" />
-                                    </linearGradient>
-                                </defs>
+                        <div class="kpi-svg-canvas">
+                            <svg width="100%" height="40" viewBox="0 0 100 40" preserveAspectRatio="none">
+                                <polygon points="6,28 94,10 94,36" fill="rgba(245, 158, 11, 0.45)" />
+                                <path d="M94,10 A 30,30 0 0,1 94,36" stroke="#d97706" stroke-width="2" fill="none" />
+                                <circle cx="6" cy="28" r="3.5" fill="#d97706" />
                             </svg>
                         </div>
-                        <span class="cell-sub-label">Daily Property Views</span>
+                        <span class="kpi-desc">Hamparan Dipantau</span>
                     </div>
 
-                    <!-- Cell 5: 219 +8% Inquiry Volume (Centered Bar Volatility) -->
-                    <div class="seamless-kpi-cell">
-                        <div class="cell-header-row">
-                            <span class="cell-val-num" id="kpiPumpVolume">219</span>
-                            <span class="cell-delta-tag">+8%</span>
+                    <!-- 5. Discharge Volume (Centered Bars) -->
+                    <div class="kpi-cell">
+                        <div class="kpi-cell-top">
+                            <span class="kpi-val" id="kpiPumpVolume">219</span>
+                            <span class="kpi-badge safe">m³</span>
                         </div>
-                        <div class="cell-chart-area">
-                            <svg width="100%" height="44" viewBox="0 0 100 44" preserveAspectRatio="none">
-                                <rect x="8" y="18" width="2.5" height="14" rx="1.2" fill="#ffffff" opacity="0.9" />
-                                <rect x="18" y="14" width="2.5" height="18" rx="1.2" fill="#f59e0b" />
-                                <rect x="28" y="10" width="2.5" height="22" rx="1.2" fill="#ffffff" opacity="0.9" />
-                                <rect x="38" y="8" width="2.5" height="24" rx="1.2" fill="#d97706" />
-                                <rect x="48" y="4" width="3.2" height="30" rx="1.6" fill="#f59e0b" />
-                                <rect x="58" y="8" width="2.5" height="24" rx="1.2" fill="#ffffff" opacity="0.9" />
-                                <rect x="68" y="12" width="2.5" height="20" rx="1.2" fill="#d97706" />
-                                <rect x="78" y="16" width="2.5" height="16" rx="1.2" fill="#f59e0b" />
-                                <rect x="88" y="20" width="2.5" height="12" rx="1.2" fill="#ffffff" opacity="0.9" />
+                        <div class="kpi-svg-canvas">
+                            <svg width="100%" height="40" viewBox="0 0 100 40" preserveAspectRatio="none">
+                                <rect x="10" y="16" width="3" height="14" rx="1.5" fill="#ffffff" opacity="0.9" />
+                                <rect x="22" y="12" width="3" height="18" rx="1.5" fill="#f59e0b" />
+                                <rect x="34" y="8" width="3" height="22" rx="1.5" fill="#ffffff" opacity="0.9" />
+                                <rect x="46" y="4" width="3.5" height="28" rx="1.7" fill="#d97706" />
+                                <rect x="58" y="8" width="3" height="22" rx="1.5" fill="#f59e0b" />
+                                <rect x="70" y="12" width="3" height="18" rx="1.5" fill="#ffffff" opacity="0.9" />
+                                <rect x="82" y="18" width="3" height="12" rx="1.5" fill="#d97706" />
                             </svg>
                         </div>
-                        <span class="cell-sub-label">Inquiry Volume</span>
+                        <span class="kpi-desc">Debit Pompa Suplesi</span>
                     </div>
 
-                    <!-- Cell 6: 64% +6% Inventory Utilization (Step Line Margin) -->
-                    <div class="seamless-kpi-cell">
-                        <div class="cell-header-row">
-                            <span class="cell-val-num" id="kpiYieldSurplus">64<span class="val-unit">%</span></span>
-                            <span class="cell-delta-tag">+6%</span>
+                    <!-- 6. Crop Margin (Step Margin) -->
+                    <div class="kpi-cell">
+                        <div class="kpi-cell-top">
+                            <span class="kpi-val" id="kpiYieldSurplus">57<small>%</small></span>
+                            <span class="kpi-badge warning">Panen</span>
                         </div>
-                        <div class="cell-chart-area">
-                            <svg width="100%" height="44" viewBox="0 0 100 44" preserveAspectRatio="none">
-                                <polyline points="6,8 34,8 34,22 66,22 66,32 96,32" fill="none" stroke="#d97706" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-                                <line x1="68" y1="32" x2="68" y2="42" stroke="rgba(217, 119, 6, 0.45)" stroke-width="1.2" />
-                                <line x1="72" y1="32" x2="72" y2="42" stroke="rgba(217, 119, 6, 0.45)" stroke-width="1.2" />
-                                <line x1="76" y1="32" x2="76" y2="42" stroke="rgba(217, 119, 6, 0.45)" stroke-width="1.2" />
-                                <line x1="80" y1="32" x2="80" y2="42" stroke="rgba(217, 119, 6, 0.45)" stroke-width="1.2" />
-                                <line x1="84" y1="32" x2="84" y2="42" stroke="rgba(217, 119, 6, 0.45)" stroke-width="1.2" />
-                                <line x1="88" y1="32" x2="88" y2="42" stroke="rgba(217, 119, 6, 0.45)" stroke-width="1.2" />
-                                <line x1="92" y1="32" x2="92" y2="42" stroke="rgba(217, 119, 6, 0.45)" stroke-width="1.2" />
-                                <line x1="96" y1="32" x2="96" y2="42" stroke="rgba(217, 119, 6, 0.45)" stroke-width="1.2" />
+                        <div class="kpi-svg-canvas">
+                            <svg width="100%" height="40" viewBox="0 0 100 40" preserveAspectRatio="none">
+                                <polyline points="6,10 34,10 34,22 66,22 66,32 94,32" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <line x1="68" y1="32" x2="68" y2="40" stroke="rgba(217, 119, 6, 0.4)" stroke-width="1.5" />
+                                <line x1="74" y1="32" x2="74" y2="40" stroke="rgba(217, 119, 6, 0.4)" stroke-width="1.5" />
+                                <line x1="80" y1="32" x2="80" y2="40" stroke="rgba(217, 119, 6, 0.4)" stroke-width="1.5" />
+                                <line x1="86" y1="32" x2="86" y2="40" stroke="rgba(217, 119, 6, 0.4)" stroke-width="1.5" />
+                                <line x1="92" y1="32" x2="92" y2="40" stroke="rgba(217, 119, 6, 0.4)" stroke-width="1.5" />
                             </svg>
                         </div>
-                        <span class="cell-sub-label">Inventory Utilization</span>
+                        <span class="kpi-desc">Tingkat Panen Aman</span>
                     </div>
                 </div>
 
-                <!-- FRAMELESS ARCHITECTURAL FLOORPLAN (PERSIS GAMBAR) -->
-                <div class="floorplan-display-stage">
-                    <!-- Left Floor Label Stack (Courtyard, Basement, Floor 1 AZ, Floor 2 AZ) -->
-                    <div class="floor-indicator-nav">
-                        <span class="floor-item-dim">Courtyard</span>
-                        <span class="floor-item-dim">Basement</span>
-                        <span class="floor-item-active">• Floor 1 AZ</span>
-                        <span class="floor-item-dim">Floor 2 AZ</span>
+                <!-- LIVE LEAFLET SPATIAL MAP (Frameless denah-style container) -->
+                <div class="map-spatial-viewport">
+                    <div class="map-head-overlay">
+                        <div class="sector-tag">
+                            <span class="sector-dot"></span>
+                            <span id="mapSectorName">Sektor Demak (Sentra 1)</span>
+                        </div>
+                        <div class="layer-pill-switch">
+                            <button type="button" class="layer-btn active" data-layer="satellite">Citra Satelit</button>
+                            <button type="button" class="layer-btn" data-layer="osm">Topografi Jalan</button>
+                        </div>
                     </div>
 
-                    <!-- Cutout Floorplan Real Render Image -->
-                    <div class="floorplan-visual-frame">
-                        <img src="floorplan.png" class="floorplan-cutout-img" alt="Architectural Floorplan AZ" />
-                    </div>
+                    <div id="map" class="map-actual-canvas"></div>
 
-                    <!-- Floating Zoom Pill (+ / -) Right-Bottom of Denah -->
-                    <div class="floorplan-zoom-pill">
-                        <button type="button" class="zoom-sub-btn" id="btnZoomIn" title="Zoom In">+</button>
-                        <button type="button" class="zoom-sub-btn" id="btnZoomOut" title="Zoom Out">−</button>
+                    <!-- Custom Floating Zoom Pill (+ / -) -->
+                    <div class="map-zoom-capsule">
+                        <button type="button" class="zoom-action-btn" id="btnZoomIn" title="Perbesar Peta">+</button>
+                        <button type="button" class="zoom-action-btn" id="btnZoomOut" title="Perkecil Peta">−</button>
                     </div>
                 </div>
-            </div>
+            </section>
 
             <!-- ==============================================================
-                 RIGHT COLUMN: WARM TRANSLUCENT FROSTED GLASS EDITORIAL SHEET
+                 RIGHT COLUMN: FROSTED GLASS EDITORIAL INTELLIGENCE SHEET
                  ============================================================== -->
-            <div class="right-frosted-sheet">
-                <!-- 1. Market Snapshot Head -->
-                <div class="sheet-header-block">
-                    <h2 class="sheet-headline">Market Snapshot</h2>
-                    <p class="sheet-subline">A concise overview of buyer demand, listing performance, and pricing movement across active properties and locations.</p>
+            <section class="right-editorial-sheet">
+                <!-- 1. Agro-Climatic Snapshot -->
+                <div class="sheet-title-group">
+                    <h2 class="sheet-h2">Agro-Climatic Snapshot</h2>
+                    <p class="sheet-subtext">A concise overview of moisture deficit, satellite canopy vigor, and harvest risk movement across active agricultural zones.</p>
                 </div>
 
-                <!-- 4-Column Micro Chart Visuals Row (Gauge, Spider Radar, Bar Mountains, Geo Map) -->
-                <div class="snapshot-4col-row">
-                    <!-- Col 1: Gauge -->
-                    <div class="snap-quad-col">
-                        <div class="snap-icon-wrap">
+                <div class="quad-snapshot-row">
+                    <!-- 1. Risk Index Speedometer Arc -->
+                    <div class="quad-col">
+                        <div class="quad-visual-wrap">
                             <svg width="68" height="38" viewBox="0 0 68 38">
-                                <path d="M6,34 A28,28 0 0,1 62,34" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="6" stroke-linecap="round" />
-                                <path d="M6,34 A28,28 0 0,1 52,14" fill="none" stroke="#f59e0b" stroke-width="6" stroke-linecap="round" />
-                                <circle cx="34" cy="34" r="3.5" fill="#d97706" />
+                                <path d="M6,34 A28,28 0 0,1 62,34" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="6" stroke-linecap="round" />
+                                <path d="M6,34 A28,28 0 0,1 48,12" fill="none" stroke="#d97706" stroke-width="6" stroke-linecap="round" />
+                                <circle cx="34" cy="34" r="3.5" fill="#1c211e" />
                                 <line x1="34" y1="34" x2="48" y2="16" stroke="#1c211e" stroke-width="2.2" stroke-linecap="round" />
                             </svg>
                         </div>
-                        <span class="snap-val-lead" id="snapRiskScoreVal">$1.96M</span>
-                        <span class="snap-label-foot">Average Price</span>
+                        <span class="quad-main-val" id="snapRiskScoreVal">0.712</span>
+                        <span class="quad-foot-label">Risk Index (D3)</span>
                     </div>
 
-                    <!-- Col 2: Spider Radar -->
-                    <div class="snap-quad-col">
-                        <div class="snap-icon-wrap">
-                            <svg width="52" height="52" viewBox="0 0 52 52">
-                                <circle cx="26" cy="26" r="22" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1" />
-                                <circle cx="26" cy="26" r="14" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1" />
-                                <line x1="26" y1="4" x2="26" y2="48" stroke="rgba(255,255,255,0.3)" stroke-width="1" />
-                                <line x1="4" y1="26" x2="48" y2="26" stroke="rgba(255,255,255,0.3)" stroke-width="1" />
-                                <polygon points="26,8 42,18 36,44 14,40 10,20" fill="rgba(245, 158, 11, 0.28)" stroke="#f59e0b" stroke-width="1.8" />
+                    <!-- 2. Biomass NDVI Spider Radar -->
+                    <div class="quad-col">
+                        <div class="quad-visual-wrap">
+                            <svg width="48" height="48" viewBox="0 0 48 48">
+                                <circle cx="24" cy="24" r="20" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1" />
+                                <circle cx="24" cy="24" r="12" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="1" />
+                                <line x1="24" y1="4" x2="24" y2="44" stroke="rgba(0,0,0,0.08)" stroke-width="1" />
+                                <line x1="4" y1="24" x2="44" y2="24" stroke="rgba(0,0,0,0.08)" stroke-width="1" />
+                                <polygon points="24,8 38,16 34,40 14,36 10,18" fill="rgba(245, 158, 11, 0.35)" stroke="#d97706" stroke-width="1.8" />
                             </svg>
                         </div>
-                        <span class="snap-val-lead" id="snapNdviVal">82%</span>
-                        <span class="snap-label-foot">Demand Index</span>
+                        <span class="quad-main-val" id="snapNdviVal">0.34</span>
+                        <span class="quad-foot-label">NDVI Biomassa</span>
                     </div>
 
-                    <!-- Col 3: Histogram Mountain -->
-                    <div class="snap-quad-col">
-                        <div class="snap-icon-wrap">
-                            <svg width="64" height="38" viewBox="0 0 64 38">
-                                <rect x="4" y="16" width="3" height="20" rx="1" fill="#f59e0b" />
-                                <rect x="11" y="12" width="3" height="24" rx="1" fill="#d97706" />
-                                <rect x="18" y="18" width="3" height="18" rx="1" fill="#f59e0b" />
-                                <rect x="25" y="8" width="3" height="28" rx="1" fill="#e68a00" />
-                                <rect x="32" y="14" width="3" height="22" rx="1" fill="#f59e0b" />
-                                <rect x="39" y="10" width="3" height="26" rx="1" fill="#d97706" />
-                                <rect x="46" y="18" width="3" height="18" rx="1" fill="#f59e0b" />
-                                <rect x="53" y="14" width="3" height="22" rx="1" fill="#e68a00" />
+                    <!-- 3. Rainfall Deficit Bars -->
+                    <div class="quad-col">
+                        <div class="quad-visual-wrap">
+                            <svg width="60" height="38" viewBox="0 0 60 38">
+                                <rect x="4" y="16" width="3.5" height="20" rx="1.5" fill="#f59e0b" />
+                                <rect x="12" y="10" width="3.5" height="26" rx="1.5" fill="#d97706" />
+                                <rect x="20" y="18" width="3.5" height="18" rx="1.5" fill="#f59e0b" />
+                                <rect x="28" y="6" width="3.5" height="30" rx="1.5" fill="#d97706" />
+                                <rect x="36" y="14" width="3.5" height="22" rx="1.5" fill="#f59e0b" />
+                                <rect x="44" y="10" width="3.5" height="26" rx="1.5" fill="#d97706" />
+                                <rect x="52" y="18" width="3.5" height="18" rx="1.5" fill="#f59e0b" />
                             </svg>
                         </div>
-                        <span class="snap-val-lead" id="snapRainVal">1,087</span>
-                        <span class="snap-label-foot">Active Listings</span>
+                        <span class="quad-main-val" id="snapRainVal">12.1 mm</span>
+                        <span class="quad-foot-label">Rain Deficit</span>
                     </div>
 
-                    <!-- Col 4: Geo Map Siluet -->
-                    <div class="snap-quad-col">
-                        <div class="snap-icon-wrap">
-                            <svg width="64" height="38" viewBox="0 0 64 38" fill="#f59e0b">
-                                <ellipse cx="18" cy="18" rx="8" ry="5" opacity="0.75" />
-                                <ellipse cx="36" cy="16" rx="10" ry="7" opacity="0.85" />
-                                <ellipse cx="52" cy="22" rx="6" ry="4" opacity="0.7" />
-                                <circle cx="36" cy="14" r="2" fill="#dc2626" />
-                                <circle cx="20" cy="18" r="1.8" fill="#dc2626" />
+                    <!-- 4. Thermal LST Map Siluet -->
+                    <div class="quad-col">
+                        <div class="quad-visual-wrap">
+                            <svg width="60" height="38" viewBox="0 0 60 38" fill="#d97706">
+                                <circle cx="16" cy="18" r="7" opacity="0.6" />
+                                <circle cx="32" cy="16" r="9" opacity="0.85" />
+                                <circle cx="48" cy="22" r="6" opacity="0.5" />
+                                <circle cx="32" cy="16" r="2.5" fill="#dc2626" />
                             </svg>
                         </div>
-                        <span class="snap-val-lead" id="snapTempVal">+3.8%</span>
-                        <span class="snap-label-foot">Price Change</span>
+                        <span class="quad-main-val" id="snapTempVal">34.2 °C</span>
+                        <span class="quad-foot-label">Thermal LST</span>
                     </div>
                 </div>
 
-                <!-- 2. Buyer Interest Distribution Head -->
-                <div class="sheet-header-block">
-                    <h2 class="sheet-headline">Buyer Interest Distribution</h2>
-                    <p class="sheet-subline">Shows how attention is distributed across property areas over time.</p>
+                <!-- 2. Multitemporal Deficit Trajectory -->
+                <div class="sheet-title-group">
+                    <h2 class="sheet-h2">Multitemporal Deficit Trajectory</h2>
+                    <p class="sheet-subtext">Shows how canopy moisture and precipitation anomalies are distributed across active monitoring weeks.</p>
                 </div>
 
-                <!-- Exact Stipple Distribution Spline Canvas -->
-                <div class="amber-stipple-container">
-                    <img src="dist_chart.png" class="stipple-chart-backdrop" alt="Buyer Interest Chart" />
+                <div class="trajectory-chart-container">
+                    <canvas id="trajectoryChart"></canvas>
                 </div>
 
-                <!-- 4 Transaction Metrics Strip (Leads, Proposals, Deals, Contracts) -->
-                <div class="transaction-quad-strip">
-                    <div class="tx-cell-card">
-                        <div class="tx-card-label">
-                            <span>💼 Leads Generated</span>
-                        </div>
-                        <span class="tx-card-amount" id="txLandHa">$18,740</span>
-                        <span class="tx-card-sub" id="txLandCount">72 Deals</span>
+                <!-- 4 Transaction Metrics Strip -->
+                <div class="transaction-quad-row">
+                    <div class="tx-metric-card">
+                        <span class="tx-card-label">🌾 Hamparan Lahan</span>
+                        <span class="tx-card-number" id="txLandHa">250 Ha</span>
+                        <span class="tx-card-footnote" id="txLandCount">12 Petak Poktan</span>
                     </div>
 
-                    <div class="tx-cell-card">
-                        <div class="tx-card-label">
-                            <span>📝 Proposals Sent</span>
-                        </div>
-                        <span class="tx-card-amount" id="txLossTon">$15,980</span>
-                        <span class="tx-card-sub" id="txLossPct">26 Deals</span>
+                    <div class="tx-metric-card">
+                        <span class="tx-card-label">📉 Potensi Hilang</span>
+                        <span class="tx-card-number" id="txLossTon">619.5 Ton</span>
+                        <span class="tx-card-footnote" id="txLossPct">41.3% Yield Loss</span>
                     </div>
 
-                    <div class="tx-cell-card">
-                        <div class="tx-card-label">
-                            <span>🤝 Deals Closed</span>
-                        </div>
-                        <span class="tx-card-amount" id="txLossRp">$10,460</span>
-                        <span class="tx-card-sub">14 Deals</span>
+                    <div class="tx-metric-card">
+                        <span class="tx-card-label">💰 Kerugian Petani</span>
+                        <span class="tx-card-number" id="txLossRp">Rp 4.03 M</span>
+                        <span class="tx-card-footnote">Acuan BPS GKP</span>
                     </div>
 
-                    <div class="tx-cell-card">
-                        <div class="tx-card-label">
-                            <span>✍️ Contracts Signed</span>
-                        </div>
-                        <span class="tx-card-amount" id="txAutpPayout">$7,890</span>
-                        <span class="tx-card-sub" id="txAutpStatus">19 Deals</span>
+                    <div class="tx-metric-card">
+                        <span class="tx-card-label">🛡️ Klaim AUTP</span>
+                        <span class="tx-card-number" id="txAutpPayout">Rp 1.50 M</span>
+                        <span class="tx-card-footnote" id="txAutpStatus">Status Pantau</span>
                     </div>
                 </div>
 
-                <!-- 3. Buyer Intent Accuracy Head -->
-                <div class="sheet-header-block">
-                    <h2 class="sheet-headline">Buyer Intent Accuracy</h2>
-                    <p class="sheet-subline">Measures how closely buyer actions align with property attributes and market signals.</p>
+                <!-- 3. Field Mitigation Readiness -->
+                <div class="sheet-title-group">
+                    <h2 class="sheet-h2">Field Mitigation Readiness</h2>
+                    <p class="sheet-subtext">Measures how closely emergency pump deployment and local contingency actions align with satellite bio-signals.</p>
                 </div>
 
-                <!-- Donut Ring (89%) + 4 Exact Micro Frequency Bar Columns -->
-                <div class="accuracy-metrics-grid">
-                    <!-- Donut Ring 89% -->
-                    <div class="donut-circle-wrap">
-                        <div class="donut-svg-stage">
-                            <svg width="76" height="76" viewBox="0 0 76 76">
-                                <circle cx="38" cy="38" r="32" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="7" />
-                                <circle cx="38" cy="38" r="32" fill="none" stroke="#f59e0b" stroke-width="7" stroke-dasharray="201" stroke-dashoffset="24" stroke-linecap="round" />
+                <div class="readiness-metrics-row">
+                    <!-- Donut Gauge 74% -->
+                    <div class="donut-visual-box">
+                        <div class="donut-svg-holder">
+                            <svg width="74" height="74" viewBox="0 0 74 74">
+                                <circle cx="37" cy="37" r="30" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="7" />
+                                <circle cx="37" cy="37" r="30" fill="none" stroke="#d97706" stroke-width="7" stroke-dasharray="188" stroke-dashoffset="48" stroke-linecap="round" id="donutRingCircle" />
                             </svg>
-                            <div class="donut-center-label">
-                                <strong id="donutCenterVal">89%</strong>
-                                <span>Confidence</span>
+                            <div class="donut-center-metric">
+                                <strong id="donutCenterVal">74%</strong>
+                                <span>Aman</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Col 1: Budget Match Rate 87% -->
-                    <div class="acc-metric-column">
-                        <span class="acc-col-tag">Budget Match Rate</span>
-                        <div class="freq-bar-teeth">
-                            <span class="tooth active"></span><span class="tooth active"></span><span class="tooth active"></span>
-                            <span class="tooth active"></span><span class="tooth active"></span><span class="tooth active"></span>
-                            <span class="tooth active"></span><span class="tooth active"></span><span class="tooth active"></span>
+                    <!-- 4 Teeth Frequency Bars -->
+                    <div class="teeth-metric-col">
+                        <span class="teeth-label">Pump AWD Capacity</span>
+                        <div class="teeth-bar-track">
+                            <span class="tooth on"></span><span class="tooth on"></span><span class="tooth on"></span>
+                            <span class="tooth on"></span><span class="tooth on"></span><span class="tooth on"></span>
+                            <span class="tooth on"></span><span class="tooth on"></span><span class="tooth on"></span>
                             <span class="tooth"></span><span class="tooth"></span>
                         </div>
-                        <strong class="acc-col-val">87%</strong>
+                        <strong class="teeth-val-num">87%</strong>
                     </div>
 
-                    <!-- Col 2: Location Preference Fit 83% -->
-                    <div class="acc-metric-column">
-                        <span class="acc-col-tag">Location Preference Fit</span>
-                        <div class="freq-bar-teeth">
-                            <span class="tooth active"></span><span class="tooth active"></span><span class="tooth active"></span>
-                            <span class="tooth active"></span><span class="tooth active"></span><span class="tooth active"></span>
-                            <span class="tooth active"></span><span class="tooth active"></span><span class="tooth"></span>
+                    <div class="teeth-metric-col">
+                        <span class="teeth-label">Embung Primary Head</span>
+                        <div class="teeth-bar-track">
+                            <span class="tooth on"></span><span class="tooth on"></span><span class="tooth on"></span>
+                            <span class="tooth on"></span><span class="tooth on"></span><span class="tooth on"></span>
+                            <span class="tooth on"></span><span class="tooth on"></span><span class="tooth"></span>
                             <span class="tooth"></span><span class="tooth"></span>
                         </div>
-                        <strong class="acc-col-val">83%</strong>
+                        <strong class="teeth-val-num">83%</strong>
                     </div>
 
-                    <!-- Col 3: Layout Compatibility 91% -->
-                    <div class="acc-metric-column">
-                        <span class="acc-col-tag">Layout Compatibility</span>
-                        <div class="freq-bar-teeth">
-                            <span class="tooth active"></span><span class="tooth active"></span><span class="tooth active"></span>
-                            <span class="tooth active"></span><span class="tooth active"></span><span class="tooth active"></span>
-                            <span class="tooth active"></span><span class="tooth active"></span><span class="tooth active"></span>
-                            <span class="tooth active"></span><span class="tooth"></span>
+                    <div class="teeth-metric-col">
+                        <span class="teeth-label">AUTP Verification Fit</span>
+                        <div class="teeth-bar-track">
+                            <span class="tooth on"></span><span class="tooth on"></span><span class="tooth on"></span>
+                            <span class="tooth on"></span><span class="tooth on"></span><span class="tooth on"></span>
+                            <span class="tooth on"></span><span class="tooth on"></span><span class="tooth on"></span>
+                            <span class="tooth on"></span><span class="tooth"></span>
                         </div>
-                        <strong class="acc-col-val">91%</strong>
+                        <strong class="teeth-val-num">91%</strong>
                     </div>
 
-                    <!-- Col 4: Amenity Demand Match 85% -->
-                    <div class="acc-metric-column">
-                        <span class="acc-col-tag">Amenity Demand Match</span>
-                        <div class="freq-bar-teeth">
-                            <span class="tooth active"></span><span class="tooth active"></span><span class="tooth active"></span>
-                            <span class="tooth active"></span><span class="tooth active"></span><span class="tooth active"></span>
-                            <span class="tooth active"></span><span class="tooth active"></span><span class="tooth"></span>
+                    <div class="teeth-metric-col">
+                        <span class="teeth-label">Subsidy Fuel Stock</span>
+                        <div class="teeth-bar-track">
+                            <span class="tooth on"></span><span class="tooth on"></span><span class="tooth on"></span>
+                            <span class="tooth on"></span><span class="tooth on"></span><span class="tooth on"></span>
+                            <span class="tooth on"></span><span class="tooth on"></span><span class="tooth"></span>
                             <span class="tooth"></span><span class="tooth"></span>
                         </div>
-                        <strong class="acc-col-val">85%</strong>
+                        <strong class="teeth-val-num">85%</strong>
                     </div>
                 </div>
-            </div>
+            </section>
         </main>
+
+        <!-- REAL OPERATIONAL DECISION DRAWER (Collapsible / Modal via Tab) -->
+        <section class="operational-tools-drawer" id="toolsDrawer">
+            <!-- Tool 1: Kalkulator Pompa AWD -->
+            <div class="tool-sub-card">
+                <div class="tool-card-head">
+                    <h3 class="tool-head-title">Kalkulator Pompa Air Darurat (AWD Engine)</h3>
+                    <span class="tool-head-badge">Real-Time</span>
+                </div>
+                <div class="tool-metrics-quad">
+                    <div class="tool-unit-box">
+                        <span class="unit-tag">Defisit Presipitasi</span>
+                        <strong class="unit-num" id="waterDeficitVal">47.9</strong>
+                        <span class="unit-sub">mm / minggu</span>
+                    </div>
+                    <div class="tool-unit-box">
+                        <span class="unit-tag">Volume Kebutuhan</span>
+                        <strong class="unit-num" id="totalWaterVolumeVal">119.750</strong>
+                        <span class="unit-sub">m³ Lahan</span>
+                    </div>
+                    <div class="tool-unit-box">
+                        <span class="unit-tag">Kebutuhan Pompa (4")</span>
+                        <strong class="unit-num" id="pumpUnitsVal" style="color: #d97706;">8</strong>
+                        <span class="unit-sub">Unit Aktif (56 Jam)</span>
+                    </div>
+                    <div class="tool-unit-box">
+                        <span class="unit-tag">Biaya Solar Subsidi</span>
+                        <strong class="unit-num" id="fuelCostVal">Rp 31.3 Jt</strong>
+                        <span class="unit-sub">Rp6.800 / liter</span>
+                    </div>
+                </div>
+                <div class="tool-banner-note" id="irrigationAdviceText">
+                    Alirkan air malam hari dengan metode macak-macak (AWD). Tunda pemupukan urea kering sampai kelembapan pulih.
+                </div>
+            </div>
+
+            <!-- Tool 2: Simulator Syarat AUTP -->
+            <div class="tool-sub-card">
+                <div class="tool-card-head">
+                    <h3 class="tool-head-title">Simulator Asuransi Usaha Tani Padi (AUTP)</h3>
+                    <span class="tool-head-badge">Kementan &amp; Jasindo</span>
+                </div>
+                <div class="tool-metrics-quad">
+                    <div class="tool-unit-box">
+                        <span class="unit-tag">Status Kelayakan</span>
+                        <strong class="unit-num" id="autpEligibilityBadge" style="font-size: 0.95rem; color: #d97706;">BELUM MEMENUHI</strong>
+                        <span class="unit-sub">Ambang Batas &ge; 75% Puso</span>
+                    </div>
+                    <div class="tool-unit-box">
+                        <span class="unit-tag">Plafon Santunan Legal</span>
+                        <strong class="unit-num">Rp 6.000.000</strong>
+                        <span class="unit-sub">Per Hektare Terdaftar</span>
+                    </div>
+                    <div class="tool-unit-box" style="grid-column: span 2;">
+                        <span class="unit-tag">Estimasi Nilai Santunan Kelompok Tani</span>
+                        <strong class="unit-num" id="autpPayoutVal" style="color: #15803d;">Rp 1.500.000.000</strong>
+                        <span class="unit-sub">Hak Kompensasi Poktan Penerima</span>
+                    </div>
+                </div>
+                <div class="tool-banner-note" id="autpEligibilityDesc">
+                    Tingkat kerusakan lahan masih di bawah ambang legal AUTP (75%). Segera kerahkan pompa darurat untuk mencegah puso.
+                </div>
+            </div>
+        </section>
+
+        <!-- SENSITIVITY CALIBRATOR SLIDER BAR -->
+        <section class="calibrator-bar-section">
+            <div class="calibrator-head">
+                <strong>Simulasi Kalibrasi Lapangan:</strong>
+                <span>Ubah parameter biofisik untuk menguji respons dinamika risiko &amp; kalkulator secara instan</span>
+            </div>
+            <div class="sliders-quad-grid">
+                <div class="slider-item">
+                    <div class="slider-lbl-row">
+                        <span>Luas Lahan Terancam:</span>
+                        <strong id="landAreaVal">250 Ha</strong>
+                    </div>
+                    <input type="range" id="landAreaSlider" min="20" max="1000" step="10" value="250">
+                </div>
+                <div class="slider-item">
+                    <div class="slider-lbl-row">
+                        <span>Indeks Kanopi (NDVI):</span>
+                        <strong id="ndviVal">0.34</strong>
+                    </div>
+                    <input type="range" id="ndviSlider" min="0.10" max="0.90" step="0.01" value="0.34">
+                </div>
+                <div class="slider-item">
+                    <div class="slider-lbl-row">
+                        <span>Curah Hujan Mingguan:</span>
+                        <strong id="rainVal">12.1 mm</strong>
+                    </div>
+                    <input type="range" id="rainSlider" min="0" max="80" step="1" value="12">
+                </div>
+                <div class="slider-item">
+                    <div class="slider-lbl-row">
+                        <span>Suhu Permukaan (LST):</span>
+                        <strong id="lstVal">34.2 °C</strong>
+                    </div>
+                    <input type="range" id="lstSlider" min="25.0" max="40.0" step="0.5" value="34.2">
+                </div>
+            </div>
+        </section>
+
+        <!-- CLEAN SYSTEM FOOTER -->
+        <footer class="app-bottom-footer">
+            <span><strong>Tani-Awas Platform</strong> &bull; Sentinel-2 MSI Multi-Spectral &amp; BMKG Precipitation Integration</span>
+            <span>Telkom University Surabaya &bull; PIMTUS 2026</span>
+        </footer>
     </div>
 
     <!-- Scripts -->
-    <script src="app.js?v=20260911_07"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js?v=20260911_09"></script>
 </body>
 </html>
