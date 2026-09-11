@@ -3,51 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tani-Awas — Agro-Climatic Intelligence & Decision Support</title>
+    <title>Tani-Awas — Agro-Climatic Intelligence & Decision Support Platform</title>
     
-    <!-- Design Typography -->
+    <!-- Premium Editorial & Sans Typography (Plus Jakarta Sans + JetBrains Mono) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Leaflet & Chart.js -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="style.css?v=20260909_05">
+    <link rel="stylesheet" href="style.css?v=20260911_01">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="layout-wrapper">
-        <!-- Sidebar Navigation -->
+        <!-- Sidebar Navigation (Crafted Minimalist Workstation) -->
         <aside class="sidebar">
             <div class="sidebar-top">
                 <div class="brand-badge">
-                    <div class="brand-logo-circle">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <div class="brand-mark">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                         </svg>
                     </div>
-                    <span class="brand-name">Tani-Awas</span>
+                    <div class="brand-text-block">
+                        <span class="brand-name">Tani-Awas</span>
+                        <span class="brand-tagline">Agro-Intelligence</span>
+                    </div>
                 </div>
 
+                <div class="sidebar-menu-label">Navigasi Utama</div>
                 <nav class="sidebar-nav">
                     <a href="#overview" class="nav-item active">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                        <span>Dashboard</span>
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect></svg>
+                        <span>Ringkasan Risiko</span>
                     </a>
                     <a href="#irigasi" class="nav-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
                         <span>Kalkulator Irigasi</span>
+                        <span class="nav-pill-badge">AWD</span>
                     </a>
                     <a href="#asuransi" class="nav-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                         <span>Klaim AUTP</span>
+                        <span class="nav-pill-badge autp-pill">Rp6Jt/Ha</span>
                     </a>
                     <a href="#spatial" class="nav-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
-                        <span>Peta Satelit</span>
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+                        <span>Peta Sentra Pangan</span>
                     </a>
                     <a href="#trajectory" class="nav-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
                         <span>Tren Multitemporal</span>
                     </a>
                 </nav>
@@ -55,11 +61,14 @@
 
             <div class="sidebar-bottom">
                 <div class="action-cta-card">
-                    <span class="cta-title">Laporan Darurat</span>
-                    <p class="cta-desc">Ekspor data dan rekomendasi lapangan resmi untuk Dinas Pertanian.</p>
+                    <div class="cta-header">
+                        <span class="cta-badge">Laporan Resmi</span>
+                        <span class="cta-date">Sept 2026</span>
+                    </div>
+                    <p class="cta-desc">Dokumen rekomendasi tanggap darurat untuk Dinas Pertanian &amp; Kelompok Tani.</p>
                     <button type="button" id="btnExportReport" class="btn-primary-action">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                        <span>Unduh Dokumen PDF</span>
+                        <span>Cetak Ringkasan PDF</span>
                     </button>
                 </div>
             </div>
@@ -67,10 +76,14 @@
 
         <!-- Main Body Content -->
         <main class="main-content">
-            <!-- Top Dashboard Header -->
+            <!-- Top App Bar with Deep Hierarchy & Precision Slicing -->
             <header class="content-header">
                 <div class="header-left">
-                    <h1 class="page-title">Agro-Intelligence</h1>
+                    <div class="header-title-block">
+                        <h1 class="page-title">Dashboard Sentra Pangan</h1>
+                        <span class="page-subtitle">Prakiraan Defisit Air &amp; Pemantauan Satelit Sentinel-2 MSI</span>
+                    </div>
+                    
                     <div class="sub-tabs">
                         <button type="button" class="sub-tab active" data-tab="monitoring">Monitoring Wilayah</button>
                         <button type="button" class="sub-tab" data-tab="decision">Bantuan Keputusan Lapangan</button>
@@ -78,16 +91,21 @@
                 </div>
 
                 <div class="header-right">
-                    <div class="district-select-container">
-                        <label for="kecamatanSelect" class="sr-only">Pilih Kecamatan</label>
-                        <select id="kecamatanSelect" class="minimal-select">
-                            <!-- Populated dynamically -->
-                        </select>
+                    <div class="control-group">
+                        <span class="control-label">Wilayah:</span>
+                        <div class="select-wrapper">
+                            <select id="kecamatanSelect" class="minimal-select">
+                                <!-- Populated dynamically -->
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="commodity-pill-group">
-                        <button type="button" class="com-pill active" data-val="Padi Sawah">Padi Sawah</button>
-                        <button type="button" class="com-pill" data-val="Jagung">Jagung</button>
+                    <div class="control-group">
+                        <span class="control-label">Komoditas:</span>
+                        <div class="commodity-segmented">
+                            <button type="button" class="com-pill active" data-val="Padi Sawah">Padi</button>
+                            <button type="button" class="com-pill" data-val="Jagung">Jagung</button>
+                        </div>
                     </div>
 
                     <div id="statusBadge" class="status-chip danger">
@@ -97,105 +115,146 @@
                 </div>
             </header>
 
-            <!-- Workspace Body -->
+            <!-- Scrollable Dashboard Workspace -->
             <div class="dashboard-scrollable">
                 
-                <!-- TOP BENTO SECTION: Factor Breakdown & Donut Loss -->
+                <!-- TOP BENTO ROW: Risk Score Decomposition & Yield Loss Donut -->
                 <section class="bento-row top-split" id="overview">
-                    <!-- Left Bento: Risk Score & Factor Breakdown -->
+                    <!-- Left Bento: Risk Score & Factor Decomposition -->
                     <div class="bento-card breakdown-card">
-                        <div class="card-title-row">
-                            <span class="card-title">Indeks Risiko Kekeringan</span>
-                            <span class="card-badge">Sentinel-2 + BMKG Model</span>
+                        <div class="card-head">
+                            <div class="card-title-group">
+                                <span class="card-title">Indeks Risiko Kekeringan</span>
+                                <span class="card-hint">Model multivariat biofisik Sentinel-2 + BMKG</span>
+                            </div>
+                            <span class="card-badge-muted">Skala 0.00 – 1.00</span>
                         </div>
 
                         <div class="hero-score-row">
-                            <div id="riskScoreDisplay" class="hero-score-number danger">0.712</div>
+                            <div class="hero-number-wrap">
+                                <div id="riskScoreDisplay" class="hero-score-number danger">0.712</div>
+                                <span class="hero-scale">/ 1.000</span>
+                            </div>
                             <div class="hero-score-meta">
-                                <span id="riskCategoryText" class="meta-title">Ambang Kritis (D3 Ekstrem)</span>
-                                <span class="meta-desc">Stres air akut pada fase generatif tanaman</span>
+                                <div class="meta-status-pill danger" id="riskCategoryText">Ambang Kritis (D3 Ekstrem)</div>
+                                <span class="meta-desc">Kombinasi defisit air &amp; stres termal kanopi pada fase generatif tanaman.</span>
                             </div>
                         </div>
 
-                        <div class="risk-bar-container">
-                            <div class="bar-segment seg-ndvi" style="width: 50%;" title="Bobot Vegetasi (NDVI) 50%"></div>
-                            <div class="bar-segment seg-rain" style="width: 35%;" title="Bobot Defisit Presipitasi 35%"></div>
-                            <div class="bar-segment seg-lst" style="width: 15%;" title="Bobot Suhu Permukaan (LST) 15%"></div>
+                        <!-- Proportional Composition Bar -->
+                        <div class="progress-bar-wrapper">
+                            <div class="progress-bar-meta">
+                                <span>Dekomposisi Bobot Indeks:</span>
+                                <span>100% Multivariat</span>
+                            </div>
+                            <div class="risk-bar-container">
+                                <div class="bar-segment seg-ndvi" style="width: 50%;" title="Bobot Vegetasi (NDVI) 50%"></div>
+                                <div class="bar-segment seg-rain" style="width: 35%;" title="Bobot Defisit Presipitasi 35%"></div>
+                                <div class="bar-segment seg-lst" style="width: 15%;" title="Bobot Suhu Permukaan (LST) 15%"></div>
+                            </div>
                         </div>
 
+                        <!-- Structured Data Factor Rows -->
                         <div class="factor-list">
                             <div class="factor-row">
-                                <div class="factor-label-group">
-                                    <span class="legend-box color-ndvi"></span>
-                                    <span class="factor-name">Stres Biomassa (NDVI)</span>
+                                <div class="factor-col-name">
+                                    <span class="legend-swatch color-ndvi"></span>
+                                    <div>
+                                        <span class="factor-name">Stres Biomassa (NDVI)</span>
+                                        <span class="factor-sub">Sentinel-2 Red-Edge / NIR</span>
+                                    </div>
                                 </div>
                                 <span id="ndviRowVal" class="factor-val">0.34</span>
-                                <span id="vegConditionDisplay" class="factor-status danger">Stres Kritis</span>
-                                <span class="factor-weight">50% bobot</span>
+                                <div class="factor-status-cell">
+                                    <span id="vegConditionDisplay" class="factor-chip danger">Stres Kritis</span>
+                                </div>
+                                <span class="factor-weight">50% Bobot</span>
                             </div>
 
                             <div class="factor-row">
-                                <div class="factor-label-group">
-                                    <span class="legend-box color-rain"></span>
-                                    <span class="factor-name">Defisit Curah Hujan</span>
+                                <div class="factor-col-name">
+                                    <span class="legend-swatch color-rain"></span>
+                                    <div>
+                                        <span class="factor-name">Curah Hujan Mingguan</span>
+                                        <span class="factor-sub">Stasiun BMKG Terdekat</span>
+                                    </div>
                                 </div>
                                 <span id="rainRowVal" class="factor-val">12.1 mm</span>
-                                <span id="rainConditionDisplay" class="factor-status danger">Defisit Akut (&lt;20mm)</span>
-                                <span class="factor-weight">35% bobot</span>
+                                <div class="factor-status-cell">
+                                    <span id="rainConditionDisplay" class="factor-chip danger">Defisit Akut (&lt;20mm)</span>
+                                </div>
+                                <span class="factor-weight">35% Bobot</span>
                             </div>
 
                             <div class="factor-row">
-                                <div class="factor-label-group">
-                                    <span class="legend-box color-lst"></span>
-                                    <span class="factor-name">Suhu Permukaan (LST)</span>
+                                <div class="factor-col-name">
+                                    <span class="legend-swatch color-lst"></span>
+                                    <div>
+                                        <span class="factor-name">Suhu Permukaan (LST)</span>
+                                        <span class="factor-sub">Thermal Infrared Sensor</span>
+                                    </div>
                                 </div>
                                 <span id="lstRowVal" class="factor-val">34.2 °C</span>
-                                <span class="factor-status warning">Termal Tinggi</span>
-                                <span class="factor-weight">15% bobot</span>
+                                <div class="factor-status-cell">
+                                    <span class="factor-chip warning">Termal Tinggi</span>
+                                </div>
+                                <span class="factor-weight">15% Bobot</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Right Bento: Donut Loss & Impact Ratio -->
                     <div class="bento-card impact-card">
-                        <div class="card-title-row">
-                            <span class="card-title">Proyeksi Hasil Panen &amp; Finansial</span>
-                            <span class="card-badge" id="landAreaSummaryDisplay">Basis 250 Ha</span>
+                        <div class="card-head">
+                            <div class="card-title-group">
+                                <span class="card-title">Proyeksi Hasil Panen &amp; Finansial</span>
+                                <span class="card-hint">Estimasi kehilangan biomassa vs panen selamat</span>
+                            </div>
+                            <span class="card-badge-muted" id="landAreaSummaryDisplay">Basis 250 Ha</span>
                         </div>
 
-                        <div class="donut-content-row">
-                            <div class="donut-wrapper">
+                        <div class="donut-layout">
+                            <div class="donut-chart-container">
                                 <canvas id="lossDonutChart"></canvas>
-                                <div class="donut-inner-text">
-                                    <span id="donutLossPct" class="donut-pct">41.1%</span>
-                                    <span class="donut-sub">Yield Loss</span>
+                                <div class="donut-center-metric">
+                                    <span id="donutLossPct" class="donut-big-val">41.1%</span>
+                                    <span class="donut-label">Yield Loss</span>
                                 </div>
                             </div>
 
-                            <div class="donut-legend-col">
-                                <div class="donut-legend-item">
-                                    <span class="dot-indicator dot-loss"></span>
-                                    <div class="legend-text-block">
-                                        <span class="leg-head">Potensi Puso / Gagal Panen</span>
-                                        <strong id="yieldLostTonDisplay" class="leg-val">616.5 Ton</strong>
+                            <div class="donut-legend-stack">
+                                <div class="legend-card loss-bg">
+                                    <div class="legend-card-header">
+                                        <span class="indicator-dot dot-loss"></span>
+                                        <span class="legend-title">Potensi Puso / Hilang</span>
+                                        <span class="legend-badge" id="lossPctBadge">41.1%</span>
                                     </div>
-                                    <span class="leg-pct" id="lossPctBadge">41.1%</span>
+                                    <div class="legend-metric-row">
+                                        <strong id="yieldLostTonDisplay" class="legend-primary-val">616.5 Ton</strong>
+                                        <span class="legend-sub-val">Terancam Gagal</span>
+                                    </div>
                                 </div>
 
-                                <div class="donut-legend-item">
-                                    <span class="dot-indicator dot-safe"></span>
-                                    <div class="legend-text-block">
-                                        <span class="leg-head">Estimasi Panen Selamat</span>
-                                        <strong id="yieldSafeTonDisplay" class="leg-val">883.5 Ton</strong>
+                                <div class="legend-card safe-bg">
+                                    <div class="legend-card-header">
+                                        <span class="indicator-dot dot-safe"></span>
+                                        <span class="legend-title">Estimasi Selamat</span>
+                                        <span class="legend-badge" id="safePctBadge">58.9%</span>
                                     </div>
-                                    <span class="leg-pct" id="safePctBadge">58.9%</span>
+                                    <div class="legend-metric-row">
+                                        <strong id="yieldSafeTonDisplay" class="legend-primary-val">883.5 Ton</strong>
+                                        <span class="legend-sub-val">Bisa Dipanen</span>
+                                    </div>
                                 </div>
 
-                                <div class="fin-highlight-box">
-                                    <span class="fin-label">Proyeksi Kerugian Petani:</span>
-                                    <div class="fin-amount">
-                                        <span>Rp</span>
-                                        <span id="finLossDisplay">4.01</span>
+                                <div class="fin-loss-banner">
+                                    <div class="fin-loss-left">
+                                        <span class="fin-title">Proyeksi Kerugian Petani</span>
+                                        <span class="fin-detail">Harga acuan gabah/jagung daerah</span>
+                                    </div>
+                                    <div class="fin-loss-right">
+                                        <span class="fin-curr">Rp</span>
+                                        <span id="finLossDisplay" class="fin-number">4.01</span>
                                         <span class="fin-unit">Miliar</span>
                                     </div>
                                 </div>
@@ -204,132 +263,167 @@
                     </div>
                 </section>
 
-                <!-- FITUR BARU 1: ACTIONABLE DECISION ENGINES (Kalkulator Irigasi & Portal Asuransi AUTP) -->
+                <!-- DECISION SUPPORT TOOLS: Irrigation Engine & AUTP Claim Simulator -->
                 <section class="bento-row tools-split" id="irigasi">
-                    <!-- Tool 1: Emergency Irrigation Calculator -->
+                    <!-- Tool 1: Emergency Irrigation Engine -->
                     <div class="bento-card tool-card">
-                        <div class="card-title-row">
-                            <div class="tool-head">
-                                <span class="tool-icon">💧</span>
+                        <div class="card-head">
+                            <div class="tool-title-row">
+                                <div class="tool-avatar water-avatar">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                                    </svg>
+                                </div>
                                 <div>
-                                    <span class="card-title">Kalkulator Kebutuhan Air &amp; Pompa Darurat</span>
-                                    <p class="tool-sub">Estimasi debit air dan unit pompa gerak untuk menyelamatkan tanaman</p>
+                                    <h3 class="tool-h3">Kalkulator Kebutuhan Air &amp; Pompa Darurat</h3>
+                                    <p class="tool-p">Perhitungan debit air irigasi suplesi berbasis luas petak aktual</p>
                                 </div>
                             </div>
-                            <span class="card-badge">Agronomic Engine</span>
+                            <span class="engine-badge">Agronomic Engine</span>
                         </div>
 
-                        <div class="calc-metrics-grid">
-                            <div class="calc-metric-box">
-                                <span class="calc-lbl">Defisit Air Tanaman</span>
-                                <div class="calc-val-row">
-                                    <span id="waterDeficitVal" class="calc-num">47.9</span>
+                        <div class="calc-grid">
+                            <div class="calc-card">
+                                <span class="calc-tag">Defisit Presipitasi</span>
+                                <div class="calc-val-wrap">
+                                    <span id="waterDeficitVal" class="calc-figure">47.9</span>
                                     <span class="calc-unit">mm / mgg</span>
                                 </div>
-                                <span class="calc-hint">Kebutuhan standar: 60mm</span>
+                                <span class="calc-footnote">Target normal: 60 mm</span>
                             </div>
 
-                            <div class="calc-metric-box">
-                                <span class="calc-lbl">Total Volume Air Dibutuhkan</span>
-                                <div class="calc-val-row">
-                                    <span id="totalWaterVolumeVal" class="calc-num">119.750</span>
+                            <div class="calc-card">
+                                <span class="calc-tag">Kebutuhan Air Lahan</span>
+                                <div class="calc-val-wrap">
+                                    <span id="totalWaterVolumeVal" class="calc-figure">119.750</span>
                                     <span class="calc-unit">m³</span>
                                 </div>
-                                <span class="calc-hint">Untuk seluruh hamparan lahan</span>
+                                <span class="calc-footnote">Volume hamparan total</span>
                             </div>
 
-                            <div class="calc-metric-box">
-                                <span class="calc-lbl">Kebutuhan Pompa (4 Inci)</span>
-                                <div class="calc-val-row">
-                                    <span id="pumpUnitsVal" class="calc-num">8</span>
-                                    <span class="calc-unit">Unit Pompa</span>
+                            <div class="calc-card">
+                                <span class="calc-tag">Kebutuhan Pompa (4 Inci)</span>
+                                <div class="calc-val-wrap">
+                                    <span id="pumpUnitsVal" class="calc-figure highlight-blue">8</span>
+                                    <span class="calc-unit">Unit Aktif</span>
                                 </div>
-                                <span class="calc-hint">Operasi 8 jam/hari selama 7 hari</span>
+                                <span class="calc-footnote">Operasi 8 jam/hari (7 hari)</span>
                             </div>
 
-                            <div class="calc-metric-box">
-                                <span class="calc-lbl">Estimasi Biaya Bahan Bakar</span>
-                                <div class="calc-val-row">
-                                    <span class="calc-unit-rp">Rp</span>
-                                    <span id="fuelCostVal" class="calc-num">31,3</span>
+                            <div class="calc-card">
+                                <span class="calc-tag">Estimasi Biaya Solar</span>
+                                <div class="calc-val-wrap">
+                                    <span class="calc-currency">Rp</span>
+                                    <span id="fuelCostVal" class="calc-figure">31,3</span>
                                     <span class="calc-unit">Juta</span>
                                 </div>
-                                <span class="calc-hint">Solar subsidi Rp6.800/liter</span>
+                                <span class="calc-footnote">Solar subsidi Rp6.800/L</span>
                             </div>
                         </div>
 
-                        <div class="irrigation-protocol-banner">
-                            <span class="banner-badge">Jadwal Tanam &amp; Irigasi:</span>
-                            <span id="irrigationAdviceText" class="banner-text">Mendesak: Alirkan air malam hari dengan metode macak-macak (AWD). Tunda pemupukan urea kering hingga tanah lembap.</span>
+                        <div class="protocol-banner info-banner">
+                            <div class="banner-icon-wrap">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                            </div>
+                            <div class="banner-body">
+                                <strong class="banner-headline">Rekomendasi Jadwal Irigasi:</strong>
+                                <span id="irrigationAdviceText" class="banner-copy">Mendesak: Alirkan air malam hari dengan metode macak-macak (AWD). Tunda pemupukan urea kering hingga tanah lembap.</span>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Tool 2: AUTP Insurance Claim Simulator -->
                     <div class="bento-card tool-card" id="asuransi">
-                        <div class="card-title-row">
-                            <div class="tool-head">
-                                <span class="tool-icon">🛡️</span>
+                        <div class="card-head">
+                            <div class="tool-title-row">
+                                <div class="tool-avatar shield-avatar">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                    </svg>
+                                </div>
                                 <div>
-                                    <span class="card-title">Simulator Klaim Asuransi AUTP</span>
-                                    <p class="tool-sub">Kementerian Pertanian &amp; Jasindo (Klaim Rp6.000.000 / Ha bila kerusakan ≥ 75%)</p>
+                                    <h3 class="tool-h3">Simulator Klaim Asuransi AUTP</h3>
+                                    <p class="tool-p">Verifikasi ambang ganti rugi Kementan &amp; Jasindo (Rp6.000.000 / Ha)</p>
                                 </div>
                             </div>
-                            <span class="card-badge">Proteksi Petani</span>
+                            <span class="engine-badge">Legal &amp; Proteksi</span>
                         </div>
 
-                        <div class="autp-status-box">
-                            <div class="autp-left">
-                                <span class="autp-sub">Status Kelayakan Klaim:</span>
-                                <span id="autpEligibilityBadge" class="autp-badge eligible">MEMENUHI SYARAT KLAIM</span>
-                                <p id="autpEligibilityDesc" class="autp-desc">Tingkat kerusakan lahan melebihi ambang batas regulasi AUTP (&ge; 75%).</p>
-                            </div>
-                            <div class="autp-right">
-                                <span class="autp-sub">Total Kompensasi Maksimal:</span>
-                                <div class="autp-payout">
-                                    <span class="payout-rp">Rp</span>
-                                    <span id="autpPayoutVal" class="payout-num">1.500.000.000</span>
+                        <div class="autp-deck">
+                            <div class="autp-primary-status">
+                                <div class="autp-status-left">
+                                    <span class="autp-label">Status Kelayakan Klaim:</span>
+                                    <div id="autpEligibilityBadge" class="autp-status-chip eligible">MEMENUHI SYARAT KLAIM</div>
+                                    <p id="autpEligibilityDesc" class="autp-explanation">Tingkat kerusakan lahan melebihi batas syarat AUTP (&ge; 75%). Petani berhak memproses pencairan.</p>
                                 </div>
-                                <span class="payout-basis">Basis klaim 250 Ha terdampak</span>
-                            </div>
-                        </div>
 
-                        <div class="autp-steps-row">
-                            <div class="step-card">
-                                <span class="step-num">1</span>
-                                <span class="step-text">Verifikasi koordinat GPS poligon lahan terdampak.</span>
+                                <div class="autp-status-right">
+                                    <span class="autp-label">Kompensasi Maksimal:</span>
+                                    <div class="autp-sum-row">
+                                        <span class="autp-rp">Rp</span>
+                                        <span id="autpPayoutVal" class="autp-payout-text">1.500.000.000</span>
+                                    </div>
+                                    <span class="autp-basis">Plafon Rp6 Juta / Ha</span>
+                                </div>
                             </div>
-                            <div class="step-card">
-                                <span class="step-num">2</span>
-                                <span class="step-text">Pemeriksaan lapangan oleh PPL &amp; POPT kecamatan.</span>
-                            </div>
-                            <div class="step-card">
-                                <span class="step-num">3</span>
-                                <span class="step-text">Pencairan langsung ke rekening rekening kelompok tani.</span>
+
+                            <div class="autp-workflow-strip">
+                                <div class="workflow-step">
+                                    <div class="step-circle">1</div>
+                                    <div class="step-content">
+                                        <strong>Plotting Spasial</strong>
+                                        <span>Perekaman koordinat GPS petak sawah puso</span>
+                                    </div>
+                                </div>
+                                <div class="workflow-step">
+                                    <div class="step-circle">2</div>
+                                    <div class="step-content">
+                                        <strong>Verifikasi PPL</strong>
+                                        <span>Pemeriksaan lapangan bersama POPT kecamatan</span>
+                                    </div>
+                                </div>
+                                <div class="workflow-step">
+                                    <div class="step-circle">3</div>
+                                    <div class="step-content">
+                                        <strong>Pencairan Kas</strong>
+                                        <span>Transfer bank ke rekening Kelompok Tani</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- MIDDLE BENTO SECTION: Spline Multitemporal Trajectory -->
+                <!-- MIDDLE BENTO: Spline Multitemporal Trajectory -->
                 <section class="bento-card timeline-card" id="trajectory">
-                    <div class="card-title-row">
-                        <div class="timeline-title-group">
-                            <span class="card-title">Dinamika Multitemporal (12 Minggu Terakhir)</span>
-                            <div class="timeline-quick-kpi">
-                                <div class="mini-kpi">
-                                    <span class="mini-num" id="currentNdviKpi">0.34</span>
-                                    <span class="mini-lbl">NDVI Terkini</span>
+                    <div class="card-head">
+                        <div class="timeline-title-area">
+                            <div>
+                                <span class="card-title">Dinamika Multitemporal (12 Minggu Terakhir)</span>
+                                <span class="card-hint">Korelasi laju penurunan kehijauan vegetasi terhadap curah hujan</span>
+                            </div>
+
+                            <div class="timeline-quick-readouts">
+                                <div class="readout-item">
+                                    <span class="readout-num" id="currentNdviKpi">0.34</span>
+                                    <span class="readout-lbl">NDVI Terkini</span>
                                 </div>
-                                <div class="mini-kpi">
-                                    <span class="mini-num" id="currentRainKpi">12.1 mm</span>
-                                    <span class="mini-lbl">Hujan Mingguan</span>
+                                <div class="readout-item">
+                                    <span class="readout-num" id="currentRainKpi">12.1 mm</span>
+                                    <span class="readout-lbl">Hujan Pekan Ini</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="chart-legend-pills">
-                            <span class="chart-pill pill-ndvi">NDVI Sentinel-2</span>
-                            <span class="chart-pill pill-rain">Curah Hujan (mm)</span>
+                        <div class="chart-legend-row">
+                            <span class="chart-pill pill-ndvi">
+                                <span class="pill-swatch bg-teal"></span>
+                                NDVI Sentinel-2
+                            </span>
+                            <span class="chart-pill pill-rain">
+                                <span class="pill-swatch bg-rose"></span>
+                                Curah Hujan BMKG (mm)
+                            </span>
                         </div>
                     </div>
 
@@ -338,14 +432,17 @@
                     </div>
                 </section>
 
-                <!-- LOWER BENTO SECTION: Map Layer Switcher & Sensitivity Simulation -->
+                <!-- LOWER BENTO ROW: Map & Fine-Tuning Calibration -->
                 <section class="bento-row bottom-split" id="spatial">
-                    <!-- Left: Geospatial Map with Satellite/Terrain Layer Toggle -->
+                    <!-- Left: Geospatial Map with Switcher -->
                     <div class="bento-card map-card">
-                        <div class="card-title-row">
-                            <span class="card-title">Peta Sebaran Sentra Pangan Terancam</span>
+                        <div class="card-head">
+                            <div>
+                                <span class="card-title">Peta Sebaran Sentra Pangan Terancam</span>
+                                <span class="card-hint">Sebaran radius spasial 12 kecamatan Jawa Tengah &amp; Jawa Timur</span>
+                            </div>
                             <div class="map-layer-toggles">
-                                <button type="button" class="layer-btn active" data-layer="osm">Street Map</button>
+                                <button type="button" class="layer-btn active" data-layer="osm">Peta Jalan</button>
                                 <button type="button" class="layer-btn" data-layer="satellite">Citra Satelit</button>
                             </div>
                         </div>
@@ -354,61 +451,77 @@
 
                     <!-- Right: Precision Simulation Sliders -->
                     <div class="bento-card tuning-card" id="simulation">
-                        <div class="card-title-row">
-                            <span class="card-title">Simulasi Parameter Biofisik</span>
-                            <span class="card-badge">Reaktif Real-Time</span>
+                        <div class="card-head">
+                            <div>
+                                <span class="card-title">Simulasi Parameter Biofisik</span>
+                                <span class="card-hint">Uji sensitivitas model terhadap variasi iklim ekstrem</span>
+                            </div>
+                            <span class="live-reactive-pill">Reaktif Real-Time</span>
                         </div>
 
                         <div class="tuning-list">
                             <div class="tune-item">
                                 <div class="tune-header">
-                                    <span class="tune-title">Luas Lahan Terancam</span>
+                                    <span class="tune-title">Luas Lahan Terancam:</span>
                                     <span id="landAreaVal" class="tune-val">250 Ha</span>
                                 </div>
                                 <input type="range" id="landAreaSlider" min="20" max="1000" step="10" value="250">
+                                <div class="slider-marks"><span>20 Ha</span><span>500 Ha</span><span>1.000 Ha</span></div>
                             </div>
 
                             <div class="tune-item">
                                 <div class="tune-header">
-                                    <span class="tune-title">Indeks Vegetasi (NDVI)</span>
+                                    <span class="tune-title">Indeks Vegetasi (NDVI):</span>
                                     <span id="ndviVal" class="tune-val">0.34</span>
                                 </div>
                                 <input type="range" id="ndviSlider" min="0.10" max="0.90" step="0.01" value="0.34">
+                                <div class="slider-marks"><span>0.10 (Kering)</span><span>0.50</span><span>0.90 (Subur)</span></div>
                             </div>
 
                             <div class="tune-item">
                                 <div class="tune-header">
-                                    <span class="tune-title">Curah Hujan Mingguan</span>
+                                    <span class="tune-title">Curah Hujan Mingguan:</span>
                                     <span id="rainVal" class="tune-val">12.1 mm</span>
                                 </div>
                                 <input type="range" id="rainSlider" min="0" max="80" step="1" value="12">
+                                <div class="slider-marks"><span>0 mm (Kemarau)</span><span>40 mm</span><span>80 mm (Basah)</span></div>
                             </div>
 
                             <div class="tune-item">
                                 <div class="tune-header">
-                                    <span class="tune-title">Suhu Permukaan (LST)</span>
+                                    <span class="tune-title">Suhu Permukaan (LST):</span>
                                     <span id="lstVal" class="tune-val">34.2 °C</span>
                                 </div>
                                 <input type="range" id="lstSlider" min="25.0" max="40.0" step="0.5" value="34.2">
+                                <div class="slider-marks"><span>25.0 °C</span><span>32.5 °C</span><span>40.0 °C</span></div>
                             </div>
                         </div>
 
                         <div class="protocol-mini-grid" id="protocols">
                             <div class="proto-box">
-                                <span class="proto-badge">🌾 Petani</span>
-                                <p class="proto-text">Terapkan irigasi berselang (AWD) hemat air 35% &amp; mulsa jerami.</p>
+                                <div class="proto-tag-row">
+                                    <span class="proto-badge">Petani Lapangan</span>
+                                </div>
+                                <p class="proto-text">Terapkan irigasi macak-macak malam hari (AWD) &amp; penutupan mulsa jerami sisa panen.</p>
                             </div>
                             <div class="proto-box">
-                                <span class="proto-badge">🏛️ Dinas PU/PPL</span>
-                                <p class="proto-text">Mobilisasi pompa bergerak &amp; verifikasi data klaim asuransi AUTP.</p>
+                                <div class="proto-tag-row">
+                                    <span class="proto-badge dinas-badge">Dinas PU / PPL</span>
+                                </div>
+                                <p class="proto-text">Mobilisasi unit pompa bergerak ke embung primer &amp; verifikasi cepat berkas asuransi AUTP.</p>
                             </div>
                         </div>
                     </div>
                 </section>
 
+                <!-- Clean Footer -->
                 <footer class="dashboard-footer">
-                    <span>Tani-Awas — Agro-Climatic Intelligence &amp; Decision Support System</span>
-                    <span>Telkom University Surabaya • Pekan Ilmiah Mahasiswa 2026</span>
+                    <div class="footer-left">
+                        <strong>Tani-Awas</strong> — Agro-Climatic Intelligence &amp; Decision Support Platform (Sentinel-2 MSI &amp; BMKG Ingestion)
+                    </div>
+                    <div class="footer-right">
+                        <span>Telkom University Surabaya • Pekan Ilmiah Mahasiswa 2026</span>
+                    </div>
                 </footer>
             </div>
         </main>
@@ -416,6 +529,6 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="app.js?v=20260909_05"></script>
+    <script src="app.js?v=20260911_01"></script>
 </body>
 </html>
