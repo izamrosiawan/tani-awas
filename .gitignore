@@ -1,4 +1,4 @@
-﻿# Python
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
@@ -17,3 +17,13 @@ ENV/
 .idea/
 .DS_Store
 Thumbs.db
+
+# Node / Portal Web App
+node_modules/
+**/node_modules/
+.output/
+.vinxi/
+dist/
+build/
+.wrangler/
+*.log

@@ -31,6 +31,10 @@ Kekeringan lahan pertanian merupakan ancaman fisik utama bagi stabilitas pangan 
 │   ├── financial_loss_by_kecamatan.png
 │   ├── temporal_drought_risk_heatmap.png
 │   └── rainfall_deficit_density.png
+├── portal/             # Fullstack web application (TanStack Start, React 19, Leaflet GIS)
+│   ├── src/            # Komponen UI, peta satelit, kalkulator AWD, dan simulator AUTP
+│   ├── wrangler.jsonc  # Cloudflare Workers/Pages configuration
+│   └── package.json    # Bun / Vite scripts
 ├── sql/                # Agregasi kueri analitis data spasial
 ├── src/                # Modular Python drought prediction pipeline engine
 │   └── drought_engine.py
