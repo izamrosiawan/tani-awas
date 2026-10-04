@@ -418,6 +418,34 @@ function calculateAndRenderMetrics() {
             autpPayout.textContent = `Rp ${(landArea * 6000000).toLocaleString('id-ID')} (Potensi Maks)`;
         }
     }
+
+    // Sync Tab 2 (AWD) specific elements
+    const awdPump = document.getElementById("awdPumpCount");
+    if (awdPump) awdPump.textContent = pumpUnits;
+
+    const awdFuel = document.getElementById("awdFuelCost");
+    if (awdFuel) awdFuel.textContent = `Rp ${fuelCostJuta} Jt`;
+
+    // Sync Risk Level Badge
+    const riskBadge = document.getElementById("riskLevelBadge");
+    if (riskBadge) {
+        if (riskScore >= 0.70) {
+            riskBadge.textContent = "Fase Kritis (D3)";
+            riskBadge.className = "status-pill warning";
+            riskBadge.style.color = "#b45309";
+            riskBadge.style.backgroundColor = "#fef3c7";
+        } else if (riskScore >= 0.45) {
+            riskBadge.textContent = "Fase Waspada (D2)";
+            riskBadge.className = "status-pill warning";
+            riskBadge.style.color = "#d97706";
+            riskBadge.style.backgroundColor = "#fffbeb";
+        } else {
+            riskBadge.textContent = "Fase Aman (D0-D1)";
+            riskBadge.className = "status-pill safe";
+            riskBadge.style.color = "#15803d";
+            riskBadge.style.backgroundColor = "#dcfce7";
+        }
+    }
 }
 
 function bindEvents() {
@@ -517,5 +545,23 @@ function bindEvents() {
                 calculateAndRenderMetrics();
             });
         }
+    });
+
+    // Detail Tabs Header Switching
+    document.querySelectorAll(".detail-tab-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".detail-tab-btn").forEach(b => b.classList.remove("active"));
+            document.querySelectorAll(".tab-pane").forEach(p => p.classList.remove("active"));
+            
+            btn.classList.add("active");
+            const targetId = btn.dataset.tabTarget;
+            const targetPane = document.getElementById(targetId);
+            if (targetPane) {
+                targetPane.classList.add("active");
+            }
+            if (targetId === "tab-trajectory" && trajectoryChart) {
+                setTimeout(() => { trajectoryChart.resize(); }, 50);
+            }
+        });
     });
 }
