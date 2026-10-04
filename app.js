@@ -1,8 +1,11 @@
 let appData = {};
-let currentKec = "Kecamatan Karanganyar (Demak)";
+let wonogiriPoints = [];
+let currentKec = "Kecamatan Wonogiri (Kota)";
 let map = null;
 let markers = {};
 let currentTileLayer = null;
+let heatLayer = null;
+let activeLayerMode = "heat-lst";
 let trajectoryChart = null;
 
 const TILE_LAYERS = {
@@ -12,8 +15,12 @@ const TILE_LAYERS = {
 
 document.addEventListener("DOMContentLoaded", async () => {
     try {
-        const resp = await fetch("data.json?v=20260911_09");
-        appData = await resp.json();
+        const [respData, respPoints] = await Promise.all([
+            fetch("data.json?v=20261004_v2"),
+            fetch("wonogiri_grid_points.json?v=20261004_v1")
+        ]);
+        appData = await respData.json();
+        wonogiriPoints = await respPoints.json();
         
         populateKecamatanSelect();
         initMap();
@@ -21,7 +28,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         bindEvents();
         updateDashboard(currentKec);
     } catch (err) {
-        console.error("Failed loading data.json", err);
+        console.error("Failed loading data", err);
     }
 });
 
@@ -38,15 +45,59 @@ function populateKecamatanSelect() {
     });
 }
 
+function renderHeatmapLayer(mode) {
+    if (!map || !L.heatLayer || !wonogiriPoints.length) return;
+    if (heatLayer) {
+        map.removeLayer(heatLayer);
+        heatLayer = null;
+    }
+
+    const heatData = wonogiriPoints.map(pt => [
+        pt.lat,
+        pt.lon,
+        mode === "heat-lst" ? pt.lst_intensity : pt.drought_intensity
+    ]);
+
+    const gradient = mode === "heat-lst"
+        ? { 0.2: "#15803d", 0.45: "#f59e0b", 0.65: "#ea580c", 0.85: "#dc2626", 1.0: "#7f1d1d" }
+        : { 0.2: "#22c55e", 0.45: "#eab308", 0.7: "#f97316", 0.9: "#ef4444" };
+
+    heatLayer = L.heatLayer(heatData, {
+        radius: 22,
+        blur: 18,
+        maxZoom: 14,
+        max: 1.0,
+        minOpacity: 0.45,
+        gradient
+    }).addTo(map);
+
+    const legBar = document.getElementById("heatmapLegendBar");
+    const legText = document.getElementById("heatLegendText");
+    const legGrad = document.getElementById("heatLegendGrad");
+    if (legBar && legText && legGrad) {
+        legBar.style.display = "block";
+        if (mode === "heat-lst") {
+            legText.textContent = "Suhu Kanopi / LST (°C): Rendah (30°) → Ekstrem Karst (38°+)";
+            legGrad.style.background = "linear-gradient(to right, #15803d, #f59e0b, #ea580c, #dc2626, #7f1d1d)";
+        } else {
+            legText.textContent = "Indeks Kekeringan (NDDI): Aman (<0.3) → Puso (>0.7)";
+            legGrad.style.background = "linear-gradient(to right, #22c55e, #eab308, #f97316, #ef4444)";
+        }
+    }
+}
+
 function initMap() {
     map = L.map('map', {
-        zoomControl: false, // menggunakan custom floating zoom pill (+ / -)
+        zoomControl: false,
         attributionControl: false
-    }).setView([-6.8944, 110.6385], 9);
+    }).setView([-7.9187, 110.9695], 11);
 
     currentTileLayer = L.tileLayer(TILE_LAYERS.satellite, {
         maxZoom: 18
     }).addTo(map);
+
+    // Initial Heatmap Render
+    renderHeatmapLayer("heat-lst");
 
     Object.entries(appData).forEach(([kec, data]) => {
         const [lat, lng] = data.coords;
@@ -177,7 +228,7 @@ function updateDashboard(kec) {
 
     // Sector Name
     const secName = document.getElementById("mapSectorName");
-    if (secName) secName.textContent = `${kec} (Sentra 1)`;
+    if (secName) secName.textContent = kec;
 
     // Sync Sliders
     const sLand = document.getElementById("landAreaSlider");
@@ -202,7 +253,7 @@ function updateDashboard(kec) {
 
     // Map fly
     if (map && item.coords) {
-        map.flyTo(item.coords, 10, { duration: 0.8 });
+        map.flyTo(item.coords, 12, { duration: 0.8 });
         Object.entries(markers).forEach(([k, marker]) => {
             if (k === kec) {
                 marker.setStyle({ weight: 4, color: '#1c211e' });
@@ -398,12 +449,28 @@ function bindEvents() {
             document.querySelectorAll(".layer-btn").forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
             const layerKey = btn.dataset.layer;
-            
-            if (map && currentTileLayer) {
-                map.removeLayer(currentTileLayer);
-                currentTileLayer = L.tileLayer(TILE_LAYERS[layerKey], {
-                    maxZoom: 18
-                }).addTo(map);
+            activeLayerMode = layerKey;
+
+            const legBar = document.getElementById("heatmapLegendBar");
+
+            if (layerKey === "heat-lst" || layerKey === "heat-drought") {
+                if (currentTileLayer) {
+                    map.removeLayer(currentTileLayer);
+                }
+                currentTileLayer = L.tileLayer(TILE_LAYERS.satellite, { maxZoom: 18 }).addTo(map);
+                renderHeatmapLayer(layerKey);
+            } else {
+                if (heatLayer) {
+                    map.removeLayer(heatLayer);
+                    heatLayer = null;
+                }
+                if (legBar) legBar.style.display = "none";
+
+                if (currentTileLayer) {
+                    map.removeLayer(currentTileLayer);
+                }
+                const tileUrl = layerKey === "osm" ? TILE_LAYERS.osm : TILE_LAYERS.satellite;
+                currentTileLayer = L.tileLayer(tileUrl, { maxZoom: 18 }).addTo(map);
             }
         });
     });

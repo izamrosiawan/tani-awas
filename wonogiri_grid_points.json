@@ -1,0 +1,2102 @@
+[
+  {
+    "lat": -7.82323,
+    "lon": 110.80626,
+    "lst": 33.7,
+    "lst_intensity": 0.522,
+    "drought_intensity": 0.432
+  },
+  {
+    "lat": -8.04502,
+    "lon": 111.00524,
+    "lst": 35.8,
+    "lst_intensity": 0.756,
+    "drought_intensity": 0.723
+  },
+  {
+    "lat": -7.82314,
+    "lon": 111.17448,
+    "lst": 33.2,
+    "lst_intensity": 0.467,
+    "drought_intensity": 0.435
+  },
+  {
+    "lat": -7.88863,
+    "lon": 110.84004,
+    "lst": 34.5,
+    "lst_intensity": 0.611,
+    "drought_intensity": 0.517
+  },
+  {
+    "lat": -7.78882,
+    "lon": 110.89133,
+    "lst": 33.3,
+    "lst_intensity": 0.478,
+    "drought_intensity": 0.388
+  },
+  {
+    "lat": -7.77768,
+    "lon": 110.97128,
+    "lst": 32.7,
+    "lst_intensity": 0.411,
+    "drought_intensity": 0.376
+  },
+  {
+    "lat": -7.85395,
+    "lon": 111.04279,
+    "lst": 33.6,
+    "lst_intensity": 0.511,
+    "drought_intensity": 0.475
+  },
+  {
+    "lat": -8.01493,
+    "lon": 110.84489,
+    "lst": 35.9,
+    "lst_intensity": 0.767,
+    "drought_intensity": 0.681
+  },
+  {
+    "lat": -7.79215,
+    "lon": 111.00865,
+    "lst": 32.9,
+    "lst_intensity": 0.433,
+    "drought_intensity": 0.395
+  },
+  {
+    "lat": -8.03038,
+    "lon": 110.83366,
+    "lst": 36.1,
+    "lst_intensity": 0.789,
+    "drought_intensity": 0.702
+  },
+  {
+    "lat": -7.76834,
+    "lon": 110.86573,
+    "lst": 33.1,
+    "lst_intensity": 0.456,
+    "drought_intensity": 0.361
+  },
+  {
+    "lat": -7.75388,
+    "lon": 110.87696,
+    "lst": 32.9,
+    "lst_intensity": 0.433,
+    "drought_intensity": 0.342
+  },
+  {
+    "lat": -7.79134,
+    "lon": 111.07764,
+    "lst": 32.8,
+    "lst_intensity": 0.422,
+    "drought_intensity": 0.393
+  },
+  {
+    "lat": -7.82628,
+    "lon": 110.97901,
+    "lst": 33.2,
+    "lst_intensity": 0.467,
+    "drought_intensity": 0.439
+  },
+  {
+    "lat": -7.87174,
+    "lon": 111.14852,
+    "lst": 33.8,
+    "lst_intensity": 0.533,
+    "drought_intensity": 0.498
+  },
+  {
+    "lat": -7.9931,
+    "lon": 110.93715,
+    "lst": 35.7,
+    "lst_intensity": 0.744,
+    "drought_intensity": 0.653
+  },
+  {
+    "lat": -7.81011,
+    "lon": 111.19532,
+    "lst": 33.1,
+    "lst_intensity": 0.456,
+    "drought_intensity": 0.418
+  },
+  {
+    "lat": -8.19845,
+    "lon": 110.85944,
+    "lst": 38.1,
+    "lst_intensity": 1.0,
+    "drought_intensity": 0.92
+  },
+  {
+    "lat": -7.78218,
+    "lon": 110.87561,
+    "lst": 33.2,
+    "lst_intensity": 0.467,
+    "drought_intensity": 0.379
+  },
+  {
+    "lat": -7.77113,
+    "lon": 111.08797,
+    "lst": 32.6,
+    "lst_intensity": 0.4,
+    "drought_intensity": 0.367
+  },
+  {
+    "lat": -8.03038,
+    "lon": 110.83384,
+    "lst": 36.1,
+    "lst_intensity": 0.789,
+    "drought_intensity": 0.702
+  },
+  {
+    "lat": -8.04817,
+    "lon": 110.85971,
+    "lst": 36.3,
+    "lst_intensity": 0.811,
+    "drought_intensity": 0.725
+  },
+  {
+    "lat": -8.04161,
+    "lon": 110.987,
+    "lst": 35.7,
+    "lst_intensity": 0.744,
+    "drought_intensity": 0.719
+  },
+  {
+    "lat": -7.99517,
+    "lon": 110.83833,
+    "lst": 35.7,
+    "lst_intensity": 0.744,
+    "drought_intensity": 0.656
+  },
+  {
+    "lat": -8.02373,
+    "lon": 110.87364,
+    "lst": 36.0,
+    "lst_intensity": 0.778,
+    "drought_intensity": 0.693
+  },
+  {
+    "lat": -8.16531,
+    "lon": 110.87435,
+    "lst": 37.7,
+    "lst_intensity": 0.967,
+    "drought_intensity": 0.877
+  },
+  {
+    "lat": -7.88943,
+    "lon": 110.95134,
+    "lst": 34.0,
+    "lst_intensity": 0.556,
+    "drought_intensity": 0.521
+  },
+  {
+    "lat": -8.0399,
+    "lon": 110.82701,
+    "lst": 36.2,
+    "lst_intensity": 0.8,
+    "drought_intensity": 0.714
+  },
+  {
+    "lat": -7.95717,
+    "lon": 110.91586,
+    "lst": 35.3,
+    "lst_intensity": 0.7,
+    "drought_intensity": 0.606
+  },
+  {
+    "lat": -7.92941,
+    "lon": 110.95188,
+    "lst": 34.4,
+    "lst_intensity": 0.6,
+    "drought_intensity": 0.573
+  },
+  {
+    "lat": -7.95717,
+    "lon": 111.0612,
+    "lst": 34.8,
+    "lst_intensity": 0.644,
+    "drought_intensity": 0.609
+  },
+  {
+    "lat": -7.86096,
+    "lon": 110.88801,
+    "lst": 34.2,
+    "lst_intensity": 0.578,
+    "drought_intensity": 0.481
+  },
+  {
+    "lat": -7.93435,
+    "lon": 110.84875,
+    "lst": 35.0,
+    "lst_intensity": 0.667,
+    "drought_intensity": 0.577
+  },
+  {
+    "lat": -7.97774,
+    "lon": 110.89843,
+    "lst": 35.5,
+    "lst_intensity": 0.722,
+    "drought_intensity": 0.633
+  },
+  {
+    "lat": -7.85179,
+    "lon": 111.28659,
+    "lst": 33.5,
+    "lst_intensity": 0.5,
+    "drought_intensity": 0.472
+  },
+  {
+    "lat": -7.84407,
+    "lon": 111.07935,
+    "lst": 33.5,
+    "lst_intensity": 0.5,
+    "drought_intensity": 0.462
+  },
+  {
+    "lat": -7.8544,
+    "lon": 111.07162,
+    "lst": 33.6,
+    "lst_intensity": 0.511,
+    "drought_intensity": 0.475
+  },
+  {
+    "lat": -7.85674,
+    "lon": 111.06893,
+    "lst": 33.6,
+    "lst_intensity": 0.511,
+    "drought_intensity": 0.479
+  },
+  {
+    "lat": -8.04098,
+    "lon": 110.83249,
+    "lst": 36.2,
+    "lst_intensity": 0.8,
+    "drought_intensity": 0.715
+  },
+  {
+    "lat": -7.95573,
+    "lon": 111.02877,
+    "lst": 34.8,
+    "lst_intensity": 0.644,
+    "drought_intensity": 0.607
+  },
+  {
+    "lat": -8.05005,
+    "lon": 110.88801,
+    "lst": 36.4,
+    "lst_intensity": 0.822,
+    "drought_intensity": 0.727
+  },
+  {
+    "lat": -7.7581,
+    "lon": 111.24329,
+    "lst": 32.5,
+    "lst_intensity": 0.389,
+    "drought_intensity": 0.35
+  },
+  {
+    "lat": -7.90453,
+    "lon": 110.84974,
+    "lst": 34.7,
+    "lst_intensity": 0.633,
+    "drought_intensity": 0.538
+  },
+  {
+    "lat": -7.82592,
+    "lon": 111.15831,
+    "lst": 33.2,
+    "lst_intensity": 0.467,
+    "drought_intensity": 0.438
+  },
+  {
+    "lat": -7.8199,
+    "lon": 110.82477,
+    "lst": 33.7,
+    "lst_intensity": 0.522,
+    "drought_intensity": 0.428
+  },
+  {
+    "lat": -8.1981,
+    "lon": 110.83402,
+    "lst": 38.1,
+    "lst_intensity": 1.0,
+    "drought_intensity": 0.92
+  },
+  {
+    "lat": -7.84084,
+    "lon": 111.24886,
+    "lst": 33.4,
+    "lst_intensity": 0.489,
+    "drought_intensity": 0.458
+  },
+  {
+    "lat": -7.95968,
+    "lon": 110.92367,
+    "lst": 35.3,
+    "lst_intensity": 0.7,
+    "drought_intensity": 0.61
+  },
+  {
+    "lat": -7.75963,
+    "lon": 110.97056,
+    "lst": 32.5,
+    "lst_intensity": 0.389,
+    "drought_intensity": 0.352
+  },
+  {
+    "lat": -7.8076,
+    "lon": 111.10567,
+    "lst": 33.0,
+    "lst_intensity": 0.444,
+    "drought_intensity": 0.415
+  },
+  {
+    "lat": -7.76996,
+    "lon": 110.88424,
+    "lst": 33.1,
+    "lst_intensity": 0.456,
+    "drought_intensity": 0.363
+  },
+  {
+    "lat": -8.02777,
+    "lon": 110.77788,
+    "lst": 36.1,
+    "lst_intensity": 0.789,
+    "drought_intensity": 0.698
+  },
+  {
+    "lat": -7.94046,
+    "lon": 110.93688,
+    "lst": 35.1,
+    "lst_intensity": 0.678,
+    "drought_intensity": 0.585
+  },
+  {
+    "lat": -7.82637,
+    "lon": 111.08573,
+    "lst": 33.3,
+    "lst_intensity": 0.478,
+    "drought_intensity": 0.439
+  },
+  {
+    "lat": -7.94423,
+    "lon": 110.89097,
+    "lst": 35.1,
+    "lst_intensity": 0.678,
+    "drought_intensity": 0.59
+  },
+  {
+    "lat": -8.08895,
+    "lon": 110.90454,
+    "lst": 36.8,
+    "lst_intensity": 0.867,
+    "drought_intensity": 0.778
+  },
+  {
+    "lat": -7.93112,
+    "lon": 110.90741,
+    "lst": 35.0,
+    "lst_intensity": 0.667,
+    "drought_intensity": 0.573
+  },
+  {
+    "lat": -7.92303,
+    "lon": 110.93185,
+    "lst": 34.9,
+    "lst_intensity": 0.656,
+    "drought_intensity": 0.562
+  },
+  {
+    "lat": -7.95923,
+    "lon": 110.93822,
+    "lst": 34.8,
+    "lst_intensity": 0.644,
+    "drought_intensity": 0.612
+  },
+  {
+    "lat": -7.78307,
+    "lon": 111.23476,
+    "lst": 32.7,
+    "lst_intensity": 0.411,
+    "drought_intensity": 0.383
+  },
+  {
+    "lat": -7.9189,
+    "lon": 111.03758,
+    "lst": 34.3,
+    "lst_intensity": 0.589,
+    "drought_intensity": 0.559
+  },
+  {
+    "lat": -8.01125,
+    "lon": 110.88163,
+    "lst": 35.9,
+    "lst_intensity": 0.767,
+    "drought_intensity": 0.677
+  },
+  {
+    "lat": -7.86222,
+    "lon": 110.97227,
+    "lst": 33.7,
+    "lst_intensity": 0.522,
+    "drought_intensity": 0.486
+  },
+  {
+    "lat": -8.0956,
+    "lon": 110.81003,
+    "lst": 36.9,
+    "lst_intensity": 0.878,
+    "drought_intensity": 0.786
+  },
+  {
+    "lat": -8.05859,
+    "lon": 110.81677,
+    "lst": 36.5,
+    "lst_intensity": 0.833,
+    "drought_intensity": 0.738
+  },
+  {
+    "lat": -8.00262,
+    "lon": 110.86807,
+    "lst": 35.8,
+    "lst_intensity": 0.756,
+    "drought_intensity": 0.665
+  },
+  {
+    "lat": -7.93552,
+    "lon": 110.91101,
+    "lst": 35.0,
+    "lst_intensity": 0.667,
+    "drought_intensity": 0.578
+  },
+  {
+    "lat": -7.97873,
+    "lon": 110.89448,
+    "lst": 35.5,
+    "lst_intensity": 0.722,
+    "drought_intensity": 0.634
+  },
+  {
+    "lat": -8.00154,
+    "lon": 110.85513,
+    "lst": 35.8,
+    "lst_intensity": 0.756,
+    "drought_intensity": 0.664
+  },
+  {
+    "lat": -7.77831,
+    "lon": 110.87579,
+    "lst": 33.2,
+    "lst_intensity": 0.467,
+    "drought_intensity": 0.374
+  },
+  {
+    "lat": -7.91414,
+    "lon": 111.08348,
+    "lst": 34.3,
+    "lst_intensity": 0.589,
+    "drought_intensity": 0.553
+  },
+  {
+    "lat": -7.99193,
+    "lon": 110.93068,
+    "lst": 35.7,
+    "lst_intensity": 0.744,
+    "drought_intensity": 0.652
+  },
+  {
+    "lat": -7.95977,
+    "lon": 111.07468,
+    "lst": 34.8,
+    "lst_intensity": 0.644,
+    "drought_intensity": 0.612
+  },
+  {
+    "lat": -8.04188,
+    "lon": 110.81785,
+    "lst": 36.3,
+    "lst_intensity": 0.811,
+    "drought_intensity": 0.716
+  },
+  {
+    "lat": -7.81308,
+    "lon": 111.19865,
+    "lst": 33.1,
+    "lst_intensity": 0.456,
+    "drought_intensity": 0.422
+  },
+  {
+    "lat": -7.85458,
+    "lon": 111.20475,
+    "lst": 33.6,
+    "lst_intensity": 0.511,
+    "drought_intensity": 0.476
+  },
+  {
+    "lat": -7.93884,
+    "lon": 110.97802,
+    "lst": 34.6,
+    "lst_intensity": 0.622,
+    "drought_intensity": 0.585
+  },
+  {
+    "lat": -7.78559,
+    "lon": 111.22236,
+    "lst": 32.8,
+    "lst_intensity": 0.422,
+    "drought_intensity": 0.386
+  },
+  {
+    "lat": -7.89518,
+    "lon": 110.92727,
+    "lst": 34.6,
+    "lst_intensity": 0.622,
+    "drought_intensity": 0.526
+  },
+  {
+    "lat": -7.90623,
+    "lon": 111.11097,
+    "lst": 34.2,
+    "lst_intensity": 0.578,
+    "drought_intensity": 0.543
+  },
+  {
+    "lat": -8.08859,
+    "lon": 110.79701,
+    "lst": 36.8,
+    "lst_intensity": 0.867,
+    "drought_intensity": 0.777
+  },
+  {
+    "lat": -8.0055,
+    "lon": 110.90732,
+    "lst": 35.8,
+    "lst_intensity": 0.756,
+    "drought_intensity": 0.669
+  },
+  {
+    "lat": -7.76268,
+    "lon": 110.87426,
+    "lst": 33.0,
+    "lst_intensity": 0.444,
+    "drought_intensity": 0.354
+  },
+  {
+    "lat": -7.99948,
+    "lon": 110.87543,
+    "lst": 35.8,
+    "lst_intensity": 0.756,
+    "drought_intensity": 0.661
+  },
+  {
+    "lat": -7.85736,
+    "lon": 111.27339,
+    "lst": 33.6,
+    "lst_intensity": 0.511,
+    "drought_intensity": 0.479
+  },
+  {
+    "lat": -7.96588,
+    "lon": 110.79674,
+    "lst": 35.4,
+    "lst_intensity": 0.711,
+    "drought_intensity": 0.618
+  },
+  {
+    "lat": -7.86356,
+    "lon": 110.93283,
+    "lst": 34.2,
+    "lst_intensity": 0.578,
+    "drought_intensity": 0.485
+  },
+  {
+    "lat": -7.90147,
+    "lon": 111.25335,
+    "lst": 34.1,
+    "lst_intensity": 0.567,
+    "drought_intensity": 0.537
+  },
+  {
+    "lat": -7.78415,
+    "lon": 111.09777,
+    "lst": 32.8,
+    "lst_intensity": 0.422,
+    "drought_intensity": 0.384
+  },
+  {
+    "lat": -7.85916,
+    "lon": 110.81093,
+    "lst": 34.1,
+    "lst_intensity": 0.567,
+    "drought_intensity": 0.479
+  },
+  {
+    "lat": -7.89105,
+    "lon": 110.94218,
+    "lst": 34.0,
+    "lst_intensity": 0.556,
+    "drought_intensity": 0.523
+  },
+  {
+    "lat": -7.98564,
+    "lon": 110.87795,
+    "lst": 35.6,
+    "lst_intensity": 0.733,
+    "drought_intensity": 0.643
+  },
+  {
+    "lat": -7.751,
+    "lon": 110.96535,
+    "lst": 32.4,
+    "lst_intensity": 0.378,
+    "drought_intensity": 0.341
+  },
+  {
+    "lat": -7.89033,
+    "lon": 111.2706,
+    "lst": 34.0,
+    "lst_intensity": 0.556,
+    "drought_intensity": 0.522
+  },
+  {
+    "lat": -7.95528,
+    "lon": 111.07153,
+    "lst": 34.7,
+    "lst_intensity": 0.633,
+    "drought_intensity": 0.607
+  },
+  {
+    "lat": -7.76996,
+    "lon": 110.89744,
+    "lst": 33.1,
+    "lst_intensity": 0.456,
+    "drought_intensity": 0.363
+  },
+  {
+    "lat": -7.98969,
+    "lon": 110.92475,
+    "lst": 35.7,
+    "lst_intensity": 0.744,
+    "drought_intensity": 0.649
+  },
+  {
+    "lat": -8.00181,
+    "lon": 110.83043,
+    "lst": 35.8,
+    "lst_intensity": 0.756,
+    "drought_intensity": 0.664
+  },
+  {
+    "lat": -7.97432,
+    "lon": 110.85845,
+    "lst": 35.5,
+    "lst_intensity": 0.722,
+    "drought_intensity": 0.629
+  },
+  {
+    "lat": -7.96678,
+    "lon": 110.87193,
+    "lst": 35.4,
+    "lst_intensity": 0.711,
+    "drought_intensity": 0.619
+  },
+  {
+    "lat": -8.06074,
+    "lon": 110.83016,
+    "lst": 36.5,
+    "lst_intensity": 0.833,
+    "drought_intensity": 0.741
+  },
+  {
+    "lat": -7.99993,
+    "lon": 110.8536,
+    "lst": 35.8,
+    "lst_intensity": 0.756,
+    "drought_intensity": 0.662
+  },
+  {
+    "lat": -7.78792,
+    "lon": 110.88451,
+    "lst": 33.3,
+    "lst_intensity": 0.478,
+    "drought_intensity": 0.386
+  },
+  {
+    "lat": -7.8615,
+    "lon": 111.2565,
+    "lst": 33.7,
+    "lst_intensity": 0.522,
+    "drought_intensity": 0.485
+  },
+  {
+    "lat": -7.98582,
+    "lon": 110.86735,
+    "lst": 35.6,
+    "lst_intensity": 0.733,
+    "drought_intensity": 0.644
+  },
+  {
+    "lat": -7.7572,
+    "lon": 110.89331,
+    "lst": 33.0,
+    "lst_intensity": 0.444,
+    "drought_intensity": 0.346
+  },
+  {
+    "lat": -7.86608,
+    "lon": 111.25973,
+    "lst": 33.7,
+    "lst_intensity": 0.522,
+    "drought_intensity": 0.491
+  },
+  {
+    "lat": -7.85081,
+    "lon": 110.8192,
+    "lst": 34.0,
+    "lst_intensity": 0.556,
+    "drought_intensity": 0.468
+  },
+  {
+    "lat": -7.91557,
+    "lon": 110.85675,
+    "lst": 34.8,
+    "lst_intensity": 0.644,
+    "drought_intensity": 0.552
+  },
+  {
+    "lat": -7.91054,
+    "lon": 111.09264,
+    "lst": 34.2,
+    "lst_intensity": 0.578,
+    "drought_intensity": 0.548
+  },
+  {
+    "lat": -8.03272,
+    "lon": 110.87525,
+    "lst": 36.2,
+    "lst_intensity": 0.8,
+    "drought_intensity": 0.705
+  },
+  {
+    "lat": -7.79376,
+    "lon": 111.20422,
+    "lst": 32.9,
+    "lst_intensity": 0.433,
+    "drought_intensity": 0.397
+  },
+  {
+    "lat": -8.0161,
+    "lon": 110.90597,
+    "lst": 36.0,
+    "lst_intensity": 0.778,
+    "drought_intensity": 0.683
+  },
+  {
+    "lat": -7.89941,
+    "lon": 110.92232,
+    "lst": 34.6,
+    "lst_intensity": 0.622,
+    "drought_intensity": 0.531
+  },
+  {
+    "lat": -7.78173,
+    "lon": 110.91532,
+    "lst": 33.2,
+    "lst_intensity": 0.467,
+    "drought_intensity": 0.378
+  },
+  {
+    "lat": -7.82197,
+    "lon": 111.12355,
+    "lst": 33.2,
+    "lst_intensity": 0.467,
+    "drought_intensity": 0.433
+  },
+  {
+    "lat": -7.94127,
+    "lon": 110.96553,
+    "lst": 34.6,
+    "lst_intensity": 0.622,
+    "drought_intensity": 0.588
+  },
+  {
+    "lat": -7.81676,
+    "lon": 111.20314,
+    "lst": 33.1,
+    "lst_intensity": 0.456,
+    "drought_intensity": 0.427
+  },
+  {
+    "lat": -7.9304,
+    "lon": 110.95448,
+    "lst": 34.5,
+    "lst_intensity": 0.611,
+    "drought_intensity": 0.574
+  },
+  {
+    "lat": -8.06784,
+    "lon": 110.80797,
+    "lst": 36.6,
+    "lst_intensity": 0.844,
+    "drought_intensity": 0.75
+  },
+  {
+    "lat": -7.84533,
+    "lon": 111.1717,
+    "lst": 33.5,
+    "lst_intensity": 0.5,
+    "drought_intensity": 0.464
+  },
+  {
+    "lat": -7.83077,
+    "lon": 111.20844,
+    "lst": 33.3,
+    "lst_intensity": 0.478,
+    "drought_intensity": 0.445
+  },
+  {
+    "lat": -7.83275,
+    "lon": 111.18104,
+    "lst": 33.3,
+    "lst_intensity": 0.478,
+    "drought_intensity": 0.447
+  },
+  {
+    "lat": -7.84452,
+    "lon": 111.10881,
+    "lst": 33.5,
+    "lst_intensity": 0.5,
+    "drought_intensity": 0.463
+  },
+  {
+    "lat": -7.87353,
+    "lon": 110.9526,
+    "lst": 33.8,
+    "lst_intensity": 0.533,
+    "drought_intensity": 0.5
+  },
+  {
+    "lat": -7.99319,
+    "lon": 110.91101,
+    "lst": 35.7,
+    "lst_intensity": 0.744,
+    "drought_intensity": 0.653
+  },
+  {
+    "lat": -7.8358,
+    "lon": 110.78749,
+    "lst": 33.9,
+    "lst_intensity": 0.544,
+    "drought_intensity": 0.449
+  },
+  {
+    "lat": -8.04763,
+    "lon": 110.98961,
+    "lst": 35.8,
+    "lst_intensity": 0.756,
+    "drought_intensity": 0.727
+  },
+  {
+    "lat": -7.93875,
+    "lon": 110.93176,
+    "lst": 35.1,
+    "lst_intensity": 0.678,
+    "drought_intensity": 0.582
+  },
+  {
+    "lat": -7.7961,
+    "lon": 111.24617,
+    "lst": 32.9,
+    "lst_intensity": 0.433,
+    "drought_intensity": 0.4
+  },
+  {
+    "lat": -7.98546,
+    "lon": 110.86609,
+    "lst": 35.6,
+    "lst_intensity": 0.733,
+    "drought_intensity": 0.643
+  },
+  {
+    "lat": -7.85036,
+    "lon": 111.29989,
+    "lst": 33.5,
+    "lst_intensity": 0.5,
+    "drought_intensity": 0.47
+  },
+  {
+    "lat": -8.09802,
+    "lon": 110.81129,
+    "lst": 36.9,
+    "lst_intensity": 0.878,
+    "drought_intensity": 0.789
+  },
+  {
+    "lat": -8.00271,
+    "lon": 111.05545,
+    "lst": 35.3,
+    "lst_intensity": 0.7,
+    "drought_intensity": 0.668
+  },
+  {
+    "lat": -7.96363,
+    "lon": 110.95377,
+    "lst": 34.8,
+    "lst_intensity": 0.644,
+    "drought_intensity": 0.617
+  },
+  {
+    "lat": -8.00729,
+    "lon": 110.8527,
+    "lst": 35.9,
+    "lst_intensity": 0.767,
+    "drought_intensity": 0.672
+  },
+  {
+    "lat": -7.76448,
+    "lon": 110.86348,
+    "lst": 33.0,
+    "lst_intensity": 0.444,
+    "drought_intensity": 0.356
+  },
+  {
+    "lat": -8.01511,
+    "lon": 110.76269,
+    "lst": 35.9,
+    "lst_intensity": 0.767,
+    "drought_intensity": 0.682
+  },
+  {
+    "lat": -7.95142,
+    "lon": 111.03345,
+    "lst": 34.7,
+    "lst_intensity": 0.633,
+    "drought_intensity": 0.602
+  },
+  {
+    "lat": -7.98528,
+    "lon": 110.9464,
+    "lst": 35.1,
+    "lst_intensity": 0.678,
+    "drought_intensity": 0.646
+  },
+  {
+    "lat": -7.85566,
+    "lon": 111.30644,
+    "lst": 33.6,
+    "lst_intensity": 0.511,
+    "drought_intensity": 0.477
+  },
+  {
+    "lat": -7.93354,
+    "lon": 110.91334,
+    "lst": 35.0,
+    "lst_intensity": 0.667,
+    "drought_intensity": 0.576
+  },
+  {
+    "lat": -7.96444,
+    "lon": 110.95556,
+    "lst": 34.9,
+    "lst_intensity": 0.656,
+    "drought_intensity": 0.619
+  },
+  {
+    "lat": -8.15165,
+    "lon": 110.8077,
+    "lst": 37.5,
+    "lst_intensity": 0.944,
+    "drought_intensity": 0.859
+  },
+  {
+    "lat": -8.01735,
+    "lon": 110.84561,
+    "lst": 36.0,
+    "lst_intensity": 0.778,
+    "drought_intensity": 0.685
+  },
+  {
+    "lat": -8.03837,
+    "lon": 110.83249,
+    "lst": 36.2,
+    "lst_intensity": 0.8,
+    "drought_intensity": 0.712
+  },
+  {
+    "lat": -7.94423,
+    "lon": 110.85378,
+    "lst": 35.1,
+    "lst_intensity": 0.678,
+    "drought_intensity": 0.59
+  },
+  {
+    "lat": -7.9542,
+    "lon": 111.08752,
+    "lst": 34.7,
+    "lst_intensity": 0.633,
+    "drought_intensity": 0.605
+  },
+  {
+    "lat": -7.7837,
+    "lon": 111.25551,
+    "lst": 32.8,
+    "lst_intensity": 0.422,
+    "drought_intensity": 0.384
+  },
+  {
+    "lat": -7.85224,
+    "lon": 110.89834,
+    "lst": 34.1,
+    "lst_intensity": 0.567,
+    "drought_intensity": 0.47
+  },
+  {
+    "lat": -7.93911,
+    "lon": 110.85342,
+    "lst": 35.1,
+    "lst_intensity": 0.678,
+    "drought_intensity": 0.583
+  },
+  {
+    "lat": -8.03999,
+    "lon": 110.85783,
+    "lst": 36.2,
+    "lst_intensity": 0.8,
+    "drought_intensity": 0.714
+  },
+  {
+    "lat": -8.05221,
+    "lon": 110.81533,
+    "lst": 36.4,
+    "lst_intensity": 0.822,
+    "drought_intensity": 0.73
+  },
+  {
+    "lat": -7.83634,
+    "lon": 111.17942,
+    "lst": 33.4,
+    "lst_intensity": 0.489,
+    "drought_intensity": 0.452
+  },
+  {
+    "lat": -8.11976,
+    "lon": 110.87202,
+    "lst": 37.2,
+    "lst_intensity": 0.911,
+    "drought_intensity": 0.818
+  },
+  {
+    "lat": -7.82997,
+    "lon": 111.09426,
+    "lst": 33.3,
+    "lst_intensity": 0.478,
+    "drought_intensity": 0.444
+  },
+  {
+    "lat": -7.82934,
+    "lon": 111.18661,
+    "lst": 33.3,
+    "lst_intensity": 0.478,
+    "drought_intensity": 0.443
+  },
+  {
+    "lat": -7.92923,
+    "lon": 110.93472,
+    "lst": 35.0,
+    "lst_intensity": 0.667,
+    "drought_intensity": 0.57
+  },
+  {
+    "lat": -7.94962,
+    "lon": 110.87974,
+    "lst": 35.2,
+    "lst_intensity": 0.689,
+    "drought_intensity": 0.597
+  },
+  {
+    "lat": -8.04269,
+    "lon": 110.9411,
+    "lst": 35.8,
+    "lst_intensity": 0.756,
+    "drought_intensity": 0.72
+  },
+  {
+    "lat": -8.02652,
+    "lon": 110.82692,
+    "lst": 36.1,
+    "lst_intensity": 0.789,
+    "drought_intensity": 0.697
+  },
+  {
+    "lat": -7.99175,
+    "lon": 111.05474,
+    "lst": 35.2,
+    "lst_intensity": 0.689,
+    "drought_intensity": 0.654
+  },
+  {
+    "lat": -7.96732,
+    "lon": 110.86007,
+    "lst": 35.4,
+    "lst_intensity": 0.711,
+    "drought_intensity": 0.62
+  },
+  {
+    "lat": -8.04296,
+    "lon": 110.92295,
+    "lst": 36.3,
+    "lst_intensity": 0.811,
+    "drought_intensity": 0.718
+  },
+  {
+    "lat": -7.99022,
+    "lon": 110.86663,
+    "lst": 35.7,
+    "lst_intensity": 0.744,
+    "drought_intensity": 0.649
+  },
+  {
+    "lat": -7.97639,
+    "lon": 110.89528,
+    "lst": 35.5,
+    "lst_intensity": 0.722,
+    "drought_intensity": 0.631
+  },
+  {
+    "lat": -7.91719,
+    "lon": 110.90777,
+    "lst": 34.8,
+    "lst_intensity": 0.644,
+    "drought_intensity": 0.554
+  },
+  {
+    "lat": -7.87991,
+    "lon": 110.99284,
+    "lst": 33.9,
+    "lst_intensity": 0.544,
+    "drought_intensity": 0.509
+  },
+  {
+    "lat": -7.78649,
+    "lon": 110.86546,
+    "lst": 33.3,
+    "lst_intensity": 0.478,
+    "drought_intensity": 0.384
+  },
+  {
+    "lat": -8.00621,
+    "lon": 110.91559,
+    "lst": 35.8,
+    "lst_intensity": 0.756,
+    "drought_intensity": 0.67
+  },
+  {
+    "lat": -8.0355,
+    "lon": 110.88046,
+    "lst": 36.2,
+    "lst_intensity": 0.8,
+    "drought_intensity": 0.708
+  },
+  {
+    "lat": -7.95474,
+    "lon": 111.0895,
+    "lst": 34.7,
+    "lst_intensity": 0.633,
+    "drought_intensity": 0.606
+  },
+  {
+    "lat": -7.83697,
+    "lon": 111.08914,
+    "lst": 33.4,
+    "lst_intensity": 0.489,
+    "drought_intensity": 0.453
+  },
+  {
+    "lat": -7.95708,
+    "lon": 110.91631,
+    "lst": 35.3,
+    "lst_intensity": 0.7,
+    "drought_intensity": 0.606
+  },
+  {
+    "lat": -7.99283,
+    "lon": 110.94011,
+    "lst": 35.2,
+    "lst_intensity": 0.689,
+    "drought_intensity": 0.655
+  },
+  {
+    "lat": -7.87048,
+    "lon": 110.96248,
+    "lst": 33.8,
+    "lst_intensity": 0.533,
+    "drought_intensity": 0.496
+  },
+  {
+    "lat": -7.88431,
+    "lon": 111.01961,
+    "lst": 33.9,
+    "lst_intensity": 0.544,
+    "drought_intensity": 0.514
+  },
+  {
+    "lat": -7.85709,
+    "lon": 110.97613,
+    "lst": 33.6,
+    "lst_intensity": 0.511,
+    "drought_intensity": 0.479
+  },
+  {
+    "lat": -7.84416,
+    "lon": 111.1584,
+    "lst": 33.5,
+    "lst_intensity": 0.5,
+    "drought_intensity": 0.462
+  },
+  {
+    "lat": -7.85835,
+    "lon": 111.27806,
+    "lst": 33.6,
+    "lst_intensity": 0.511,
+    "drought_intensity": 0.481
+  },
+  {
+    "lat": -7.95573,
+    "lon": 110.83761,
+    "lst": 35.3,
+    "lst_intensity": 0.7,
+    "drought_intensity": 0.605
+  },
+  {
+    "lat": -7.82026,
+    "lon": 111.12606,
+    "lst": 33.2,
+    "lst_intensity": 0.467,
+    "drought_intensity": 0.431
+  },
+  {
+    "lat": -7.9171,
+    "lon": 110.77482,
+    "lst": 34.8,
+    "lst_intensity": 0.644,
+    "drought_intensity": 0.554
+  },
+  {
+    "lat": -7.90102,
+    "lon": 110.85944,
+    "lst": 34.6,
+    "lst_intensity": 0.622,
+    "drought_intensity": 0.533
+  },
+  {
+    "lat": -7.98627,
+    "lon": 110.949,
+    "lst": 35.1,
+    "lst_intensity": 0.678,
+    "drought_intensity": 0.647
+  },
+  {
+    "lat": -7.94953,
+    "lon": 110.91927,
+    "lst": 35.2,
+    "lst_intensity": 0.689,
+    "drought_intensity": 0.596
+  },
+  {
+    "lat": -7.95555,
+    "lon": 110.91532,
+    "lst": 35.3,
+    "lst_intensity": 0.7,
+    "drought_intensity": 0.604
+  },
+  {
+    "lat": -8.00262,
+    "lon": 110.87166,
+    "lst": 35.8,
+    "lst_intensity": 0.756,
+    "drought_intensity": 0.665
+  },
+  {
+    "lat": -7.85853,
+    "lon": 111.17969,
+    "lst": 33.6,
+    "lst_intensity": 0.511,
+    "drought_intensity": 0.481
+  },
+  {
+    "lat": -7.85287,
+    "lon": 111.09525,
+    "lst": 33.6,
+    "lst_intensity": 0.511,
+    "drought_intensity": 0.473
+  },
+  {
+    "lat": -7.82386,
+    "lon": 110.80536,
+    "lst": 33.7,
+    "lst_intensity": 0.522,
+    "drought_intensity": 0.433
+  },
+  {
+    "lat": -7.75684,
+    "lon": 111.24707,
+    "lst": 32.4,
+    "lst_intensity": 0.378,
+    "drought_intensity": 0.349
+  },
+  {
+    "lat": -7.99472,
+    "lon": 110.98422,
+    "lst": 35.2,
+    "lst_intensity": 0.689,
+    "drought_intensity": 0.658
+  },
+  {
+    "lat": -7.88395,
+    "lon": 110.93885,
+    "lst": 33.9,
+    "lst_intensity": 0.544,
+    "drought_intensity": 0.514
+  },
+  {
+    "lat": -8.14024,
+    "lon": 110.89843,
+    "lst": 37.4,
+    "lst_intensity": 0.933,
+    "drought_intensity": 0.844
+  },
+  {
+    "lat": -7.88521,
+    "lon": 111.02096,
+    "lst": 33.9,
+    "lst_intensity": 0.544,
+    "drought_intensity": 0.516
+  },
+  {
+    "lat": -8.04529,
+    "lon": 111.03857,
+    "lst": 35.8,
+    "lst_intensity": 0.756,
+    "drought_intensity": 0.724
+  },
+  {
+    "lat": -7.90911,
+    "lon": 110.93283,
+    "lst": 34.7,
+    "lst_intensity": 0.633,
+    "drought_intensity": 0.544
+  },
+  {
+    "lat": -7.92977,
+    "lon": 110.9596,
+    "lst": 34.4,
+    "lst_intensity": 0.6,
+    "drought_intensity": 0.573
+  },
+  {
+    "lat": -7.8217,
+    "lon": 111.15687,
+    "lst": 33.2,
+    "lst_intensity": 0.467,
+    "drought_intensity": 0.433
+  },
+  {
+    "lat": -7.77472,
+    "lon": 111.13397,
+    "lst": 32.7,
+    "lst_intensity": 0.411,
+    "drought_intensity": 0.372
+  },
+  {
+    "lat": -7.87865,
+    "lon": 111.10935,
+    "lst": 33.9,
+    "lst_intensity": 0.544,
+    "drought_intensity": 0.507
+  },
+  {
+    "lat": -8.0364,
+    "lon": 110.82647,
+    "lst": 36.2,
+    "lst_intensity": 0.8,
+    "drought_intensity": 0.709
+  },
+  {
+    "lat": -8.02625,
+    "lon": 110.94559,
+    "lst": 35.6,
+    "lst_intensity": 0.733,
+    "drought_intensity": 0.699
+  },
+  {
+    "lat": -7.78783,
+    "lon": 111.17233,
+    "lst": 32.8,
+    "lst_intensity": 0.422,
+    "drought_intensity": 0.389
+  },
+  {
+    "lat": -7.9357,
+    "lon": 110.92816,
+    "lst": 35.0,
+    "lst_intensity": 0.667,
+    "drought_intensity": 0.578
+  },
+  {
+    "lat": -7.88979,
+    "lon": 110.8731,
+    "lst": 34.5,
+    "lst_intensity": 0.611,
+    "drought_intensity": 0.519
+  },
+  {
+    "lat": -7.76996,
+    "lon": 110.96895,
+    "lst": 32.6,
+    "lst_intensity": 0.4,
+    "drought_intensity": 0.366
+  },
+  {
+    "lat": -7.75909,
+    "lon": 111.19451,
+    "lst": 32.5,
+    "lst_intensity": 0.389,
+    "drought_intensity": 0.352
+  },
+  {
+    "lat": -7.84191,
+    "lon": 111.11133,
+    "lst": 33.4,
+    "lst_intensity": 0.489,
+    "drought_intensity": 0.459
+  },
+  {
+    "lat": -7.79754,
+    "lon": 110.90894,
+    "lst": 33.4,
+    "lst_intensity": 0.489,
+    "drought_intensity": 0.399
+  },
+  {
+    "lat": -7.8244,
+    "lon": 111.02114,
+    "lst": 33.2,
+    "lst_intensity": 0.467,
+    "drought_intensity": 0.436
+  },
+  {
+    "lat": -7.85224,
+    "lon": 110.95844,
+    "lst": 33.6,
+    "lst_intensity": 0.511,
+    "drought_intensity": 0.473
+  },
+  {
+    "lat": -7.86859,
+    "lon": 111.27186,
+    "lst": 33.7,
+    "lst_intensity": 0.522,
+    "drought_intensity": 0.494
+  },
+  {
+    "lat": -7.84281,
+    "lon": 111.07315,
+    "lst": 33.4,
+    "lst_intensity": 0.489,
+    "drought_intensity": 0.46
+  },
+  {
+    "lat": -7.99184,
+    "lon": 110.85315,
+    "lst": 35.7,
+    "lst_intensity": 0.744,
+    "drought_intensity": 0.651
+  },
+  {
+    "lat": -7.85108,
+    "lon": 111.04297,
+    "lst": 33.5,
+    "lst_intensity": 0.5,
+    "drought_intensity": 0.471
+  },
+  {
+    "lat": -7.99795,
+    "lon": 110.85432,
+    "lst": 35.7,
+    "lst_intensity": 0.744,
+    "drought_intensity": 0.659
+  },
+  {
+    "lat": -7.75127,
+    "lon": 110.94882,
+    "lst": 32.4,
+    "lst_intensity": 0.378,
+    "drought_intensity": 0.341
+  },
+  {
+    "lat": -7.90956,
+    "lon": 110.78857,
+    "lst": 34.7,
+    "lst_intensity": 0.633,
+    "drought_intensity": 0.544
+  },
+  {
+    "lat": -8.01637,
+    "lon": 110.76521,
+    "lst": 36.0,
+    "lst_intensity": 0.778,
+    "drought_intensity": 0.683
+  },
+  {
+    "lat": -7.85036,
+    "lon": 111.05213,
+    "lst": 33.5,
+    "lst_intensity": 0.5,
+    "drought_intensity": 0.47
+  },
+  {
+    "lat": -7.97145,
+    "lon": 110.79926,
+    "lst": 35.4,
+    "lst_intensity": 0.711,
+    "drought_intensity": 0.625
+  },
+  {
+    "lat": -7.89914,
+    "lon": 110.84148,
+    "lst": 34.6,
+    "lst_intensity": 0.622,
+    "drought_intensity": 0.531
+  },
+  {
+    "lat": -7.98798,
+    "lon": 110.86869,
+    "lst": 35.6,
+    "lst_intensity": 0.733,
+    "drought_intensity": 0.646
+  },
+  {
+    "lat": -7.98636,
+    "lon": 110.9217,
+    "lst": 35.6,
+    "lst_intensity": 0.733,
+    "drought_intensity": 0.644
+  },
+  {
+    "lat": -7.83634,
+    "lon": 111.17475,
+    "lst": 33.4,
+    "lst_intensity": 0.489,
+    "drought_intensity": 0.452
+  },
+  {
+    "lat": -7.92294,
+    "lon": 110.94155,
+    "lst": 34.4,
+    "lst_intensity": 0.6,
+    "drought_intensity": 0.565
+  },
+  {
+    "lat": -7.90776,
+    "lon": 110.9128,
+    "lst": 34.7,
+    "lst_intensity": 0.633,
+    "drought_intensity": 0.542
+  },
+  {
+    "lat": -8.11042,
+    "lon": 110.82288,
+    "lst": 37.1,
+    "lst_intensity": 0.9,
+    "drought_intensity": 0.806
+  },
+  {
+    "lat": -7.98906,
+    "lon": 110.87723,
+    "lst": 35.6,
+    "lst_intensity": 0.733,
+    "drought_intensity": 0.648
+  },
+  {
+    "lat": -7.89258,
+    "lon": 110.8704,
+    "lst": 34.5,
+    "lst_intensity": 0.611,
+    "drought_intensity": 0.522
+  },
+  {
+    "lat": -7.98996,
+    "lon": 110.919,
+    "lst": 35.7,
+    "lst_intensity": 0.744,
+    "drought_intensity": 0.649
+  },
+  {
+    "lat": -8.0028,
+    "lon": 110.89978,
+    "lst": 35.8,
+    "lst_intensity": 0.756,
+    "drought_intensity": 0.666
+  },
+  {
+    "lat": -8.08491,
+    "lon": 110.92161,
+    "lst": 36.8,
+    "lst_intensity": 0.867,
+    "drought_intensity": 0.772
+  },
+  {
+    "lat": -7.84254,
+    "lon": 111.16577,
+    "lst": 33.4,
+    "lst_intensity": 0.489,
+    "drought_intensity": 0.46
+  },
+  {
+    "lat": -7.83194,
+    "lon": 110.98116,
+    "lst": 33.3,
+    "lst_intensity": 0.478,
+    "drought_intensity": 0.446
+  },
+  {
+    "lat": -7.89851,
+    "lon": 110.87759,
+    "lst": 34.6,
+    "lst_intensity": 0.622,
+    "drought_intensity": 0.53
+  },
+  {
+    "lat": -8.17124,
+    "lon": 110.8801,
+    "lst": 37.8,
+    "lst_intensity": 0.978,
+    "drought_intensity": 0.885
+  },
+  {
+    "lat": -7.86698,
+    "lon": 111.11744,
+    "lst": 33.7,
+    "lst_intensity": 0.522,
+    "drought_intensity": 0.492
+  },
+  {
+    "lat": -7.97873,
+    "lon": 110.85962,
+    "lst": 35.5,
+    "lst_intensity": 0.722,
+    "drought_intensity": 0.634
+  },
+  {
+    "lat": -7.86931,
+    "lon": 110.89726,
+    "lst": 34.3,
+    "lst_intensity": 0.589,
+    "drought_intensity": 0.492
+  },
+  {
+    "lat": -7.78864,
+    "lon": 110.88477,
+    "lst": 33.3,
+    "lst_intensity": 0.478,
+    "drought_intensity": 0.387
+  },
+  {
+    "lat": -7.78712,
+    "lon": 110.95646,
+    "lst": 32.8,
+    "lst_intensity": 0.422,
+    "drought_intensity": 0.388
+  },
+  {
+    "lat": -7.98834,
+    "lon": 110.89187,
+    "lst": 35.6,
+    "lst_intensity": 0.733,
+    "drought_intensity": 0.647
+  },
+  {
+    "lat": -7.97675,
+    "lon": 110.88172,
+    "lst": 35.5,
+    "lst_intensity": 0.722,
+    "drought_intensity": 0.632
+  },
+  {
+    "lat": -7.77517,
+    "lon": 110.8819,
+    "lst": 33.2,
+    "lst_intensity": 0.467,
+    "drought_intensity": 0.37
+  },
+  {
+    "lat": -7.90066,
+    "lon": 110.79234,
+    "lst": 34.6,
+    "lst_intensity": 0.622,
+    "drought_intensity": 0.533
+  },
+  {
+    "lat": -7.80984,
+    "lon": 111.28093,
+    "lst": 33.1,
+    "lst_intensity": 0.456,
+    "drought_intensity": 0.418
+  },
+  {
+    "lat": -7.94037,
+    "lon": 111.04108,
+    "lst": 34.6,
+    "lst_intensity": 0.622,
+    "drought_intensity": 0.587
+  },
+  {
+    "lat": -7.87883,
+    "lon": 111.14493,
+    "lst": 33.9,
+    "lst_intensity": 0.544,
+    "drought_intensity": 0.507
+  },
+  {
+    "lat": -7.83886,
+    "lon": 111.07971,
+    "lst": 33.4,
+    "lst_intensity": 0.489,
+    "drought_intensity": 0.455
+  },
+  {
+    "lat": -8.07341,
+    "lon": 110.92718,
+    "lst": 36.6,
+    "lst_intensity": 0.844,
+    "drought_intensity": 0.757
+  },
+  {
+    "lat": -7.77301,
+    "lon": 110.86609,
+    "lst": 33.1,
+    "lst_intensity": 0.456,
+    "drought_intensity": 0.367
+  },
+  {
+    "lat": -7.95878,
+    "lon": 110.78075,
+    "lst": 35.3,
+    "lst_intensity": 0.7,
+    "drought_intensity": 0.608
+  },
+  {
+    "lat": -8.16082,
+    "lon": 110.87534,
+    "lst": 37.6,
+    "lst_intensity": 0.956,
+    "drought_intensity": 0.871
+  },
+  {
+    "lat": -7.78703,
+    "lon": 111.06579,
+    "lst": 32.8,
+    "lst_intensity": 0.422,
+    "drought_intensity": 0.388
+  },
+  {
+    "lat": -8.03676,
+    "lon": 110.8466,
+    "lst": 36.2,
+    "lst_intensity": 0.8,
+    "drought_intensity": 0.71
+  },
+  {
+    "lat": -7.82601,
+    "lon": 110.79764,
+    "lst": 33.8,
+    "lst_intensity": 0.533,
+    "drought_intensity": 0.436
+  },
+  {
+    "lat": -7.88243,
+    "lon": 111.26566,
+    "lst": 33.9,
+    "lst_intensity": 0.544,
+    "drought_intensity": 0.512
+  },
+  {
+    "lat": -7.89976,
+    "lon": 111.11852,
+    "lst": 34.1,
+    "lst_intensity": 0.567,
+    "drought_intensity": 0.534
+  },
+  {
+    "lat": -7.96283,
+    "lon": 110.90391,
+    "lst": 35.3,
+    "lst_intensity": 0.7,
+    "drought_intensity": 0.614
+  },
+  {
+    "lat": -7.95681,
+    "lon": 110.8563,
+    "lst": 35.3,
+    "lst_intensity": 0.7,
+    "drought_intensity": 0.606
+  },
+  {
+    "lat": -8.00109,
+    "lon": 110.87741,
+    "lst": 35.8,
+    "lst_intensity": 0.756,
+    "drought_intensity": 0.663
+  },
+  {
+    "lat": -7.98564,
+    "lon": 110.96652,
+    "lst": 35.1,
+    "lst_intensity": 0.678,
+    "drought_intensity": 0.646
+  },
+  {
+    "lat": -7.86734,
+    "lon": 110.84076,
+    "lst": 34.2,
+    "lst_intensity": 0.578,
+    "drought_intensity": 0.49
+  },
+  {
+    "lat": -8.02759,
+    "lon": 110.79126,
+    "lst": 36.1,
+    "lst_intensity": 0.789,
+    "drought_intensity": 0.698
+  },
+  {
+    "lat": -7.80912,
+    "lon": 111.16487,
+    "lst": 33.1,
+    "lst_intensity": 0.456,
+    "drought_intensity": 0.417
+  },
+  {
+    "lat": -7.81766,
+    "lon": 111.13325,
+    "lst": 33.1,
+    "lst_intensity": 0.456,
+    "drought_intensity": 0.428
+  },
+  {
+    "lat": -7.82709,
+    "lon": 111.03848,
+    "lst": 33.3,
+    "lst_intensity": 0.478,
+    "drought_intensity": 0.44
+  },
+  {
+    "lat": -7.81559,
+    "lon": 111.07773,
+    "lst": 33.1,
+    "lst_intensity": 0.456,
+    "drought_intensity": 0.425
+  },
+  {
+    "lat": -7.81577,
+    "lon": 110.79737,
+    "lst": 33.6,
+    "lst_intensity": 0.511,
+    "drought_intensity": 0.423
+  },
+  {
+    "lat": -7.93121,
+    "lon": 110.87166,
+    "lst": 35.0,
+    "lst_intensity": 0.667,
+    "drought_intensity": 0.573
+  },
+  {
+    "lat": -7.85826,
+    "lon": 111.15723,
+    "lst": 33.6,
+    "lst_intensity": 0.511,
+    "drought_intensity": 0.48
+  },
+  {
+    "lat": -7.92618,
+    "lon": 110.95305,
+    "lst": 34.4,
+    "lst_intensity": 0.6,
+    "drought_intensity": 0.569
+  },
+  {
+    "lat": -8.10799,
+    "lon": 110.83204,
+    "lst": 37.0,
+    "lst_intensity": 0.889,
+    "drought_intensity": 0.802
+  },
+  {
+    "lat": -7.81532,
+    "lon": 110.90463,
+    "lst": 33.6,
+    "lst_intensity": 0.511,
+    "drought_intensity": 0.422
+  },
+  {
+    "lat": -7.84937,
+    "lon": 110.80348,
+    "lst": 34.0,
+    "lst_intensity": 0.556,
+    "drought_intensity": 0.466
+  },
+  {
+    "lat": -7.76089,
+    "lon": 111.20413,
+    "lst": 32.5,
+    "lst_intensity": 0.389,
+    "drought_intensity": 0.354
+  },
+  {
+    "lat": -7.91674,
+    "lon": 110.87849,
+    "lst": 34.8,
+    "lst_intensity": 0.644,
+    "drought_intensity": 0.554
+  },
+  {
+    "lat": -7.96004,
+    "lon": 110.90687,
+    "lst": 35.3,
+    "lst_intensity": 0.7,
+    "drought_intensity": 0.61
+  },
+  {
+    "lat": -8.06532,
+    "lon": 110.83734,
+    "lst": 36.5,
+    "lst_intensity": 0.833,
+    "drought_intensity": 0.747
+  },
+  {
+    "lat": -7.86473,
+    "lon": 111.08348,
+    "lst": 33.7,
+    "lst_intensity": 0.522,
+    "drought_intensity": 0.489
+  },
+  {
+    "lat": -8.0037,
+    "lon": 110.94119,
+    "lst": 35.3,
+    "lst_intensity": 0.7,
+    "drought_intensity": 0.67
+  },
+  {
+    "lat": -7.91926,
+    "lon": 110.94236,
+    "lst": 34.3,
+    "lst_intensity": 0.589,
+    "drought_intensity": 0.56
+  },
+  {
+    "lat": -8.06712,
+    "lon": 110.82989,
+    "lst": 36.6,
+    "lst_intensity": 0.844,
+    "drought_intensity": 0.749
+  },
+  {
+    "lat": -8.01376,
+    "lon": 110.90157,
+    "lst": 35.9,
+    "lst_intensity": 0.767,
+    "drought_intensity": 0.68
+  },
+  {
+    "lat": -7.93462,
+    "lon": 110.94927,
+    "lst": 34.5,
+    "lst_intensity": 0.611,
+    "drought_intensity": 0.58
+  },
+  {
+    "lat": -8.03137,
+    "lon": 110.88513,
+    "lst": 36.1,
+    "lst_intensity": 0.789,
+    "drought_intensity": 0.703
+  },
+  {
+    "lat": -8.13225,
+    "lon": 110.87229,
+    "lst": 37.3,
+    "lst_intensity": 0.922,
+    "drought_intensity": 0.834
+  },
+  {
+    "lat": -7.93749,
+    "lon": 110.95601,
+    "lst": 34.5,
+    "lst_intensity": 0.611,
+    "drought_intensity": 0.583
+  },
+  {
+    "lat": -7.85611,
+    "lon": 111.25228,
+    "lst": 33.6,
+    "lst_intensity": 0.511,
+    "drought_intensity": 0.478
+  },
+  {
+    "lat": -7.80643,
+    "lon": 111.10414,
+    "lst": 33.0,
+    "lst_intensity": 0.444,
+    "drought_intensity": 0.413
+  },
+  {
+    "lat": -7.83545,
+    "lon": 111.25811,
+    "lst": 33.4,
+    "lst_intensity": 0.489,
+    "drought_intensity": 0.451
+  },
+  {
+    "lat": -7.93974,
+    "lon": 110.99922,
+    "lst": 34.6,
+    "lst_intensity": 0.622,
+    "drought_intensity": 0.586
+  },
+  {
+    "lat": -8.02499,
+    "lon": 110.9314,
+    "lst": 36.1,
+    "lst_intensity": 0.789,
+    "drought_intensity": 0.695
+  },
+  {
+    "lat": -7.9286,
+    "lon": 110.96023,
+    "lst": 34.4,
+    "lst_intensity": 0.6,
+    "drought_intensity": 0.572
+  },
+  {
+    "lat": -7.80472,
+    "lon": 110.90067,
+    "lst": 33.5,
+    "lst_intensity": 0.5,
+    "drought_intensity": 0.408
+  },
+  {
+    "lat": -7.84856,
+    "lon": 111.12615,
+    "lst": 33.5,
+    "lst_intensity": 0.5,
+    "drought_intensity": 0.468
+  },
+  {
+    "lat": -7.74148,
+    "lon": 111.28246,
+    "lst": 32.7,
+    "lst_intensity": 0.411,
+    "drought_intensity": 0.33
+  }
+]
