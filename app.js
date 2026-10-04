@@ -1,6 +1,6 @@
 let appData = {};
 let wonogiriPoints = [];
-let currentKec = "Kecamatan Wonogiri (Kota)";
+let currentKec = "Kecamatan Wonogiri";
 let map = null;
 let markers = {};
 let currentTileLayer = null;
@@ -16,7 +16,7 @@ const TILE_LAYERS = {
 document.addEventListener("DOMContentLoaded", async () => {
     try {
         const [respData, respPoints] = await Promise.all([
-            fetch("data.json?v=20261004_v2"),
+            fetch("data.json?v=20261004_v5"),
             fetch("wonogiri_grid_points.json?v=20261004_v1")
         ]);
         appData = await respData.json();
@@ -87,15 +87,20 @@ function renderHeatmapLayer(mode) {
 }
 
 function initMap() {
+    const wonogiriBounds = L.latLngBounds([
+        [-8.25, 110.70],
+        [-7.70, 111.35]
+    ]);
+
     map = L.map('map', {
         zoomControl: false,
-        attributionControl: false
+        attributionControl: false,
+        maxBounds: wonogiriBounds,
+        maxBoundsViscosity: 0.95,
+        minZoom: 10,
+        maxZoom: 16
     }).setView([-7.96, 111.02], 11);
-    // Fit entire Wonogiri bounding box smoothly
-    const wonogiriBounds = L.latLngBounds([
-        [-8.22, 110.74],
-        [-7.72, 111.32]
-    ]);
+
     map.fitBounds(wonogiriBounds, { padding: [20, 20] });
 
     currentTileLayer = L.tileLayer(TILE_LAYERS.satellite, {
