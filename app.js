@@ -90,7 +90,13 @@ function initMap() {
     map = L.map('map', {
         zoomControl: false,
         attributionControl: false
-    }).setView([-7.9187, 110.9695], 11);
+    }).setView([-7.96, 111.02], 11);
+    // Fit entire Wonogiri bounding box smoothly
+    const wonogiriBounds = L.latLngBounds([
+        [-8.22, 110.74],
+        [-7.72, 111.32]
+    ]);
+    map.fitBounds(wonogiriBounds, { padding: [20, 20] });
 
     currentTileLayer = L.tileLayer(TILE_LAYERS.satellite, {
         maxZoom: 18
@@ -468,6 +474,32 @@ function bindEvents() {
     if (btnZoomOut) {
         btnZoomOut.addEventListener("click", () => {
             if (map) map.zoomOut();
+        });
+    }
+
+    const btnResetView = document.getElementById("btnResetView");
+    if (btnResetView) {
+        btnResetView.addEventListener("click", () => {
+            if (map) {
+                const wonogiriBounds = L.latLngBounds([
+                    [-8.22, 110.74],
+                    [-7.72, 111.32]
+                ]);
+                map.fitBounds(wonogiriBounds, { padding: [25, 25], animate: true });
+            }
+        });
+    }
+
+    const btnFullscreenMap = document.getElementById("btnFullscreenMap");
+    if (btnFullscreenMap) {
+        btnFullscreenMap.addEventListener("click", () => {
+            const mapSection = document.querySelector(".hero-map-section");
+            if (mapSection) {
+                mapSection.classList.toggle("fullscreen-map");
+                setTimeout(() => {
+                    if (map) map.invalidateSize();
+                }, 150);
+            }
         });
     }
 

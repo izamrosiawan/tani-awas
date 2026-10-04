@@ -12,7 +12,7 @@
     
     <!-- Leaflet CSS & Chart.js -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="style.css?v=20261004_v3">
+    <link rel="stylesheet" href="style.css?v=20261004_v4">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -96,10 +96,14 @@
 
             <div id="map" class="map-actual-canvas"></div>
 
-            <!-- Custom Floating Zoom Pill -->
+            <!-- Custom Floating Zoom & View Pill -->
             <div class="map-zoom-capsule">
                 <button type="button" class="zoom-action-btn" id="btnZoomIn" title="Perbesar Peta">+</button>
                 <button type="button" class="zoom-action-btn" id="btnZoomOut" title="Perkecil Peta">−</button>
+                <button type="button" class="zoom-action-btn" id="btnResetView" title="Tampilkan Seluruh Wonogiri" style="font-size: 0.72rem; font-weight: 800; border-top: 1px solid var(--border-light);">FIT</button>
+                <button type="button" class="zoom-action-btn" id="btnFullscreenMap" title="Mode Layar Penuh" style="border-top: 1px solid var(--border-light);">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+                </button>
             </div>
 
             <!-- Floating Dynamic Heatmap Legend -->
@@ -402,6 +406,6 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
-    <script src="app.js?v=20261004_v3"></script>
+    <script src="app.js?v=20261004_v4"></script>
 </body>
 </html>
