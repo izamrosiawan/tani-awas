@@ -3,9 +3,10 @@ let wonogiriPoints = [];
 let currentKec = "Kecamatan Wonogiri";
 let map = null;
 let markers = {};
+let pointMarkers = [];
 let currentTileLayer = null;
 let heatLayer = null;
-let activeLayerMode = "heat-lst";
+let activeLayerMode = "heat-vuln";
 let trajectoryChart = null;
 
 const TILE_LAYERS = {
@@ -16,8 +17,8 @@ const TILE_LAYERS = {
 document.addEventListener("DOMContentLoaded", async () => {
     try {
         const [respData, respPoints] = await Promise.all([
-            fetch("data.json?v=20261004_v5"),
-            fetch("wonogiri_grid_points.json?v=20261004_v1")
+            fetch("data.json?v=20261010_v1"),
+            fetch("wonogiri_grid_points.json?v=20261010_v1")
         ]);
         appData = await respData.json();
         wonogiriPoints = await respPoints.json();
@@ -47,23 +48,36 @@ function populateKecamatanSelect() {
 
 function renderHeatmapLayer(mode) {
     if (!map || !L.heatLayer || !wonogiriPoints.length) return;
+
     if (heatLayer) {
         map.removeLayer(heatLayer);
         heatLayer = null;
     }
 
-    const heatData = wonogiriPoints.map(pt => [
-        pt.lat,
-        pt.lon,
-        mode === "heat-lst" ? pt.lst_intensity : pt.drought_intensity
-    ]);
+    // Determine heat intensity
+    const heatData = wonogiriPoints.map(pt => {
+        let intensity = 0.5;
+        if (mode === "heat-vuln") {
+            intensity = pt.kerentanan_intensity;
+        } else if (mode === "heat-lst") {
+            // Suhu permukaan LST: normalized (26.0 - 27.0 range from NASA POWER)
+            intensity = Math.max(0.2, Math.min(1.0, (pt.suhu_permukaan_rata - 26.0) / 0.8));
+        } else if (mode === "heat-ndvi") {
+            intensity = pt.vegetation_stress;
+        }
+        return [pt.lat, pt.lon, intensity];
+    });
 
-    const gradient = mode === "heat-lst"
-        ? { 0.2: "#15803d", 0.45: "#f59e0b", 0.65: "#ea580c", 0.85: "#dc2626", 1.0: "#7f1d1d" }
-        : { 0.2: "#22c55e", 0.45: "#eab308", 0.7: "#f97316", 0.9: "#ef4444" };
+    const gradient = {
+        0.2: "#15803d",
+        0.45: "#f59e0b",
+        0.65: "#ea580c",
+        0.85: "#dc2626",
+        1.0: "#7f1d1d"
+    };
 
     heatLayer = L.heatLayer(heatData, {
-        radius: 22,
+        radius: 24,
         blur: 18,
         maxZoom: 14,
         max: 1.0,
@@ -76,12 +90,15 @@ function renderHeatmapLayer(mode) {
     const legGrad = document.getElementById("heatLegendGrad");
     if (legBar && legText && legGrad) {
         legBar.style.display = "block";
-        if (mode === "heat-lst") {
-            legText.textContent = "Suhu Kanopi / LST (°C): Rendah (30°) → Ekstrem Karst (38°+)";
+        if (mode === "heat-vuln") {
+            legText.textContent = "Indeks Kerentanan Relatif: Rendah (<0.43) → Sedang → Tinggi (>0.55)";
             legGrad.style.background = "linear-gradient(to right, #15803d, #f59e0b, #ea580c, #dc2626, #7f1d1d)";
-        } else {
-            legText.textContent = "Indeks Kekeringan (NDDI): Aman (<0.3) → Puso (>0.7)";
-            legGrad.style.background = "linear-gradient(to right, #22c55e, #eab308, #f97316, #ef4444)";
+        } else if (mode === "heat-lst") {
+            legText.textContent = "Suhu Permukaan LST: Rata-rata 26.2°C → Anomali Hangat 26.7°C+";
+            legGrad.style.background = "linear-gradient(to right, #15803d, #f59e0b, #ea580c, #dc2626, #7f1d1d)";
+        } else if (mode === "heat-ndvi") {
+            legText.textContent = "Stres Kanopi Vegetasi: Vigor Kuat (NDVI > 0.55) → Defisit Kanopi (NDVI < 0.35)";
+            legGrad.style.background = "linear-gradient(to right, #15803d, #f59e0b, #ea580c, #dc2626, #7f1d1d)";
         }
     }
 }
@@ -107,27 +124,59 @@ function initMap() {
         maxZoom: 18
     }).addTo(map);
 
-    // Initial Heatmap Render
-    renderHeatmapLayer("heat-lst");
+    // Initial Heatmap Render: Kerentanan Relatif
+    renderHeatmapLayer(activeLayerMode);
 
+    // Render individual point sample circles (300 titik pipeline)
+    const WARNA_KELAS = {
+        "Rendah": "#15803d",
+        "Sedang": "#d97706",
+        "Tinggi": "#dc2626"
+    };
+
+    wonogiriPoints.forEach(pt => {
+        const pCircle = L.circleMarker([pt.lat, pt.lon], {
+            radius: 3.5,
+            fillColor: WARNA_KELAS[pt.kelas_relatif] || "#f59e0b",
+            color: "#ffffff",
+            weight: 1,
+            opacity: 0.9,
+            fillOpacity: 0.8
+        }).addTo(map);
+
+        pCircle.bindTooltip(`
+            <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; line-height: 1.45; padding: 4px;">
+                <strong style="color: #0f172a;">Titik #${pt.point_id}</strong><br>
+                <span>Kerentanan:</span> <strong style="color: ${WARNA_KELAS[pt.kelas_relatif]};">${pt.kelas_relatif}</strong> (Stabilitas ${Math.round(pt.stabilitas_kelas * 100)}%)<br>
+                <span>Indeks:</span> <strong>${pt.index_kerentanan.toFixed(3)}</strong><br>
+                <span>Elevasi:</span> ${pt.elevation} m &bull; <span>Lereng:</span> ${pt.slope}&deg;<br>
+                <span>NDVI:</span> ${pt.ndvi.toFixed(3)}
+            </div>
+        `, { className: 'custom-leaflet-tooltip' });
+
+        pointMarkers.push(pCircle);
+    });
+
+    // Render 8 sentinel subdistrict nodes
     Object.entries(appData).forEach(([kec, data]) => {
         const [lat, lng] = data.coords;
-        const color = data.risk_score >= 0.70 ? '#d97706' : (data.risk_score >= 0.45 ? '#f59e0b' : '#15803d');
+        const color = data.risk_score >= 0.70 ? '#dc2626' : (data.risk_score >= 0.45 ? '#d97706' : '#15803d');
         
         const circle = L.circleMarker([lat, lng], {
-            radius: 8 + (data.risk_score * 8),
+            radius: 9 + (data.risk_score * 8),
             fillColor: color,
             color: '#ffffff',
-            weight: 2,
+            weight: 2.5,
             opacity: 1.0,
-            fillOpacity: 0.85
+            fillOpacity: 0.9
         }).addTo(map);
 
         circle.bindTooltip(`
-            <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; line-height: 1.4; padding: 4px;">
+            <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; line-height: 1.45; padding: 4px;">
                 <strong style="color: #1c211e;">${kec}</strong><br>
                 <span style="color: #727a70;">Komoditas:</span> ${data.commodity}<br>
-                <span style="color: #727a70;">Skor Risiko:</span> <strong style="color: ${color}; font-family: 'JetBrains Mono', monospace;">${data.risk_score.toFixed(3)}</strong>
+                <span style="color: #727a70;">Kerentanan:</span> <strong>${data.kelas_relatif}</strong> (${data.vuln_index})<br>
+                <span style="color: #727a70;">Skor Risiko Gabungan:</span> <strong style="color: ${color}; font-family: 'JetBrains Mono', monospace;">${data.risk_score.toFixed(3)}</strong>
             </div>
         `, { className: 'custom-leaflet-tooltip' });
 
@@ -151,17 +200,17 @@ function initTrajectoryChart() {
     const ctx = canvas.getContext('2d');
 
     const gradient = ctx.createLinearGradient(0, 0, 0, 160);
-    gradient.addColorStop(0, 'rgba(217, 119, 6, 0.45)');
+    gradient.addColorStop(0, 'rgba(217, 119, 6, 0.40)');
     gradient.addColorStop(1, 'rgba(245, 158, 11, 0.02)');
 
     trajectoryChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['Mgg 1', 'Mgg 2', 'Mgg 3', 'Mgg 4', 'Mgg 5', 'Mgg 6'],
+            labels: [],
             datasets: [
                 {
-                    label: 'NDVI Biomassa (Sentinel-2)',
-                    data: [0.65, 0.58, 0.51, 0.44, 0.38, 0.34],
+                    label: 'NDVI Vegetasi (Sentinel-2)',
+                    data: [],
                     borderColor: '#d97706',
                     backgroundColor: gradient,
                     borderWidth: 2.5,
@@ -171,12 +220,12 @@ function initTrajectoryChart() {
                     pointRadius: 3.5,
                     pointHoverRadius: 6,
                     fill: true,
-                    tension: 0.4,
+                    tension: 0.35,
                     yAxisID: 'y'
                 },
                 {
-                    label: 'Curah Hujan (BMKG mm)',
-                    data: [45, 38, 30, 22, 16, 12],
+                    label: 'Curah Hujan (NASA POWER & GEE mm)',
+                    data: [],
                     borderColor: '#15803d',
                     backgroundColor: 'transparent',
                     borderWidth: 2,
@@ -186,7 +235,7 @@ function initTrajectoryChart() {
                     pointBorderWidth: 1.5,
                     pointRadius: 3,
                     fill: false,
-                    tension: 0.4,
+                    tension: 0.35,
                     yAxisID: 'y1'
                 }
             ]
@@ -217,15 +266,20 @@ function initTrajectoryChart() {
                 },
                 y: {
                     type: 'linear',
-                    display: false,
-                    min: 0,
-                    max: 1.0
+                    display: true,
+                    position: 'left',
+                    min: 0.2,
+                    max: 0.85,
+                    ticks: { color: '#d97706', font: { size: 9 } }
                 },
                 y1: {
                     type: 'linear',
-                    display: false,
+                    display: true,
+                    position: 'right',
+                    grid: { display: false },
                     min: 0,
-                    max: 80
+                    max: 500,
+                    ticks: { color: '#15803d', font: { size: 9 } }
                 }
             }
         }
@@ -270,14 +324,15 @@ function updateDashboard(kec) {
                 marker.setStyle({ weight: 4, color: '#1c211e' });
                 marker.openTooltip();
             } else {
-                marker.setStyle({ weight: 2, color: '#ffffff' });
+                marker.setStyle({ weight: 2.5, color: '#ffffff' });
             }
         });
     }
 
     calculateAndRenderMetrics();
+
     if (item.history && trajectoryChart) {
-        trajectoryChart.data.labels = item.history.weeks.map(w => `Mgg ${w}`);
+        trajectoryChart.data.labels = item.history.weeks;
         trajectoryChart.data.datasets[0].data = item.history.ndvi;
         trajectoryChart.data.datasets[1].data = item.history.rain;
         trajectoryChart.update();
@@ -297,29 +352,32 @@ function calculateAndRenderMetrics() {
     const lst = parseFloat(lstElem.value);
     const landArea = parseFloat(landElem.value);
 
-    // Exact bio-physical risk formula
-    const ndviRatio = Math.max(0, 1.0 - (ndvi / 0.85));
-    const rainRatio = Math.max(0, 1.0 - (rain / 60.0));
-    const lstRatio = Math.max(0, (lst - 28.0) / 7.0);
+    const item = appData[currentKec] || {};
+    const vIndex = item.vuln_index || 0.50;
 
-    const riskScore = Math.max(0.05, Math.min(0.98, (0.50 * ndviRatio + 0.35 * rainRatio + 0.15 * lstRatio)));
+    // Pipeline bio-physical risk formula
+    const ndviRatio = Math.max(0, 1.0 - (ndvi / 0.85));
+    const rainRatio = Math.max(0, 1.0 - (rain / 120.0));
+    const lstRatio = Math.max(0, (lst - 30.0) / 15.0);
+
+    const riskScore = Math.max(0.05, Math.min(0.98, (0.40 * ndviRatio + 0.35 * rainRatio + 0.25 * vIndex)));
     
-    let lossPct = riskScore * 58.0;
+    let lossPct = riskScore * 48.0;
     if (riskScore < 0.45) {
-        lossPct = riskScore * 14.0;
+        lossPct = riskScore * 18.0;
     } else if (riskScore < 0.70) {
-        lossPct = riskScore * 35.0;
+        lossPct = riskScore * 32.0;
     }
 
     const safePct = Math.max(10, Math.min(98, 100.0 - lossPct));
-    const prodNormalTonHa = 6.0; // Standar Padi Sawah
+    const prodNormalTonHa = 6.0;
     const pricePerKg = 6500;
     const totalProdNormalTon = landArea * prodNormalTonHa;
     const lostProdTon = totalProdNormalTon * (lossPct / 100.0);
     const finLossRp = lostProdTon * 1000 * pricePerKg;
     const finLossMiliar = (finLossRp / 1e9).toFixed(2);
 
-    // 1. Left micro-KPI tiles
+    // 1. Left micro-KPI tiles (if any)
     const kpiVeg = document.getElementById("kpiVegCover");
     if (kpiVeg) kpiVeg.innerHTML = `${Math.round(ndvi * 100)}<small>%</small>`;
 
@@ -327,7 +385,7 @@ function calculateAndRenderMetrics() {
     if (kpiCanopy) kpiCanopy.innerHTML = `${Math.round(Math.max(20, 100 - (riskScore * 75)))}<small>%</small>`;
 
     const kpiSoil = document.getElementById("kpiSoilMoisture");
-    if (kpiSoil) kpiSoil.innerHTML = `${Math.round(Math.min(95, rain * 1.8 + 20))}<small>%</small>`;
+    if (kpiSoil) kpiSoil.innerHTML = `${Math.round(Math.min(95, rain * 1.5 + 20))}<small>%</small>`;
 
     const kpiLand = document.getElementById("kpiLandMonitored");
     if (kpiLand) kpiLand.innerHTML = `${(landArea / 10).toFixed(1)}<small>K</small>`;
@@ -335,20 +393,10 @@ function calculateAndRenderMetrics() {
     const kpiSurplus = document.getElementById("kpiYieldSurplus");
     if (kpiSurplus) kpiSurplus.innerHTML = `${Math.round(safePct)}<small>%</small>`;
 
-    // 2. Right snapshot 4 columns
+    // 2. Card 1: Risk & Loss
     const snapRisk = document.getElementById("snapRiskScoreVal");
     if (snapRisk) snapRisk.textContent = riskScore.toFixed(3);
 
-    const snapNdvi = document.getElementById("snapNdviVal");
-    if (snapNdvi) snapNdvi.textContent = ndvi.toFixed(2);
-
-    const snapRain = document.getElementById("snapRainVal");
-    if (snapRain) snapRain.textContent = `${rain.toFixed(1)} mm`;
-
-    const snapTemp = document.getElementById("snapTempVal");
-    if (snapTemp) snapTemp.textContent = `${lst.toFixed(1)} °C`;
-
-    // 3. Right 4 transaction cards
     const txLand = document.getElementById("txLandHa");
     if (txLand) txLand.textContent = `${Math.round(landArea)} Ha`;
 
@@ -356,11 +404,26 @@ function calculateAndRenderMetrics() {
     if (txLoss) txLoss.textContent = `${lostProdTon.toFixed(1)} Ton`;
 
     const txPct = document.getElementById("txLossPct");
-    if (txPct) txPct.textContent = `${lossPct.toFixed(1)}% Yield Loss`;
+    if (txPct) txPct.textContent = `${lossPct.toFixed(1)}% Loss`;
 
     const txRp = document.getElementById("txLossRp");
     if (txRp) txRp.textContent = `Rp ${finLossMiliar} M`;
 
+    // 3. Card 2: Pipeline Predictions
+    const snapNdvi = document.getElementById("snapNdviVal");
+    if (snapNdvi) snapNdvi.textContent = ndvi.toFixed(3);
+
+    const snapRain = document.getElementById("snapRainVal");
+    if (snapRain) snapRain.textContent = `${rain.toFixed(1)} mm`;
+
+    const snapTemp = document.getElementById("snapTempVal");
+    if (snapTemp) snapTemp.textContent = `${lst.toFixed(1)} °C`;
+
+    // 4. Donut Gauge
+    const donutVal = document.getElementById("donutCenterVal");
+    if (donutVal) donutVal.textContent = `${Math.round(safePct)}%`;
+
+    // 5. AUTP & AWD Calculations
     const isEligibleAUTP = lossPct >= 75.0;
     const autpTotal = isEligibleAUTP ? (landArea * 6000000) : (landArea * 6000000 * 0.5);
     const txAutp = document.getElementById("txAutpPayout");
@@ -369,25 +432,11 @@ function calculateAndRenderMetrics() {
     const txStatus = document.getElementById("txAutpStatus");
     if (txStatus) txStatus.textContent = isEligibleAUTP ? "Eligible Klaim" : "Status Pantau";
 
-    // 4. Donut Gauge
-    const donutVal = document.getElementById("donutCenterVal");
-    if (donutVal) donutVal.textContent = `${Math.round(safePct)}%`;
-
-    const donutCircle = document.getElementById("donutRingCircle");
-    if (donutCircle) {
-        const offset = 188 - (188 * (safePct / 100));
-        donutCircle.style.strokeDashoffset = offset;
-    }
-
-    // 5. Operational Tools (Pompa & AUTP)
     const targetWaterMm = 60.0;
-    const waterDeficitMm = Math.max(0.0, targetWaterMm - rain);
+    const waterDeficitMm = Math.max(0.0, targetWaterMm - (rain / 4.0));
     const totalWaterVolM3 = waterDeficitMm * 10.0 * landArea;
     const pumpUnits = Math.max(1, Math.ceil(totalWaterVolM3 / 5040.0));
     const fuelCostJuta = ((pumpUnits * 84 * 6800) / 1e6).toFixed(1);
-
-    const kpiPump = document.getElementById("kpiPumpVolume");
-    if (kpiPump) kpiPump.textContent = `${pumpUnits * 28}`;
 
     const defElem = document.getElementById("waterDeficitVal");
     if (defElem) defElem.textContent = waterDeficitMm.toFixed(1);
@@ -396,10 +445,16 @@ function calculateAndRenderMetrics() {
     if (volElem) volElem.textContent = Math.round(totalWaterVolM3).toLocaleString('id-ID');
 
     const pumpElem = document.getElementById("pumpUnitsVal");
-    if (pumpElem) pumpElem.textContent = pumpUnits;
+    if (pumpElem) pumpElem.textContent = `${pumpUnits} Unit`;
 
     const fuelElem = document.getElementById("fuelCostVal");
     if (fuelElem) fuelElem.textContent = `Rp ${fuelCostJuta} Jt`;
+
+    const awdPump = document.getElementById("awdPumpCount");
+    if (awdPump) awdPump.textContent = pumpUnits;
+
+    const awdFuel = document.getElementById("awdFuelCost");
+    if (awdFuel) awdFuel.textContent = `Rp ${fuelCostJuta} Jt`;
 
     const adviceElem = document.getElementById("irrigationAdviceText");
     if (adviceElem) {
@@ -408,7 +463,7 @@ function calculateAndRenderMetrics() {
         } else if (riskScore >= 0.45) {
             adviceElem.textContent = `Waspada: Rotasi pembukaan pintu air tersier setiap 3 hari. Gunakan mulsa jerami sisa panen untuk menekan laju penguapan tanah.`;
         } else {
-            adviceElem.textContent = `Kondisi Stabil: Pasokan air presipitasi mencukupi kebutuhan fase vegetatif. Pertahankan tinggi genangan macak-macak 2-3 cm.`;
+            adviceElem.textContent = `Kondisi Terkendali (Risiko Regional Rendah z=0.374): Pertahankan tinggi muka air berselang (AWD) 2-3 cm dan pantau anomali suhu LST.`;
         }
     }
 
@@ -429,13 +484,6 @@ function calculateAndRenderMetrics() {
             autpPayout.textContent = `Rp ${(landArea * 6000000).toLocaleString('id-ID')} (Potensi Maks)`;
         }
     }
-
-    // Sync Tab 2 (AWD) specific elements
-    const awdPump = document.getElementById("awdPumpCount");
-    if (awdPump) awdPump.textContent = pumpUnits;
-
-    const awdFuel = document.getElementById("awdFuelCost");
-    if (awdFuel) awdFuel.textContent = `Rp ${fuelCostJuta} Jt`;
 
     // Sync Risk Level Badge
     const riskBadge = document.getElementById("riskLevelBadge");
@@ -487,8 +535,8 @@ function bindEvents() {
         btnResetView.addEventListener("click", () => {
             if (map) {
                 const wonogiriBounds = L.latLngBounds([
-                    [-8.22, 110.74],
-                    [-7.72, 111.32]
+                    [-8.25, 110.70],
+                    [-7.70, 111.35]
                 ]);
                 map.fitBounds(wonogiriBounds, { padding: [25, 25], animate: true });
             }
@@ -518,7 +566,7 @@ function bindEvents() {
 
             const legBar = document.getElementById("heatmapLegendBar");
 
-            if (layerKey === "heat-lst" || layerKey === "heat-drought") {
+            if (layerKey === "heat-vuln" || layerKey === "heat-lst" || layerKey === "heat-ndvi") {
                 if (currentTileLayer) {
                     map.removeLayer(currentTileLayer);
                 }
@@ -536,22 +584,6 @@ function bindEvents() {
                 }
                 const tileUrl = layerKey === "osm" ? TILE_LAYERS.osm : TILE_LAYERS.satellite;
                 currentTileLayer = L.tileLayer(tileUrl, { maxZoom: 18 }).addTo(map);
-            }
-        });
-    });
-
-    // Nav pills / Segment buttons
-    document.querySelectorAll(".segment-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-            document.querySelectorAll(".segment-btn").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-
-            const tab = btn.dataset.tab;
-            if (tab === "overview") {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else if (tab === "mitigasi" || tab === "autp") {
-                const tools = document.getElementById("toolsDrawer");
-                if (tools) tools.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         });
     });

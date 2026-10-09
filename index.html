@@ -12,7 +12,7 @@
     
     <!-- Leaflet CSS & Chart.js -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="style.css?v=20261004_v4">
+    <link rel="stylesheet" href="style.css?v=20261010_v1">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -35,7 +35,7 @@
 
                 <div class="quick-status-chip">
                     <span class="status-live-dot"></span>
-                    <span class="status-chip-text">Telemetri Satelit Real-time Aktif</span>
+                    <span class="status-chip-text">Prakiraan Oktober 2026: Risiko Regional Rendah (z = 0.374)</span>
                 </div>
             </div>
 
@@ -63,17 +63,25 @@
                 </div>
 
                 <div class="layer-pill-switch">
-                    <button type="button" class="layer-btn active" data-layer="heat-lst">
+                    <button type="button" class="layer-btn active" data-layer="heat-vuln">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        <span>Kerentanan 300 Titik</span>
+                    </button>
+                    <button type="button" class="layer-btn" data-layer="heat-lst">
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
                         </svg>
-                        <span>Heatmap Suhu LST</span>
+                        <span>Suhu LST</span>
                     </button>
-                    <button type="button" class="layer-btn" data-layer="heat-drought">
+                    <button type="button" class="layer-btn" data-layer="heat-ndvi">
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                         </svg>
-                        <span>Heatmap NDDI</span>
+                        <span>Stres Kanopi NDVI</span>
                     </button>
                     <button type="button" class="layer-btn" data-layer="satellite">
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -161,43 +169,43 @@
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
                     </div>
                     <div>
-                        <span class="card-kicker">Telemetri Satelit Sentinel-2 &amp; BMKG</span>
-                        <h3 class="card-title">Kondisi Biofisik Terkini</h3>
+                        <span class="card-kicker">Prakiraan Oktober 2026 (Pipeline Model ML)</span>
+                        <h3 class="card-title">Prakiraan Parameter Biofisik</h3>
                     </div>
                 </div>
                 <div class="summary-card-body">
                     <div class="sensor-quad-grid">
                         <div class="sensor-cell">
-                            <span class="sensor-label">Vigor Kanopi (NDVI)</span>
+                            <span class="sensor-label">Prakiraan NDVI (Ridge)</span>
                             <div class="sensor-reading">
-                                <strong class="reading-num" id="snapNdviVal">0.34</strong>
-                                <span class="badge-sub danger">Defisit Vigor</span>
+                                <strong class="reading-num" id="snapNdviVal">0.482</strong>
+                                <span class="badge-sub safe" id="snapNdviBadge">+0.011 Anomali</span>
                             </div>
-                            <span class="sensor-foot">Normal: &gt; 0.50</span>
+                            <span class="sensor-foot">Normal Bulanan: 0.470</span>
                         </div>
                         <div class="sensor-cell">
-                            <span class="sensor-label">Curah Hujan Mingguan</span>
+                            <span class="sensor-label">Prakiraan Hujan (RF)</span>
                             <div class="sensor-reading">
-                                <strong class="reading-num" id="snapRainVal">12.1 mm</strong>
-                                <span class="badge-sub warning">Defisit</span>
+                                <strong class="reading-num" id="snapRainVal">81.5 mm</strong>
+                                <span class="badge-sub warning" id="snapRainBadge">-22 mm Defisit</span>
                             </div>
-                            <span class="sensor-foot">Normal: &gt; 50 mm</span>
+                            <span class="sensor-foot">Normal Bulanan: 103.5 mm</span>
                         </div>
                         <div class="sensor-cell">
-                            <span class="sensor-label">Suhu Permukaan (LST)</span>
+                            <span class="sensor-label">Suhu LST (RF Terbukti)</span>
                             <div class="sensor-reading">
-                                <strong class="reading-num" id="snapTempVal">34.2 °C</strong>
-                                <span class="badge-sub danger">Stres Termal</span>
+                                <strong class="reading-num" id="snapTempVal">44.8 °C</strong>
+                                <span class="badge-sub warning" id="snapTempBadge">+1.7 °C Hangat</span>
                             </div>
-                            <span class="sensor-foot">Normal: &lt; 31 °C</span>
+                            <span class="sensor-foot">Normal Bulanan: 43.0 °C</span>
                         </div>
                         <div class="sensor-cell">
-                            <span class="sensor-label">Proyeksi Panen Aman</span>
+                            <span class="sensor-label">Prakiraan NDDI (Kekeringan)</span>
                             <div class="sensor-reading">
-                                <strong class="reading-num text-success" id="donutCenterVal">58%</strong>
-                                <span class="badge-sub safe">Lolos Puso</span>
+                                <strong class="reading-num" id="snapNddiVal">0.804</strong>
+                                <span class="badge-sub warning">+0.072 Anomali</span>
                             </div>
-                            <span class="sensor-foot">Target: &gt; 70%</span>
+                            <span class="sensor-foot">Normal Bulanan: 0.732</span>
                         </div>
                     </div>
                 </div>
@@ -246,7 +254,11 @@
             <div class="detail-tabs-header">
                 <button type="button" class="detail-tab-btn active" data-tab-target="tab-trajectory">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-                    <span>Trajektori 12 Pekan</span>
+                    <span>Deret Waktu &amp; Prakiraan</span>
+                </button>
+                <button type="button" class="detail-tab-btn" data-tab-target="tab-eval">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                    <span>Evaluasi Model &amp; Narasi</span>
                 </button>
                 <button type="button" class="detail-tab-btn" data-tab-target="tab-awd">
                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
@@ -266,16 +278,60 @@
             <div class="tab-pane active" id="tab-trajectory">
                 <div class="pane-header-group">
                     <div>
-                        <h4 class="pane-title">Trajektori Defisit Multitemporal</h4>
-                        <p class="pane-subtitle">Dinamika historis korelasi penurunan NDVI vegetasi satelit Sentinel-2 dan curah hujan mingguan BMKG.</p>
+                        <h4 class="pane-title">Deret Waktu Bulanan &amp; Titik Prakiraan Oktober 2026</h4>
+                        <p class="pane-subtitle">Historis 12 bulan (Oktober 2025 – September 2026) bersumber dari GEE &amp; NASA POWER + Titik Prakiraan Oktober 2026 (*).</p>
                     </div>
                     <div class="pane-legend-badges">
-                        <span class="legend-indicator amber"><span class="dot"></span> NDVI Biomassa</span>
-                        <span class="legend-indicator green"><span class="dot dashed"></span> Curah Hujan BMKG (mm)</span>
+                        <span class="legend-indicator amber"><span class="dot"></span> NDVI Vegetasi</span>
+                        <span class="legend-indicator green"><span class="dot dashed"></span> Curah Hujan (mm)</span>
                     </div>
                 </div>
                 <div class="trajectory-chart-wrapper">
                     <canvas id="trajectoryChart"></canvas>
+                </div>
+            </div>
+
+            
+            <!-- Tab: Evaluasi Model & Narasi Resmi Pipeline -->
+            <div class="tab-pane" id="tab-eval">
+                <div class="pane-header-group">
+                    <div>
+                        <h4 class="pane-title">Ringkasan Narasi Resmi &amp; Validasi Model Pipeline</h4>
+                        <p class="pane-subtitle">Hasil walk-forward validation (dev: 2020–2023, test/holdout: 2024–2026) sesuai naskah penelitian.</p>
+                    </div>
+                </div>
+
+                <div class="pipeline-narasi-box" style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: var(--radius-subcard); padding: 16px; font-size: 0.8rem; line-height: 1.6; color: var(--text-secondary);">
+                    <ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px;">
+                        <li><strong>Prakiraan Oktober 2026:</strong> Risiko kekeringan regional <strong>Rendah</strong> (skor z 0.374; rentang 80%: Rendah s.d. Tinggi).</li>
+                        <li><strong>Suhu Permukaan Lahan (LST):</strong> Diprakirakan 44.8 °C, 1.7 °C di atas normal bulanan (43.0 °C); model Random Forest (B) terbukti memiliki skill valid pada periode test (SS test = 0.408).</li>
+                        <li><strong>Curah Hujan:</strong> Diprakirakan 81.5 mm, 22.0 mm di bawah normal bulanan (103.5 mm). <em>Skill model belum terbukti melampaui klimatologi di periode holdout, sehingga tidak dijadikan faktor penentu kategori tunggal regional.</em></li>
+                        <li><strong>Indeks NDDI &amp; NDVI:</strong> NDDI diprakirakan 0.804 (+0.072 dari normal 0.732) dan NDVI 0.482 (+0.011 dari normal 0.470).</li>
+                        <li><strong>Sifat Kerentanan Titik:</strong> Bersifat relatif dan statis dari kombinasi NDVI (23.3%), elevasi (23.3%), kelerengan (23.3%), dan curah hujan NASA POWER (30.0%).</li>
+                    </ul>
+                </div>
+
+                <div class="tool-metrics-quad" style="margin-top: 12px;">
+                    <div class="tool-unit-box">
+                        <span class="unit-tag">Model LST Terbaik</span>
+                        <strong class="unit-num">Random Forest (B)</strong>
+                        <span class="unit-sub">Skill Score Test: 0.408 (Terbukti)</span>
+                    </div>
+                    <div class="tool-unit-box">
+                        <span class="unit-tag">Model Hujan</span>
+                        <strong class="unit-num">Random Forest (A)</strong>
+                        <span class="unit-sub">Skill Score Test: 0.177</span>
+                    </div>
+                    <div class="tool-unit-box">
+                        <span class="unit-tag">Model NDVI</span>
+                        <strong class="unit-num">Ridge Regression (C)</strong>
+                        <span class="unit-sub">Skill Score Test: 0.241</span>
+                    </div>
+                    <div class="tool-unit-box">
+                        <span class="unit-tag">Model NDDI</span>
+                        <strong class="unit-num">Ridge Regression (C)</strong>
+                        <span class="unit-sub">Skill Score Test: 0.081</span>
+                    </div>
                 </div>
             </div>
 
@@ -406,6 +462,6 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
-    <script src="app.js?v=20261004_v5"></script>
+    <script src="app.js?v=20261010_v1"></script>
 </body>
 </html>
