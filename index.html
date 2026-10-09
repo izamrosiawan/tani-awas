@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DEDIKASI • TANI-AWAS — Sistem Deteksi Dini Kekeringan Lahan Wonogiri</title>
+    <title>DEDIKASI — Sistem Deteksi Dini Kekeringan Lahan Pertanian Wonogiri</title>
     
     <!-- Premium Fonts: Plus Jakarta Sans & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,8 +28,8 @@
                         </svg>
                     </div>
                     <div class="brand-text-col">
-                        <span class="brand-title">DEDIKASI • TANI-AWAS</span>
-                        <span class="brand-subtitle">Deteksi Dini Kekeringan Lahan Citra Satelit &bull; Kab. Wonogiri</span>
+                        <span class="brand-title">DEDIKASI</span>
+                        <span class="brand-subtitle">Sistem Deteksi Dini Kekeringan Lahan Berbasis Citra Satelit &amp; ML &bull; Kab. Wonogiri</span>
                     </div>
                 </div>
 
@@ -138,8 +138,8 @@
                 </div>
                 <div class="summary-card-body">
                     <div class="main-stat-row">
-                        <span class="large-stat-val" id="snapRiskScoreVal">0.712</span>
-                        <span class="status-pill warning" id="riskLevelBadge">Fase Kritis (D3)</span>
+                        <span class="large-stat-val" id="snapRiskScoreVal">0.385</span>
+                        <span class="status-pill safe" id="riskLevelBadge" style="color: #15803d; background-color: #dcfce7;">Risiko Rendah (z = 0.374)</span>
                     </div>
                     <div class="stat-meta-grid">
                         <div class="meta-item">
@@ -148,15 +148,15 @@
                         </div>
                         <div class="meta-item">
                             <span class="meta-label">Potensi Gagal Panen</span>
-                            <strong class="meta-value text-danger" id="txLossTon">619.5 Ton</strong>
+                            <strong class="meta-value text-amber" id="txLossTon">103.9 Ton</strong>
                         </div>
                         <div class="meta-item">
                             <span class="meta-label">Estimasi Kerugian</span>
-                            <strong class="meta-value text-danger" id="txLossRp">Rp 4.03 M</strong>
+                            <strong class="meta-value text-amber" id="txLossRp">Rp 0.68 M</strong>
                         </div>
                         <div class="meta-item">
                             <span class="meta-label">Kehilangan Hasil</span>
-                            <strong class="meta-value" id="txLossPct">41.3% Loss</strong>
+                            <strong class="meta-value" id="txLossPct">6.9% Loss</strong>
                         </div>
                     </div>
                 </div>
@@ -333,6 +333,48 @@
                         <span class="unit-sub">Skill Score Test: 0.081</span>
                     </div>
                 </div>
+
+                <div style="margin-top: 16px; border: 1px solid var(--border-light); border-radius: var(--radius-subcard); padding: 14px; background: #ffffff;">
+                    <h5 style="margin: 0 0 10px; font-size: 0.82rem; font-weight: 700; color: var(--text-primary);">Sintesis Metodologi Sesuai Naskah Ilmiah DEDIKASI</h5>
+                    <div style="overflow-x: auto;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.73rem; color: var(--text-secondary); text-align: left;">
+                            <thead>
+                                <tr style="border-bottom: 1px solid var(--border-light); background: #f8fafc;">
+                                    <th style="padding: 6px 10px;">Komponen Naskah</th>
+                                    <th style="padding: 6px 10px;">Sumber Data / Metode</th>
+                                    <th style="padding: 6px 10px;">Peran dalam Sistem</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid var(--border-light);">
+                                    <td style="padding: 6px 10px; font-weight: 600;">Masking Lahan</td>
+                                    <td style="padding: 6px 10px;">ESA WorldCover 10m</td>
+                                    <td style="padding: 6px 10px;">Isolasi khusus tutupan lahan pertanian aktif Wonogiri</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--border-light);">
+                                    <td style="padding: 6px 10px; font-weight: 600;">Citra Multitemporal</td>
+                                    <td style="padding: 6px 10px;">Landsat-8 &amp; 9 (GEE)</td>
+                                    <td style="padding: 6px 10px;">Ekstraksi indeks kanopi &amp; termal: NDVI, NDWI, NDDI, LST</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--border-light);">
+                                    <td style="padding: 6px 10px; font-weight: 600;">Klimatologi &amp; Presipitasi</td>
+                                    <td style="padding: 6px 10px;">NASA POWER &amp; CHIRPS</td>
+                                    <td style="padding: 6px 10px;">Data cuaca grid presisi tanpa ketergantungan stasiun darat BMKG</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid var(--border-light);">
+                                    <td style="padding: 6px 10px; font-weight: 600;">Faktor Topografi</td>
+                                    <td style="padding: 6px 10px;">SRTM 30m</td>
+                                    <td style="padding: 6px 10px;">Elevasi dan kemiringan lereng (lereng curam karst Wonogiri)</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 6px 10px; font-weight: 600;">Validasi Model</td>
+                                    <td style="padding: 6px 10px;">Walk-Forward Holdout</td>
+                                    <td style="padding: 6px 10px;">Dev (2020–2023) &amp; Test (2024–2026) anti-data-leakage temporal</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
             <!-- Tab 2: Kalkulator AWD -->
@@ -443,7 +485,7 @@
 
         <!-- CLEAN SYSTEM FOOTER -->
         <footer class="app-bottom-footer">
-            <span><strong>DEDIKASI Platform</strong> &bull; Google Earth Engine &amp; NASA POWER Agroclimatology &bull; Kabupaten Wonogiri, Jawa Tengah</span>
+            <span><strong>DEDIKASI</strong> &bull; Sistem Deteksi Dini Kekeringan Lahan Berbasis Citra Satelit &amp; Machine Learning &bull; Wonogiri, Jawa Tengah</span>
             <span>PIMTUS 2026 &bull; Telkom University Surabaya</span>
         </footer>
     </div>
