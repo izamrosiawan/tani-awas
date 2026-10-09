@@ -5,10 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DEDIKASI — Sistem Deteksi Dini Kekeringan Lahan Pertanian Wonogiri</title>
     
-    <!-- Premium Fonts: Plus Jakarta Sans & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Leaflet CSS & Chart.js -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -35,7 +34,7 @@
 
                 <div class="quick-status-chip">
                     <span class="status-live-dot"></span>
-                    <span class="status-chip-text">Prakiraan Oktober 2026: Risiko Regional Rendah (z = 0.374)</span>
+                    <span class="status-chip-text">Prakiraan Oktober 2026: Risiko Rendah (z = 0,37)</span>
                 </div>
             </div>
 
@@ -132,8 +131,8 @@
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
                     </div>
                     <div>
-                        <span class="card-kicker">Status &amp; Indeks Risiko</span>
-                        <h3 class="card-title">Tingkat Kerentanan Wilayah</h3>
+                        <span class="card-kicker">Indeks Risiko Wilayah</span>
+                        <h3 class="card-title">Kerentanan Lahan</h3>
                     </div>
                 </div>
                 <div class="summary-card-body">
@@ -143,7 +142,7 @@
                     </div>
                     <div class="stat-meta-grid">
                         <div class="meta-item">
-                            <span class="meta-label">Hamparan Terancam</span>
+                            <span class="meta-label">Luas Lahan Terancam</span>
                             <strong class="meta-value" id="txLandHa">250 Ha</strong>
                         </div>
                         <div class="meta-item">
@@ -151,7 +150,7 @@
                             <strong class="meta-value text-amber" id="txLossTon">103.9 Ton</strong>
                         </div>
                         <div class="meta-item">
-                            <span class="meta-label">Estimasi Kerugian</span>
+                            <span class="meta-label">Taksiran Kerugian</span>
                             <strong class="meta-value text-amber" id="txLossRp">Rp 0.68 M</strong>
                         </div>
                         <div class="meta-item">
@@ -169,41 +168,41 @@
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
                     </div>
                     <div>
-                        <span class="card-kicker">Prakiraan Oktober 2026 (Pipeline Model ML)</span>
-                        <h3 class="card-title">Prakiraan Parameter Biofisik</h3>
+                        <span class="card-kicker">Hasil Model Prediksi</span>
+                        <h3 class="card-title">Parameter Biofisik Oktober 2026</h3>
                     </div>
                 </div>
                 <div class="summary-card-body">
                     <div class="sensor-quad-grid">
                         <div class="sensor-cell">
-                            <span class="sensor-label">Prakiraan NDVI (Ridge)</span>
+                            <span class="sensor-label">NDVI Vegetasi</span>
                             <div class="sensor-reading">
                                 <strong class="reading-num" id="snapNdviVal">0.482</strong>
-                                <span class="badge-sub safe" id="snapNdviBadge">+0.011 Anomali</span>
+                                <span class="badge-sub safe" id="snapNdviBadge">+0,011</span>
                             </div>
                             <span class="sensor-foot">Normal Bulanan: 0.470</span>
                         </div>
                         <div class="sensor-cell">
-                            <span class="sensor-label">Prakiraan Hujan (RF)</span>
+                            <span class="sensor-label">Curah Hujan Bulanan</span>
                             <div class="sensor-reading">
                                 <strong class="reading-num" id="snapRainVal">81.5 mm</strong>
-                                <span class="badge-sub warning" id="snapRainBadge">-22 mm Defisit</span>
+                                <span class="badge-sub warning" id="snapRainBadge">-22 mm dari Normal</span>
                             </div>
                             <span class="sensor-foot">Normal Bulanan: 103.5 mm</span>
                         </div>
                         <div class="sensor-cell">
-                            <span class="sensor-label">Suhu LST (RF Terbukti)</span>
+                            <span class="sensor-label">Suhu Permukaan (LST)</span>
                             <div class="sensor-reading">
                                 <strong class="reading-num" id="snapTempVal">44.8 °C</strong>
-                                <span class="badge-sub warning" id="snapTempBadge">+1.7 °C Hangat</span>
+                                <span class="badge-sub warning" id="snapTempBadge">+1,7 °C dari Normal</span>
                             </div>
                             <span class="sensor-foot">Normal Bulanan: 43.0 °C</span>
                         </div>
                         <div class="sensor-cell">
-                            <span class="sensor-label">Prakiraan NDDI (Kekeringan)</span>
+                            <span class="sensor-label">Indeks NDDI</span>
                             <div class="sensor-reading">
                                 <strong class="reading-num" id="snapNddiVal">0.804</strong>
-                                <span class="badge-sub warning">+0.072 Anomali</span>
+                                <span class="badge-sub warning">+0,072</span>
                             </div>
                             <span class="sensor-foot">Normal Bulanan: 0.732</span>
                         </div>
@@ -218,13 +217,13 @@
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
                     </div>
                     <div>
-                        <span class="card-kicker">Protokol Mitigasi Terintegrasi</span>
-                        <h3 class="card-title">Instruksi Aksi Tanggap</h3>
+                        <span class="card-kicker">Rekomendasi Operasional</span>
+                        <h3 class="card-title">Langkah Mitigasi Lapangan</h3>
                     </div>
                 </div>
                 <div class="summary-card-body">
                     <div class="action-alert-box" id="irrigationAdviceText">
-                        Kondisi Terkendali (Risiko Regional Rendah z = 0.374): Pertahankan tinggi muka air berselang (AWD) 2-3 cm dan pantau anomali suhu LST.
+                        Kondisi wilayah saat ini tergolong rendah (z = 0,37). Lahan disarankan tetap menerapkan irigasi berselang (AWD) 2-3 cm serta pemantauan berkala terhadap anomali suhu permukaan.
                     </div>
                     <div class="action-quick-stats">
                         <div class="action-stat-col">
@@ -233,13 +232,13 @@
                             <span class="stat-col-sub">Diameter 4 Inci</span>
                         </div>
                         <div class="action-stat-col">
-                            <span class="stat-col-label">Biaya Solar Subsidi</span>
+                            <span class="stat-col-label">Kebutuhan BBM Solar</span>
                             <strong class="stat-col-val" id="fuelCostVal">Rp 31.3 Jt</strong>
                             <span class="stat-col-sub">Rp6.800/liter</span>
                         </div>
                         <div class="action-stat-col">
-                            <span class="stat-col-label">Status Asuransi AUTP</span>
-                            <strong class="stat-col-val text-amber" id="txAutpStatus">Status Pantau</strong>
+                            <span class="stat-col-label">Kelayakan AUTP</span>
+                            <strong class="stat-col-val text-amber" id="txAutpStatus">Belum Memenuhi</strong>
                             <span class="stat-col-sub">Ambang: &ge; 75% Puso</span>
                         </div>
                     </div>
@@ -278,7 +277,7 @@
             <div class="tab-pane active" id="tab-trajectory">
                 <div class="pane-header-group">
                     <div>
-                        <h4 class="pane-title">Deret Waktu Bulanan &amp; Titik Prakiraan Oktober 2026</h4>
+                        <h4 class="pane-title">Deret Waktu Indikator dan Titik Prediksi</h4>
                         <p class="pane-subtitle">Historis 12 bulan (Oktober 2025 – September 2026) bersumber dari GEE &amp; NASA POWER + Titik Prakiraan Oktober 2026 (*).</p>
                     </div>
                     <div class="pane-legend-badges">
@@ -381,7 +380,7 @@
             <div class="tab-pane" id="tab-awd">
                 <div class="pane-header-group">
                     <div>
-                        <h4 class="pane-title">Kalkulator Suplesi Pompa Air (AWD Engine)</h4>
+                        <h4 class="pane-title">Perhitungan Kebutuhan Suplesi Air dan Pompa (AWD)</h4>
                         <p class="pane-subtitle">Perhitungan kebutuhan volume suplesi air darurat dan alokasi pompa 4 inci berbasis defisit curah hujan presisi.</p>
                     </div>
                 </div>
@@ -402,7 +401,7 @@
                         <span class="unit-sub">Unit Siaga (56 Jam Operasional)</span>
                     </div>
                     <div class="tool-unit-box">
-                        <span class="unit-tag">Estimasi Biaya Solar Subsidi</span>
+                        <span class="unit-tag">Estimasi Kebutuhan BBM Solar</span>
                         <strong class="unit-num" id="awdFuelCost">Rp 31.3 Jt</strong>
                         <span class="unit-sub">Acuan Solar Rp6.800 / liter</span>
                     </div>
@@ -416,7 +415,7 @@
             <div class="tab-pane" id="tab-autp">
                 <div class="pane-header-group">
                     <div>
-                        <h4 class="pane-title">Simulator Verifikasi Asuransi Usaha Tani Padi (AUTP)</h4>
+                        <h4 class="pane-title">Simulasi Kelayakan Klaim Asuransi Usaha Tani Padi (AUTP)</h4>
                         <p class="pane-subtitle">Verifikasi kepatuhan ambang batas kerusakan berdasarkan Kepmentan No. 02/Kpts/SR.230/B/01/2023.</p>
                     </div>
                 </div>
@@ -446,7 +445,7 @@
             <div class="tab-pane" id="tab-simulator">
                 <div class="pane-header-group">
                     <div>
-                        <h4 class="pane-title">Simulasi &amp; Uji Sensitivitas Parameter Lapangan</h4>
+                        <h4 class="pane-title">Uji Sensitivitas Parameter Lapangan</h4>
                         <p class="pane-subtitle">Geser parameter di bawah ini untuk menguji bagaimana sistem bereaksi terhadap dinamika cuaca ekstrem secara instan.</p>
                     </div>
                 </div>

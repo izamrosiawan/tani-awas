@@ -63,7 +63,7 @@
 html, body {
     width: 100%;
     min-height: 100vh;
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--canvas-bg);
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
@@ -438,19 +438,17 @@ html, body {
 }
 
 .card-kicker {
-    font-size: 0.68rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-size: 0.72rem;
+    font-weight: 500;
     color: var(--text-muted);
     display: block;
+    margin-bottom: 2px;
 }
 
 .card-title {
     font-size: 0.95rem;
-    font-weight: 800;
+    font-weight: 600;
     color: var(--text-primary);
-    letter-spacing: -0.01em;
 }
 
 .summary-card-body {
@@ -468,10 +466,11 @@ html, body {
 }
 
 .large-stat-val {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'tnum';
     font-variant-numeric: tabular-nums;
-    font-size: 2.2rem;
-    font-weight: 800;
+    font-size: 1.85rem;
+    font-weight: 700;
     color: var(--accent-amber);
     line-height: 1;
 }
@@ -509,7 +508,8 @@ html, body {
 }
 
 .meta-value {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'tnum';
     font-variant-numeric: tabular-nums;
     font-size: 0.88rem;
     font-weight: 700;
@@ -559,10 +559,11 @@ html, body {
 }
 
 .reading-num {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'tnum';
     font-variant-numeric: tabular-nums;
-    font-size: 1.15rem;
-    font-weight: 800;
+    font-size: 1.05rem;
+    font-weight: 600;
     color: var(--text-primary);
 }
 
@@ -595,14 +596,14 @@ html, body {
 
 /* Card 3 Specifics (Aksi Cepat) */
 .action-alert-box {
-    background: #fffbeb;
-    border: 1px solid #fde68a;
+    background: #f8fafc;
+    border: 1px solid var(--border-light);
     border-radius: var(--radius-subcard);
     padding: 12px 14px;
-    font-size: 0.78rem;
-    color: #92400e;
-    line-height: 1.45;
-    font-weight: 500;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    font-weight: 400;
 }
 
 .action-quick-stats {
@@ -625,7 +626,8 @@ html, body {
 }
 
 .stat-col-val {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'tnum';
     font-variant-numeric: tabular-nums;
     font-size: 0.92rem;
     font-weight: 800;
@@ -712,9 +714,8 @@ html, body {
 
 .pane-title {
     font-size: 1.05rem;
-    font-weight: 800;
+    font-weight: 600;
     color: var(--text-primary);
-    letter-spacing: -0.01em;
 }
 
 .pane-subtitle {
@@ -781,18 +782,17 @@ html, body {
 }
 
 .unit-tag {
-    font-size: 0.68rem;
-    font-weight: 700;
+    font-size: 0.72rem;
+    font-weight: 500;
     color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
 }
 
 .unit-num {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'tnum';
     font-variant-numeric: tabular-nums;
-    font-size: 1.35rem;
-    font-weight: 800;
+    font-size: 1.2rem;
+    font-weight: 600;
     color: var(--text-primary);
 }
 
@@ -837,7 +837,8 @@ html, body {
 }
 
 .slider-lbl-row strong {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'tnum';
     color: var(--accent-primary);
 }
 

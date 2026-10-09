@@ -176,7 +176,7 @@ function initMap() {
                 <strong style="color: #1c211e;">${kec}</strong><br>
                 <span style="color: #727a70;">Komoditas:</span> ${data.commodity}<br>
                 <span style="color: #727a70;">Kerentanan:</span> <strong>${data.kelas_relatif}</strong> (${data.vuln_index})<br>
-                <span style="color: #727a70;">Skor Risiko Gabungan:</span> <strong style="color: ${color}; font-family: 'JetBrains Mono', monospace;">${data.risk_score.toFixed(3)}</strong>
+                <span style="color: #727a70;">Skor Risiko Gabungan:</span> <strong style="color: ${color}; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">${data.risk_score.toFixed(3)}</strong>
             </div>
         `, { className: 'custom-leaflet-tooltip' });
 
@@ -459,11 +459,11 @@ function calculateAndRenderMetrics() {
     const adviceElem = document.getElementById("irrigationAdviceText");
     if (adviceElem) {
         if (riskScore >= 0.70) {
-            adviceElem.textContent = `Mendesak: Pasang ${pumpUnits} unit pompa darurat di titik sumur/embung primer. Terapkan irigasi malam hari berselang (AWD) dan tunda pemupukan kering.`;
+            adviceElem.textContent = `Perlu intervensi pompa ${pumpUnits} unit pada titik sumber air utama, dengan pengaturan pengairan berkala (AWD) dan penyesuaian jadwal pemupukan.`;
         } else if (riskScore >= 0.45) {
-            adviceElem.textContent = `Waspada: Rotasi pembukaan pintu air tersier setiap 3 hari. Gunakan mulsa jerami sisa panen untuk menekan laju penguapan tanah.`;
+            adviceElem.textContent = `Perlu pengaturan rotasi air tersier secara berkala dan penggunaan mulsa organik untuk menekan evaporasi.`;
         } else {
-            adviceElem.textContent = `Kondisi Terkendali (Risiko Regional Rendah z=0.374): Pertahankan tinggi muka air berselang (AWD) 2-3 cm dan pantau anomali suhu LST.`;
+            adviceElem.textContent = `Kondisi wilayah saat ini tergolong rendah (z = 0,37). Lahan disarankan tetap menerapkan irigasi berselang (AWD) 2-3 cm serta pemantauan berkala terhadap anomali suhu permukaan.`;
         }
     }
 
@@ -473,12 +473,12 @@ function calculateAndRenderMetrics() {
 
     if (autpBadge && autpDesc && autpPayout) {
         if (isEligibleAUTP) {
-            autpBadge.textContent = "MEMENUHI SYARAT KLAIM";
+            autpBadge.textContent = "Memenuhi Syarat";
             autpBadge.style.color = "#15803d";
             autpDesc.textContent = `Tingkat kerusakan lahan (${lossPct.toFixed(1)}%) telah melampaui ambang batas syarat AUTP (≥75%). Petani berhak mengajukan santunan.`;
             autpPayout.textContent = `Rp ${(landArea * 6000000).toLocaleString('id-ID')}`;
         } else {
-            autpBadge.textContent = "BELUM MEMENUHI AMBANG";
+            autpBadge.textContent = "Belum Memenuhi";
             autpBadge.style.color = "#d97706";
             autpDesc.textContent = `Tingkat kehilangan hasil (${lossPct.toFixed(1)}%) masih di bawah ambang batas legal AUTP (75%). Prioritaskan tindakan pompa darurat.`;
             autpPayout.textContent = `Rp ${(landArea * 6000000).toLocaleString('id-ID')} (Potensi Maks)`;
@@ -489,17 +489,17 @@ function calculateAndRenderMetrics() {
     const riskBadge = document.getElementById("riskLevelBadge");
     if (riskBadge) {
         if (riskScore >= 0.70) {
-            riskBadge.textContent = "Fase Kritis (D3)";
+            riskBadge.textContent = "Risiko Tinggi";
             riskBadge.className = "status-pill warning";
             riskBadge.style.color = "#b45309";
             riskBadge.style.backgroundColor = "#fef3c7";
         } else if (riskScore >= 0.45) {
-            riskBadge.textContent = "Fase Waspada (D2)";
+            riskBadge.textContent = "Risiko Sedang";
             riskBadge.className = "status-pill warning";
             riskBadge.style.color = "#d97706";
             riskBadge.style.backgroundColor = "#fffbeb";
         } else {
-            riskBadge.textContent = "Fase Aman (D0-D1)";
+            riskBadge.textContent = "Risiko Rendah";
             riskBadge.className = "status-pill safe";
             riskBadge.style.color = "#15803d";
             riskBadge.style.backgroundColor = "#dcfce7";
